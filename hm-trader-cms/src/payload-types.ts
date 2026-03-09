@@ -177,6 +177,7 @@ export interface Category {
   id: string;
   name: string;
   description?: string | null;
+  images?: (string | Media)[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -373,6 +374,7 @@ export interface MediaSelect<T extends boolean = true> {
 export interface CategoriesSelect<T extends boolean = true> {
   name?: T;
   description?: T;
+  images?: T;
   updatedAt?: T;
   createdAt?: T;
 }
