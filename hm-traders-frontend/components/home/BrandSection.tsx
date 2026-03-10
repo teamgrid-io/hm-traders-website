@@ -3,15 +3,36 @@ import {getBrands} from "@/lib/getBrands";
 export default async function BrandSection() {
     const brands = await getBrands();
     return (
-        <div className="brand-section">
-            <h2>Our Brands</h2>
-            <div className="brand-logos">
-                {brands?.docs?.map((brand: any) => (
-                    <div key={brand.name} className="brand-logo">
-                        <img src={brand.logo?.url} alt={brand.name} />
-                    </div>
-                ))}
-            </div>
-        </div>
+  <div className="brand-section">
+  <h2 className="brand-title">Our Brands</h2>
+
+  <div className="brand-logos">
+    {brands?.docs?.map((brand: any) => (
+      <div key={brand.id} className="brand-card">
+
+        {brand?.logo?.url && (
+          <img
+            src={`http://localhost:3000${brand.logo.url}`}
+            alt={brand.logo.alt || brand.name}
+            className="brand-logo"
+          />
+        )}
+
+        <h3 className="brand-name">{brand.name}</h3>
+
+        {brand?.catalogPdf?.url && (
+          <a
+            href={`http://localhost:3000${brand.catalogPdf.url}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="catalog-btn"
+          >
+            Download Catalog
+          </a>
+        )}
+      </div>
+    ))}
+  </div>
+</div>
     );
 }
