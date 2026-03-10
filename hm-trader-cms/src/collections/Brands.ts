@@ -22,6 +22,11 @@ export const Brands: CollectionConfig = {
       name: 'description',
       type: 'textarea',
     },
+     {
+      name: "catalogPdf",
+      type: "upload",
+      relationTo: "media",
+    },
   ],
 }
 

@@ -192,6 +192,7 @@ export interface Brand {
   name: string;
   logo?: (string | null) | Media;
   description?: string | null;
+  catalogPdf?: (string | null) | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -403,6 +404,7 @@ export interface BrandsSelect<T extends boolean = true> {
   name?: T;
   logo?: T;
   description?: T;
+  catalogPdf?: T;
   updatedAt?: T;
   createdAt?: T;
 }
