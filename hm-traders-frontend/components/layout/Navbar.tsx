@@ -8,35 +8,41 @@ export default async function Header() {
 
   return (
     <header>
-      
+
       {/* TOP HEADER */}
       <div className="topHeader">
+        <div className="container">
 
-        <div className="logo">
-          <Image src={HmLogo} alt="HM Traders Logo" width={140} />
+          <div className="logo">
+            <Image src={HmLogo} alt="HM Traders Logo" width={140} />
+          </div>
+
+          <div className="searchBox">
+            <input
+              type="text"
+              placeholder="Search your cutting tools..."
+            />
+          </div>
+
+          <div className="contactInfo">
+            <span>info@dictoolsindia.com</span>
+            <span>LinkedIn</span>
+          </div>
+
         </div>
-
-        <div className="searchBox">
-          <input
-            type="text"
-            placeholder="Search your cutting tools..."
-          />
-        </div>
-
-        <div className="contactInfo">
-          <span>info@dictoolsindia.com</span>
-          <span>LinkedIn</span>
-        </div>
-
       </div>
 
       {/* NAVBAR */}
       <nav className="navbar">
-        {menu?.map((item: any) => (
-          <Link key={item.id} href={item.link}>
-            {item.title}
-          </Link>
-        ))}
+        <div className="container">
+
+          {menu?.map((item: any) => (
+            <Link key={item.id} href={item.link}>
+              {item.title}
+            </Link>
+          ))}
+
+        </div>
       </nav>
 
     </header>
