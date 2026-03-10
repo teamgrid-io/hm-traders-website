@@ -2,6 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { getMenu } from "@/lib/getMenu";
 import HmLogo from "../../public/HmLogo.png";
+import { SiMinutemailer } from "react-icons/si";
+import { FaLinkedinIn } from "react-icons/fa6";
+import "./Navbar.css";
 
 export default async function Header() {
   const menu = await getMenu();
@@ -14,7 +17,7 @@ export default async function Header() {
         <div className="container">
 
           <div className="logo">
-            <Image src={HmLogo} alt="HM Traders Logo" width={140} />
+            <Image src={HmLogo} alt="HM Traders Logo" />
           </div>
 
           <div className="searchBox">
@@ -25,8 +28,14 @@ export default async function Header() {
           </div>
 
           <div className="contactInfo">
-            <span>info@dictoolsindia.com</span>
-            <span>LinkedIn</span>
+            <div className="contactItem">
+              <span><SiMinutemailer /></span>
+              <span> info@dictoolsindia.com</span>
+            </div>
+            <div className="contactItem">
+              <span><FaLinkedinIn /></span>
+              <span> LinkedIn</span>
+            </div>
           </div>
 
         </div>
