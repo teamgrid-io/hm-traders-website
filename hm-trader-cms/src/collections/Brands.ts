@@ -7,6 +7,10 @@ export const Brands: CollectionConfig = {
     useAsTitle: 'name',
   },
 
+  access: {
+    read: () => true,
+  },
+
   fields: [
     {
       name: 'name',
