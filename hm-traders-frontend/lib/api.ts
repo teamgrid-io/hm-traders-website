@@ -8,10 +8,3 @@ export async function getProducts() {
   console.log("Products data:", data); // Debugging log
   return data.docs;
 }
-
-export async function getBrands() {
-  const res = await fetch(`${API_URL}/brands`);
-
-  const data = await res.json();
-  return data.docs;
-}
