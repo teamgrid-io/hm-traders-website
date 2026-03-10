@@ -1,4 +1,4 @@
-import {getBrands} from "@/lib/api";
+import {getBrands} from "@/lib/getBrands";
 
 export default async function BrandSection() {
     const brands = await getBrands();
