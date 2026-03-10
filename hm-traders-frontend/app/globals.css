@@ -5,48 +5,4 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
-.container{
-max-width:1200px;
-margin:auto;
-display:flex;
-align-items:center;
-justify-content:space-between;
-}
 
-.topHeader{
-border-bottom:1px solid #eee;
-padding:15px 0;
-}
-
-.searchBox input{
-width:400px;
-padding:10px;
-border:2px solid orange;
-border-radius:6px;
-}
-
-.contactInfo{
-display:flex;
-gap:20px;
-font-size:14px;
-}
-
-.navbar{
-border-bottom:1px solid #eee;
-}
-
-.navbar .container{
-display:flex;
-gap:30px;
-padding:15px 0;
-font-weight:600;
-}
-
-.navbar a{
-text-decoration:none;
-color:#333;
-}
-
-.navbar a:hover{
-color:orange;
-}
