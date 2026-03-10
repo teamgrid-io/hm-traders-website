@@ -30,7 +30,7 @@ export default async function Header() {
           <div className="contactInfo">
             <div className="contactItem">
               <span><SiMinutemailer /></span>
-              <span> info@dictoolsindia.com</span>
+              <span> info@example.com</span>
             </div>
             <div className="contactItem">
               <span><FaLinkedinIn /></span>
