@@ -24,3 +24,33 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+.topHeader{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:15px 40px;
+border-bottom:1px solid #eee;
+}
+
+.searchBox input{
+width:400px;
+padding:10px;
+border:2px solid orange;
+border-radius:6px;
+}
+
+.navbar{
+display:flex;
+gap:30px;
+padding:15px 40px;
+font-weight:600;
+}
+
+.navbar a{
+text-decoration:none;
+color:#333;
+}
+
+.navbar a:hover{
+color:orange;
+}

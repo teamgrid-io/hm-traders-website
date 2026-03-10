@@ -73,6 +73,7 @@ export interface Config {
     brands: Brand;
     products: Product;
     enquiries: Enquiry;
+    menu: Menu;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -86,6 +87,7 @@ export interface Config {
     brands: BrandsSelect<false> | BrandsSelect<true>;
     products: ProductsSelect<false> | ProductsSelect<true>;
     enquiries: EnquiriesSelect<false> | EnquiriesSelect<true>;
+    menu: MenuSelect<false> | MenuSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -239,6 +241,17 @@ export interface Enquiry {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "menu".
+ */
+export interface Menu {
+  id: string;
+  title: string;
+  link: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -284,6 +297,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'enquiries';
         value: string | Enquiry;
+      } | null)
+    | ({
+        relationTo: 'menu';
+        value: string | Menu;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -414,6 +431,16 @@ export interface EnquiriesSelect<T extends boolean = true> {
   email?: T;
   phone?: T;
   message?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "menu_select".
+ */
+export interface MenuSelect<T extends boolean = true> {
+  title?: T;
+  link?: T;
   updatedAt?: T;
   createdAt?: T;
 }
