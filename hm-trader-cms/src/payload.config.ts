@@ -10,7 +10,8 @@ import { Categories } from './collections/Categories'
 import { Brands } from './collections/Brands'
 import { Products } from './collections/Products'
 import { Enquiries } from './collections/Enquiries'
-import { Menu } from './collections/Menu' 
+import { Menu } from './collections/Menu'
+import { Ecatalogues } from './collections/Ecatalogues' 
 import { About } from './collections/About'
 import { Whychoose } from './collections/Whychoose'
 const filename = fileURLToPath(import.meta.url)
@@ -22,7 +23,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media,Categories, Brands, Products, Enquiries, Menu,About,Whychoose],
+  collections: [Users, Media, Categories, Brands, Products, Ecatalogues, Enquiries, Menu, About, Whychoose],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

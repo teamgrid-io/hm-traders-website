@@ -1,12 +1,13 @@
 import {getBrands} from "@/lib/getBrands";
-
+import Container from "../layout/Container";
 export default async function BrandSection() {
     const brands = await getBrands();
     console.log("Fetched brands in BrandSection:", brands);
     return (
+      
   <div className="brand-section">
-  <h2 className="brand-title">Our Brands</h2>
-
+  <h1 className="brand-title">Supplier For</h1>
+<Container>
   <div className="brand-logos">
     {brands?.map((brand: any) => (
       <div key={brand.id} className="brand-card">
@@ -34,6 +35,7 @@ export default async function BrandSection() {
       </div>
     ))}
   </div>
+  </Container>
 </div>
     );
 }

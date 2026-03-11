@@ -6,7 +6,13 @@
   justify-content: space-between;
   /* padding: 0 15px; */
 }
-
+.navbar {
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 1000;
+}
 /* TOP HEADER */
 .topHeader {
   border-bottom: 1px solid #eee;
@@ -14,12 +20,14 @@
 }
 
 .logo {
-  width: 70px;
+  width: 150px;
   height: auto;
 }
+
 .searchBox {
+    flex: 1;
   margin: 0 40px;
-  width: 100%;
+  width: 60%;
   padding: 8px;
   border: 2px solid #fcae1b;
   border-radius: 6px;
@@ -43,9 +51,7 @@
 }
 
 /* NAVBAR */
-.navbar {
-  border-bottom: 1px solid #eee;
-}
+
 
 .navbar .container {
   display: flex;
