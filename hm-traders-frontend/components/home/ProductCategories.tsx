@@ -7,7 +7,7 @@ export default async function ProductCategories() {
   const categories = await getCategories();
 
   return (
-    <section className="py-16">
+    <section className="py-4">
         <div className="grid md:grid-cols-3 gap-8">
           {categories?.map((cat: any) => {
             const image = cat.images?.[0];
