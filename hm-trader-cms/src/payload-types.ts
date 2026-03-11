@@ -72,6 +72,7 @@ export interface Config {
     categories: Category;
     brands: Brand;
     products: Product;
+    ecatalogues: Ecatalogue;
     enquiries: Enquiry;
     menu: Menu;
     'payload-kv': PayloadKv;
@@ -86,6 +87,7 @@ export interface Config {
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     brands: BrandsSelect<false> | BrandsSelect<true>;
     products: ProductsSelect<false> | ProductsSelect<true>;
+    ecatalogues: EcataloguesSelect<false> | EcataloguesSelect<true>;
     enquiries: EnquiriesSelect<false> | EnquiriesSelect<true>;
     menu: MenuSelect<false> | MenuSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
@@ -229,6 +231,38 @@ export interface Product {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ecatalogues".
+ */
+export interface Ecatalogue {
+  id: string;
+  title: string;
+  slug: string;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  category?: (string | null) | Category;
+  products?: (string | Product)[] | null;
+  catalogueFile: string | Media;
+  coverImage?: (string | null) | Media;
+  isActive?: boolean | null;
+  publishedDate?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "enquiries".
  */
 export interface Enquiry {
@@ -294,6 +328,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'products';
         value: string | Product;
+      } | null)
+    | ({
+        relationTo: 'ecatalogues';
+        value: string | Ecatalogue;
       } | null)
     | ({
         relationTo: 'enquiries';
@@ -421,6 +459,23 @@ export interface ProductsSelect<T extends boolean = true> {
   images?: T;
   specifications?: T;
   catalogPdf?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ecatalogues_select".
+ */
+export interface EcataloguesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  description?: T;
+  category?: T;
+  products?: T;
+  catalogueFile?: T;
+  coverImage?: T;
+  isActive?: T;
+  publishedDate?: T;
   updatedAt?: T;
   createdAt?: T;
 }
