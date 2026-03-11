@@ -6,7 +6,13 @@
   justify-content: space-between;
   /* padding: 0 15px; */
 }
-
+.navbar {
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 1000;
+}
 /* TOP HEADER */
 .topHeader {
   border-bottom: 1px solid #eee;
@@ -14,16 +20,22 @@
 }
 
 .logo {
-  width: 70px;
+  width: 150px;
   height: auto;
 }
 
-.searchBox input {
-  width: 100%;
-  max-width: 700px;
+.searchBox {
+    flex: 1;
+  margin: 0 40px;
+  width: 60%;
   padding: 8px;
   border: 2px solid #fcae1b;
   border-radius: 6px;
+}
+.searchBox input {
+  width: 100%;
+  border: none;
+  outline: none;
 }
 
 .contactInfo {
@@ -39,9 +51,7 @@
 }
 
 /* NAVBAR */
-.navbar {
-  border-bottom: 1px solid #eee;
-}
+
 
 .navbar .container {
   display: flex;
@@ -59,6 +69,7 @@
 
 .navbar a:hover {
   background-color: #fcae1b;
+  color: #fff;
 }
 
 /* ========================= */
