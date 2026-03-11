@@ -1,12 +1,26 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api';
-
+import { API_URL } from '../api/Api';
 
 export async function getProducts() {
-  const res = await fetch(`${API_URL}/products`);
+  try {
+    const url = `${API_URL}/products`;
+    console.log('[frontend] fetching products from', url);
+    const res = await fetch(url, {
+      cache: "no-store",
+    });
 
-  const data = await res.json();
-  console.log("Products data:", data); // Debugging log
-  return data.docs;
+    if (!res.ok) {
+      const errorText = await res.text().catch(() => '<no body>');
+      console.error('[frontend] products fetch failed', res.status, errorText);
+      throw new Error(`Failed to fetch products: ${res.status}`);
+    }
+
+    const data = await res.json();
+    console.log("Products data:", data); // Debugging log
+    return data.docs || [];
+  } catch (error) {
+    console.error('[frontend] Error fetching products:', error);
+    return [];
+  }
 }
 
 
