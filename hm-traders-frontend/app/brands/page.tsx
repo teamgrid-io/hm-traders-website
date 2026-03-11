@@ -1,11 +1,12 @@
 import { getBrands } from "../../lib/getBrands";
+import Container from "@/components/layout/Container";
 export default async function Home() {
   const brands = await getBrands();
   console.log("Page brands:", brands);
 
   return (
-    <div>
-      <h1>Brands</h1>
+    <Container>
+      <h1>Brands</h1> 
 
       {brands.map((brand: any) => (
         <div key={brand.id}>
@@ -14,6 +15,6 @@ export default async function Home() {
           <p>{brand.catalogPdf}</p> */}
         </div>
       ))}
-    </div>
+    </Container>
   );
 }

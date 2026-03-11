@@ -2,12 +2,13 @@ import {getBrands} from "@/lib/getBrands";
 
 export default async function BrandSection() {
     const brands = await getBrands();
+    console.log("Fetched brands in BrandSection:", brands);
     return (
   <div className="brand-section">
   <h2 className="brand-title">Our Brands</h2>
 
   <div className="brand-logos">
-    {brands?.docs?.map((brand: any) => (
+    {brands?.map((brand: any) => (
       <div key={brand.id} className="brand-card">
 
         {brand?.logo?.url && (
