@@ -19,7 +19,7 @@ export default async function HeroSection() {
           margin: "0 auto",
         }}
       >
-        <h1
+        {/* <h1
           style={{
             fontSize: "42px",
             fontWeight: "600",
@@ -28,7 +28,7 @@ export default async function HeroSection() {
           }}
         >
           About Us
-        </h1>
+        </h1> */}
 
         <p
           style={{
