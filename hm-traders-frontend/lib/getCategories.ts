@@ -2,7 +2,7 @@ import { API_URL } from "@/api/Api";
 export async function getCategories() {
   try {
     const res = await fetch(
-      `${API_URL}/categories?limit=100`
+      `${API_URL}/categories?limit=100&populate=images`
     );
 
     if (!res.ok) {
