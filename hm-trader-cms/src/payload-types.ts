@@ -75,6 +75,8 @@ export interface Config {
     ecatalogues: Ecatalogue;
     enquiries: Enquiry;
     menu: Menu;
+    about: About;
+    whychoose: Whychoose;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -90,6 +92,8 @@ export interface Config {
     ecatalogues: EcataloguesSelect<false> | EcataloguesSelect<true>;
     enquiries: EnquiriesSelect<false> | EnquiriesSelect<true>;
     menu: MenuSelect<false> | MenuSelect<true>;
+    about: AboutSelect<false> | AboutSelect<true>;
+    whychoose: WhychooseSelect<false> | WhychooseSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -287,6 +291,26 @@ export interface Menu {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about".
+ */
+export interface About {
+  id: string;
+  about: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "whychoose".
+ */
+export interface Whychoose {
+  id: string;
+  whychoose: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -340,6 +364,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'menu';
         value: string | Menu;
+      } | null)
+    | ({
+        relationTo: 'about';
+        value: string | About;
+      } | null)
+    | ({
+        relationTo: 'whychoose';
+        value: string | Whychoose;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -498,6 +530,24 @@ export interface EnquiriesSelect<T extends boolean = true> {
 export interface MenuSelect<T extends boolean = true> {
   title?: T;
   link?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about_select".
+ */
+export interface AboutSelect<T extends boolean = true> {
+  about?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "whychoose_select".
+ */
+export interface WhychooseSelect<T extends boolean = true> {
+  whychoose?: T;
   updatedAt?: T;
   createdAt?: T;
 }
