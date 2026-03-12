@@ -11,7 +11,7 @@ export default async function Header() {
   const menu = await getMenu();
 
   return (
-    <header>
+   <>
       {/* TOP HEADER */}
       <div className="topHeader">
         <div className="container">
@@ -56,6 +56,6 @@ export default async function Header() {
           ))}
         </div>
       </nav>
-    </header>
+    </>
   );
 }
