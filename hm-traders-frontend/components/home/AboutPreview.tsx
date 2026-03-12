@@ -18,65 +18,27 @@ export default async function About() {
   }
 
   return (
-  <section style={{ padding: "80px 20px", maxWidth: "1200px", margin: "auto" }}>
-  
-  <h1 style={{ fontSize: "40px", marginBottom: "20px", textAlign: "center" }}>
-    About Us
-  </h1>
-
-  <div
-    style={{
-      display: "flex",
-      flexDirection: "column",
-      gap: "20px",
-    }}
-  >
+ <section className="about-section">
+  <h1 className="about-title">About Us</h1>
+ 
+  <div className="about-container">
     {aboutData?.docs?.map((item: any) => (
-      <div key={item.id}>
-        <p
-          style={{
-            fontSize: "18px",
-            lineHeight: "1.6",
-          }}
-        >
-          {item.about}
-        </p>
+      <div key={item.id} className="about-card">
+        <p>{item.about}</p>
       </div>
     ))}
   </div>
-
-  <h1 style={{ fontSize: "40px", margin: "40px 0 20px", textAlign: "center" }}>
-    Why Should You Choose Us?
-  </h1>
-
-  <div
-    style={{
-      display: "flex",
-      flexDirection: "column",
-      gap: "20px",
-    }}
-  >
-<ul
-  style={{
-    paddingLeft: "20px",
-    listStyleType: "disc",
-  }}
->
-  {whyChooseData?.docs?.map((item: any) => (
-    <li
-      key={item.id}
-      style={{
-        fontSize: "18px",
-        lineHeight: "1.6",
-        marginBottom: "10px",
-      }}
-    >
-      {item.whychoose}
-    </li>
-  ))}
-</ul>
+ 
+  <h1 className="why-title">Why Should You Choose Us?</h1>
+ 
+  <div className="why-container">
+    <ul>
+      {whyChooseData?.docs?.map((item: any) => (
+        <li key={item.id}>{item.whychoose}</li>
+      ))}
+    </ul>
   </div>
-
 </section>
+ 
   );
 }
