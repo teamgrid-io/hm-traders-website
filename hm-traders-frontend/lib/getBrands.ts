@@ -16,7 +16,7 @@ export async function getBrands() {
     }
 
     const data = await res.json();
-    console.log("Brands API response:", JSON.stringify(data, null, 2));
+    // console.log("Brands API response:", JSON.stringify(data, null, 2));
 
     return data.docs || []; // Payload returns docs array
   } catch (error) {

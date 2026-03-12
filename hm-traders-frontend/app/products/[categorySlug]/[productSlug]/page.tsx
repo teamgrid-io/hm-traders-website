@@ -4,7 +4,7 @@ import { constructMediaUrl } from "@/lib/constructMediaUrl";
 import Container from "@/components/layout/Container";
 
 export default async function ProductPage({ params }: any) {
-  const { productSlug } = params;
+  const { productSlug } = await params;
 
   const product = await getProductBySlug(productSlug);
 

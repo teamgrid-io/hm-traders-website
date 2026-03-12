@@ -1,12 +1,12 @@
-import { getProductsByCategorySlug } from "@/lib/getProducts";
+import { getProductsByCategorySlug,getProducts } from "@/lib/getProducts";
 import Link from "next/link";
 import Image from "next/image";
 import Container from "@/components/layout/Container";
 import { constructMediaUrl } from "@/lib/constructMediaUrl";
 
 export default async function CategoryPage({ params }: any) {
-  const { categorySlug } = params;
-
+  const { categorySlug } = await params;
+const product = await getProducts();
   const products = await getProductsByCategorySlug(categorySlug);
 
   return (
