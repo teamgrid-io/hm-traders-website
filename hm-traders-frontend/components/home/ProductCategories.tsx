@@ -40,7 +40,7 @@ export default async function ProductCategories() {
 
               {/* TITLE BAR */}
               <Link
-                href={`/products/${cat.id}`}
+                href={`/products/${cat.slug}`}
                 className="absolute bottom-4 left-4 right-4 bg-[#f5a623] text-white flex items-center justify-between px-6 py-4 rounded-md font-semibold hover:bg-[#e09112] transition-colors"
               >
                 {cat.name}
