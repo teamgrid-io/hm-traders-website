@@ -6,13 +6,7 @@
   justify-content: space-between;
   /* padding: 0 15px; */
 }
-.navbar {
-  border-bottom: 1px solid #eee;
-  position: sticky;
-  top: 120;
-  background: white;
-  z-index: 1000;
-}
+
 /* TOP HEADER */
 .topHeader {
   border-bottom: 1px solid #eee;
@@ -53,6 +47,13 @@
 /* NAVBAR */
 
 
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: white;
+  border-bottom: 1px solid #eee;
+}
 .navbar .container {
   display: flex;
   flex-wrap: wrap;
