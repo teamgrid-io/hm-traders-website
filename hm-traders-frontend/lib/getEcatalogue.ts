@@ -15,7 +15,7 @@ export async function getEcatalogues() {
     }
 
     const data = await res.json();
-    console.log("eCatalogues API response:", JSON.stringify(data, null, 2));
+    // console.log("eCatalogues API response:", JSON.stringify(data, null, 2));
 
     return data.docs || [];
   } catch (error) {

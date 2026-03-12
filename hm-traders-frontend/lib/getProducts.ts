@@ -1,7 +1,7 @@
 import { API_URL } from "../api/Api";    
 export async function getProducts() {
   try {
-    const res = await fetch(`${API_URL}/api/products`, {
+    const res = await fetch(`${API_URL}/products`, {
       cache: "no-store",
     });
 
@@ -10,15 +10,31 @@ export async function getProducts() {
     }
 
     const data = await res.json();
+console.log("Products data:", data); // Debugging log
     return data.docs;
   } catch (error) {
     console.error(error);
     return [];
   }
 }
-export async function getProductsByCategorySlug(slug: string) {
+export async function getCategoryBySlug(slug: string) {
   const res = await fetch(
-    `${API_URL}/products?where[category.slug][equals]=${slug}&depth=1`,
+    `${API_URL}/categories?where[slug][equals]=${slug}`,
+    { cache: "no-store" }
+  );
+
+  const data = await res.json();
+  console.log("Category by slug data:", data); // Debugging log
+  return data.docs[0];
+}
+
+export async function getProductsByCategorySlug(slug: string) {
+  const category = await getCategoryBySlug(slug);
+
+  if (!category) return [];
+
+  const res = await fetch(
+    `${API_URL}/products?where[category][equals]=${category.id}&depth=1`,
     { cache: "no-store" }
   );
 
