@@ -25,36 +25,47 @@ export default function ContactForm() {
   };
 
   return (
-  <div className="contactWrapper">
-    <div className="contactTitle">CONTACT US</div>
+    <div className="contactWrapper">
+      <div className="contactTitle">CONTACT US</div>
 
-    <form onSubmit={handleSubmit} className="contactForm">
-      <input
-        placeholder="Name"
-        value={form.name}
-        onChange={(e) => setForm({ ...form, name: e.target.value })}
-      />
+      <form onSubmit={handleSubmit} className="contactForm">
+        <input
+          placeholder="Name"
+          value={form.name}
+          onChange={(e) => setForm({ ...form, name: e.target.value })}
+        />
 
-      <input
-        placeholder="Email"
-        value={form.email}
-        onChange={(e) => setForm({ ...form, email: e.target.value })}
-      />
+        <input
+          placeholder="Email"
+          value={form.email}
+          onChange={(e) => setForm({ ...form, email: e.target.value })}
+        />
 
-      <input
-        placeholder="Phone"
-        value={form.phone}
-        onChange={(e) => setForm({ ...form, phone: e.target.value })}
-      />
+        <input
+          placeholder="Phone"
+          value={form.phone}
+          onChange={(e) => setForm({ ...form, phone: e.target.value })}
+        />
 
-      <textarea
-        placeholder="Message"
-        value={form.message}
-        onChange={(e) => setForm({ ...form, message: e.target.value })}
-      />
+        <textarea
+          placeholder="Message"
+          value={form.message}
+          onChange={(e) => setForm({ ...form, message: e.target.value })}
+        />
 
-      <button type="submit">Send</button>
-    </form>
-  </div>
-);
+        <button type="submit">Send</button>
+      </form>
+      <div className="mapContainer">
+        <iframe
+          src="https://maps.google.com/maps?q=22.5792625,88.349173&z=17&output=embed&markers=22.5792625,88.349173"
+          width="100%"
+          height="400"
+          style={{ border: 0 }}
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        />
+      </div>
+    </div>
+  );
 }
