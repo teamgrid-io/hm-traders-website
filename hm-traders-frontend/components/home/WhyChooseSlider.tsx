@@ -34,26 +34,46 @@ export default function WhyChooseSlider({ items }: any) {
           animation-play-state: paused;
         }
 
-        .card {
-          min-width: 320px;
-          width: 320px;
-          height: 200px;
-          background: white;
-          border-radius: 12px;
-          padding: 24px;
-          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-          transition: all 0.3s ease;
-          border: 1px solid rgba(0, 0, 0, 0.05);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
+          .card {
+        min-width: 320px;
+        width: 320px;
+        height: 200px;
+        background: white;
+        border-radius: 12px;
+        padding: 24px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
 
-        .card:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-          border-color: rgba(0, 0, 0, 0.1);
-        }
+      /* sliding background */
+      .card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 0%;
+        background: #fcae1b;
+        transition: width 0.4s ease;
+        z-index: 0;
+      }
+
+      /* animate left to right */
+      .card:hover::before {
+        width: 100%;
+      }
+
+      /* keep content above background */
+      .card * {
+        position: relative;
+        z-index: 1;
+      }
 
         .card-content {
           font-size: 16px;
