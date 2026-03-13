@@ -4,7 +4,7 @@ import "./HomeBanner.css";
 export default function HomeBanner({ slug }:any) {
   const imageUrl = constructMediaUrl(slug?.heroImage?.url);
  
-import "../layout/Navbar.css"
+
 
 
 
