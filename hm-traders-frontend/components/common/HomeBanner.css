@@ -1,0 +1,135 @@
+.banner {
+  position: relative;
+  width: 100%;
+  min-height: 70vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  padding: 60px 20px;
+  margin-bottom: 50px;
+}
+
+.banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(4, 49, 109, 0.8) 0%, rgba(4, 49, 109, 0.8) 11.65%, rgba(4, 49, 109, 0.8) 22.63%, rgba(4, 49, 109, 0.641656) 37.94%, rgba(4, 49, 109, 0.56) 53.48%, rgba(4, 49, 109, 0.32) 66.06%, rgba(102, 102, 102, 0) 100%);
+;
+}
+
+.banner-content {
+  z-index: 2;
+  max-width: 600px;
+  color: white;
+}
+
+.banner-title {
+  font-size: 42px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.banner-subtitle {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+.banner-buttons {
+  display: flex;
+  /* justify-content: center; */
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.banner-btn {
+  color: white;
+  padding: 12px 25px;
+  background: #FF9C00;
+  text-decoration: none;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 1px;
+  border-bottom-left-radius: 1px;
+  transition: 0.3s;
+}
+.btn-outline {
+  color: white;
+  padding: 12px 25px;
+  background: transparent;
+  text-decoration: none;
+  border: 2px solid #fff;
+  border-top-left-radius: 1px;
+  border-bottom-right-radius: 1px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  transition: 0.3s;
+}
+
+
+.banner-btn:hover {
+  scale: 1.05;
+}
+
+/* Features */
+
+.banner-features {
+  position: absolute;
+  bottom: -70px;
+  left: 25%;
+  display: grid;
+  z-index: 1000;
+  grid-template-columns: repeat(3,1fr);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  
+}
+
+.feature-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  max-width: 200px;
+  background-color: #fff;
+  text-align: center;
+  height: 150px;
+  color: #333;
+  padding: 25px;
+  border-radius: 2px;
+}
+
+.feature-icon {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
+/* Responsive */
+
+@media (max-width: 1024px) {
+  .banner-title {
+    font-size: 36px;
+  }
+
+  .banner-features {
+    grid-template-columns: repeat(2,1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .banner-title {
+    font-size: 28px;
+  }
+
+  .banner-subtitle {
+    font-size: 16px;
+  }
+
+  .banner-features {
+    grid-template-columns: 1fr;
+  }
+}
