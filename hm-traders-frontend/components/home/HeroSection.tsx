@@ -1,6 +1,6 @@
 import { getAbout } from "@/lib/api";
 
-export default async function HeroSection() {
+export default async function HeroSection({ banner }: any) {
   const data = await getAbout();
 
   const aboutText = data?.docs?.[0]?.about || "";
@@ -19,7 +19,7 @@ export default async function HeroSection() {
           margin: "0 auto",
         }}
       >
-        {/* <h1
+        <h1
           style={{
             fontSize: "42px",
             fontWeight: "600",
@@ -27,8 +27,8 @@ export default async function HeroSection() {
             letterSpacing: "2px",
           }}
         >
-          About Us
-        </h1> */}
+         {banner?.title || "Welcome to HM Traders"}
+        </h1>
 
         <p
           style={{
