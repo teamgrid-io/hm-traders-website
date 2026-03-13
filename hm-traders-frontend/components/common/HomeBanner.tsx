@@ -1,4 +1,7 @@
 
+import "../layout/Navbar.css"
+
+
 
 export default async function HomeBanner({ slug }: any) {
 
@@ -14,14 +17,14 @@ export default async function HomeBanner({ slug }: any) {
       )}
 
       {/* Hero Title & Subtitle */}
-      <div className="text-center mb-8">
+      <div className="text-center mb-8"> 
         <h1 className="text-4xl md:text-6xl font-bold mb-4">
           {slug?.heroTitle || slug?.title}
         </h1>
         {slug?.heroSubtitle && (
           <p className="text-lg md:text-xl text-gray-700">{slug?.heroSubtitle}</p>
         )}
-      </div>
+      </div>   
 
       {/* Buttons */}
       {slug?.buttons?.length > 0 && (
