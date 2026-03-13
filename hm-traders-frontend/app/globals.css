@@ -5,41 +5,15 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
-.container {
-  max-width: 1200px;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
 
-.topHeader {
-  border-bottom: 1px solid #eee;
-  padding: 15px 0;
-}
 
-.contactInfo {
-  display: flex;
-  gap: 20px;
-  font-size: 14px;
-}
 
-.navbar {
-  border-bottom: 1px solid #eee;
-}
 
-.mainContent {
-  flex: 1;
-}
-
-.navbar a:hover {
-  color: orange;
-}
 
 .brand-section {
   padding: 60px 40px;
   background: #f5f5f5;
-  text-align: center;
+  text-align: center; 
 }
 
 .brand-title {
