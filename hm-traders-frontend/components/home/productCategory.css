@@ -1,0 +1,149 @@
+.product-section{
+  padding:80px 40px;
+  background:#fff;
+}
+
+.product-container{
+  max-width:1200px;
+  margin:auto;
+
+  display:flex;              /* FIX */ 
+  align-items:center;        /* FIX */
+  justify-content:space-between;
+  gap:120px;
+}
+
+/* IMAGE WRAPPER */
+
+.product-images{
+  position:relative;
+  width:517px;
+}
+
+/* LEFT IMAGE */
+
+.left-image{
+  position:relative;
+  width:517px;
+  height:475px;
+
+  border-top-left-radius:16px;
+  border-top-right-radius:72px;
+  border-bottom-right-radius:16px;
+  border-bottom-left-radius:72px;
+
+  overflow:hidden;
+}
+
+/* RIGHT IMAGE */
+
+.right-image{
+  position:absolute;
+  width:383px;
+  height:352px;
+
+  top:160px;
+  left:210px;
+
+  border-top-left-radius:16px;
+  border-top-right-radius:72px;
+  border-bottom-right-radius:16px;
+  border-bottom-left-radius:72px;
+
+  border:9px solid white;
+
+  overflow:hidden;
+  box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+/* IMAGE FIT */
+
+.img{
+  object-fit:cover;
+}
+
+/* RIGHT CONTENT */
+
+.product-content{
+  width:50%;
+}
+
+/* TAG */
+
+.tag{
+  color:#04316D;
+  font-size:16px;
+  margin-bottom:10px;
+  font-family:Poppins;
+  font-weight:500;
+  line-height:70px;
+  text-transform:capitalize;
+}
+
+/* TITLE */
+
+.product-content h2{
+  font-family:Poppins;
+  font-weight:600;
+  font-size:36px;
+  line-height:44px;
+}
+
+.product-content h2 span{
+  color:#f59e0b;
+}
+
+/* DESCRIPTION */
+
+.desc{
+  font-family:Lato;
+  color:#1A1A1A99;    /* FIXED (font-color → color) */
+  font-weight:500;
+  font-size:20px;
+  line-height:30px;
+}
+
+/* BUTTON */
+
+.explore-btn{
+  margin-top:20px;
+  padding:12px 26px;
+  background:#FF9C00;
+  color:white;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  font-weight:500;
+  transition:.3s;
+  font-size:16px;
+  height:42px; 
+  border-top-left-radius:5px;
+  border-top-right-radius:1px;
+  border-bottom-right-radius:5px;
+  border-bottom-left-radius:1px;
+}
+
+.explore-btn:hover{
+  background:#d97706;
+}
+
+/* RESPONSIVE */
+
+@media (max-width:900px){
+
+.product-container{
+  flex-direction:column;
+  gap:50px;
+}
+
+.product-images,
+.product-content{
+  width:100%;
+}
+
+.right-image{
+  left:120px;
+  top:200px;
+}
+
+} 

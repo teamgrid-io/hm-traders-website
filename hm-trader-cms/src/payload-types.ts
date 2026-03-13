@@ -77,6 +77,8 @@ export interface Config {
     menu: Menu;
     about: About;
     whychoose: Whychoose;
+    'product-category-section': ProductCategorySection;
+    'product-tools-section': ProductToolsSection;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -94,6 +96,8 @@ export interface Config {
     menu: MenuSelect<false> | MenuSelect<true>;
     about: AboutSelect<false> | AboutSelect<true>;
     whychoose: WhychooseSelect<false> | WhychooseSelect<true>;
+    'product-category-section': ProductCategorySectionSelect<false> | ProductCategorySectionSelect<true>;
+    'product-tools-section': ProductToolsSectionSelect<false> | ProductToolsSectionSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -312,6 +316,48 @@ export interface Whychoose {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "product-category-section".
+ */
+export interface ProductCategorySection {
+  id: string;
+  smallTitle?: string | null;
+  heading?: string | null;
+  highlightWord?: string | null;
+  description1?: string | null;
+  description2?: string | null;
+  buttonText?: string | null;
+  buttonLink?: string | null;
+  images: {
+    topImage: string | Media;
+    bottomImage: string | Media;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "product-tools-section".
+ */
+export interface ProductToolsSection {
+  id: string;
+  smallTitle?: string | null;
+  heading?: string | null;
+  highlightWord?: string | null;
+  viewAllText?: string | null;
+  viewAllLink?: string | null;
+  tools?:
+    | {
+        image: string | Media;
+        title: string;
+        link?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -373,6 +419,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'whychoose';
         value: string | Whychoose;
+      } | null)
+    | ({
+        relationTo: 'product-category-section';
+        value: string | ProductCategorySection;
+      } | null)
+    | ({
+        relationTo: 'product-tools-section';
+        value: string | ProductToolsSection;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -550,6 +604,48 @@ export interface AboutSelect<T extends boolean = true> {
  */
 export interface WhychooseSelect<T extends boolean = true> {
   whychoose?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "product-category-section_select".
+ */
+export interface ProductCategorySectionSelect<T extends boolean = true> {
+  smallTitle?: T;
+  heading?: T;
+  highlightWord?: T;
+  description1?: T;
+  description2?: T;
+  buttonText?: T;
+  buttonLink?: T;
+  images?:
+    | T
+    | {
+        topImage?: T;
+        bottomImage?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "product-tools-section_select".
+ */
+export interface ProductToolsSectionSelect<T extends boolean = true> {
+  smallTitle?: T;
+  heading?: T;
+  highlightWord?: T;
+  viewAllText?: T;
+  viewAllLink?: T;
+  tools?:
+    | T
+    | {
+        image?: T;
+        title?: T;
+        link?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }

@@ -3,6 +3,8 @@ import ProductCategories from "@/components/home/ProductCategories";
 import HeroSection from "@/components/home/HeroSection";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
 import Ecatalogue from "@/components/home/Ecatalogue";
+import OurProductCategory from "@/components/home/OurProductCategory";
+import ProductTools from "@/components/home/ProductTools";
 import { getProducts } from "@/lib/getProducts";
 export default async function Home() {
   const posts = await getProducts();
@@ -10,11 +12,13 @@ export default async function Home() {
   return (
     <div>
     <Container>
-      <HeroSection/>
+      {/* <HeroSection/>
       <ProductCategories />
-      <Ecatalogue />
+      <Ecatalogue /> */}
+      <OurProductCategory /> 
+      <ProductTools />
     </Container>
-          <WhyChooseUs/>
-</div>
+          {/* <WhyChooseUs/> */}
+</div> 
   );
 }

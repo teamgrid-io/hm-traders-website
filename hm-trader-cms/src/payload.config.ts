@@ -14,16 +14,18 @@ import { Menu } from './collections/Menu'
 import { Ecatalogues } from './collections/Ecatalogues' 
 import { About } from './collections/About'
 import { Whychoose } from './collections/Whychoose'
+import { ProductCategorySection } from './collections/ProductCategorySection'
+import { ProductToolsSection } from './collections/ProductToolsSection'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 export default buildConfig({
   admin: {
-    user: Users.slug,
+    user: Users.slug, 
     importMap: {
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Categories, Brands, Products, Ecatalogues, Enquiries, Menu, About, Whychoose],
+  collections: [Users, Media, Categories, Brands, Products, Ecatalogues, Enquiries, Menu, About, Whychoose,ProductCategorySection,ProductToolsSection], 
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
