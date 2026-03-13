@@ -79,6 +79,7 @@ export interface Config {
     whychoose: Whychoose;
     'product-category-section': ProductCategorySection;
     'product-tools-section': ProductToolsSection;
+    banner: Banner;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -98,6 +99,7 @@ export interface Config {
     whychoose: WhychooseSelect<false> | WhychooseSelect<true>;
     'product-category-section': ProductCategorySectionSelect<false> | ProductCategorySectionSelect<true>;
     'product-tools-section': ProductToolsSectionSelect<false> | ProductToolsSectionSelect<true>;
+    banner: BannerSelect<false> | BannerSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -358,6 +360,35 @@ export interface ProductToolsSection {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "banner".
+ */
+export interface Banner {
+  id: string;
+  title: string;
+  slug: string;
+  heroTitle?: string | null;
+  heroSubtitle?: string | null;
+  heroImage?: (string | null) | Media;
+  buttons?:
+    | {
+        label: string;
+        link: string;
+        id?: string | null;
+      }[]
+    | null;
+  heroFeatures?:
+    | {
+        title: string;
+        description?: string | null;
+        icon?: (string | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -427,6 +458,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'product-tools-section';
         value: string | ProductToolsSection;
+      } | null)
+    | ({
+        relationTo: 'banner';
+        value: string | Banner;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -644,6 +679,34 @@ export interface ProductToolsSectionSelect<T extends boolean = true> {
         image?: T;
         title?: T;
         link?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "banner_select".
+ */
+export interface BannerSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  heroTitle?: T;
+  heroSubtitle?: T;
+  heroImage?: T;
+  buttons?:
+    | T
+    | {
+        label?: T;
+        link?: T;
+        id?: T;
+      };
+  heroFeatures?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        icon?: T;
         id?: T;
       };
   updatedAt?: T;

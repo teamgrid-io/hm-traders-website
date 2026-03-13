@@ -6,12 +6,17 @@ import Ecatalogue from "@/components/home/Ecatalogue";
 import OurProductCategory from "@/components/home/OurProductCategory";
 import ProductTools from "@/components/home/ProductTools";
 import { getProducts } from "@/lib/getProducts";
+import HomeBanner from "@/components/common/HomeBanner";
+import { fetchBannerBySlug } from "@/lib/getBannerData";
 export default async function Home() {
   const posts = await getProducts();
-
+const banner = await fetchBannerBySlug("home");
+ 
+ 
   return (
     <div>
     <Container>
+      <HomeBanner slug={banner} />
       {/* <HeroSection/>
       <ProductCategories />
       <Ecatalogue /> */}
