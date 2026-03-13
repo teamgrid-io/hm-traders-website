@@ -1,5 +1,6 @@
 import { constructMediaUrl } from "@/lib/constructMediaUrl";
 import "./HomeBanner.css";
+import Container from "../layout/Container";
 
 export default function HomeBanner({ slug }:any) {
   const imageUrl = constructMediaUrl(slug?.heroImage?.url);
@@ -14,7 +15,8 @@ export default function HomeBanner({ slug }:any) {
       style={{ backgroundImage: `url(${imageUrl})` }}
     >
       <div className="banner-overlay"></div>
-
+    <div className="banner-container">
+        
       <div className="banner-content">
         <h1 className="banner-title">
           {slug?.heroTitle || slug?.title}
@@ -57,6 +59,7 @@ export default function HomeBanner({ slug }:any) {
             ))}
           </div>
         )}
+    </div>
     </section>
   );
 }

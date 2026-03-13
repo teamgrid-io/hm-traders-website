@@ -15,8 +15,9 @@ const banner = await fetchBannerBySlug("home");
  
   return (
     <div>
+       <HomeBanner slug={banner} />
     <Container>
-      <HomeBanner slug={banner} />
+     
       {/* <HeroSection/>
       <ProductCategories />
       <Ecatalogue /> */}
