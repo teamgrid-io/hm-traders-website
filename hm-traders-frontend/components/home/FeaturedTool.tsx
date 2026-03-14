@@ -1,13 +1,16 @@
 import Image from "next/image";
 import './FeaturedTool.css'
 import { getFeaturedTool } from "@/lib/getFeaturedTool";
+import { getProducts } from "@/lib/getProducts";
 
 export default async function FeaturedTool() {
 
   const data = await getFeaturedTool();
-  console.log("data",data)
   const section = data?.docs?.[0];
-
+  const ProductData = await getProducts();
+  const featuredProducts = ProductData.filter((product:any)=>{
+    return product.isFeatureTool === true;
+  })
   return ( 
     <section className="feartureTools-section">
  
@@ -21,21 +24,21 @@ export default async function FeaturedTool() {
           </h2>
         </div>
 
-        <a className="view-all">
+        <a className="feature-view-all">
           {section?.viewAllText} →
         </a>
 
       </div>
 
       <div className="featureTools-grid">
-        {section?.tools?.map((tool: any) => (
+        {featuredProducts?.map((tool: any) => (
           <div key={tool.id} className="tool-card">
 
   <div className="tool-image-wrapper">
-    {tool?.image?.url && (
+    {tool?.images[0]?.url && (
       <Image
-        src={`http://localhost:3000${tool.image.url}`}
-        alt={tool.image.alt || tool.title}
+        src={`http://localhost:3000${tool.images[0].url}`}
+        alt={tool.images[0].alt || tool.title}
         fill
         className="tool-img"
       />
@@ -44,15 +47,15 @@ export default async function FeaturedTool() {
 
   <div className="tool-content">
 
-    <p className="tool-title">{tool.title}</p>
+    <p className="tool-title">{tool.name}</p>
 
     <div className="tool-rating">
       <span className="stars">★★★★★</span>
-      <span className="rating">(5.0)</span>
-      <span className="reviews">• 120 Reviews</span>
+      <span className="rating">({tool.rating})</span>
+      <span className="reviews">• {tool.reviewCount} Reviews</span>
     </div>
 
-    <p className="tool-price">₹589.70</p>
+    <p className="tool-price">₹{tool.price}</p>
 
   </div>
 

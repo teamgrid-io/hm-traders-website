@@ -241,6 +241,10 @@ export interface Product {
   images?: (string | Media)[] | null;
   specifications?: string | null;
   catalogPdf?: (string | null) | Media;
+  price: number;
+  rating?: number | null;
+  reviewCount?: number | null;
+  isFeatureTool?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -631,6 +635,10 @@ export interface ProductsSelect<T extends boolean = true> {
   images?: T;
   specifications?: T;
   catalogPdf?: T;
+  price?: T;
+  rating?: T;
+  reviewCount?: T;
+  isFeatureTool?: T;
   updatedAt?: T;
   createdAt?: T;
 }

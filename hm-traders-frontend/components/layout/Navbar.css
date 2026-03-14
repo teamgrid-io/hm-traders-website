@@ -1,8 +1,15 @@
 
 /* TOP HEADER */
 .topHeader {
+  position: sticky;
+  top: 0;
+  z-index: 10000;
+  width: 100%;
+  background: #ffffff;
+}
+.headerContainer{
   max-width: 1200px;
-  margin: 0 auto;
+   margin: 0 auto;
   width: 100%;
   background: #ffffff;
   padding: 20px 40px;

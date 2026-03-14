@@ -30,8 +30,8 @@ export default function RootLayout({
         className={`layoutBody`}
       >
            <Header />
+           
         <main className="mainContent">{children}</main>
-        <WhatsAppButton/>
         <Footer />
         
       </body>
