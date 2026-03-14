@@ -1,7 +1,9 @@
 import { CollectionConfig } from "payload";
 export const Enquiries: CollectionConfig = {
   slug: "enquiries",
-
+access:{
+create: () => true,
+},
   fields: [
     {
       name: "name",
