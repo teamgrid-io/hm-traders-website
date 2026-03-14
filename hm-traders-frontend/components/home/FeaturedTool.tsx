@@ -1,0 +1,53 @@
+import Image from "next/image";
+import './FeaturedTool.css'
+import { getFeaturedTool } from "@/lib/getFeaturedTool";
+
+export default async function FeaturedTool() {
+
+  const data = await getFeaturedTool();
+  console.log("data",data)
+  const section = data?.docs?.[0];
+
+  return ( 
+    <section className="feartureTools-section">
+ 
+      <div className="featureTools-header">
+
+        <div>
+          <p className="featureTools-tag">★ {section?.smallTitle}</p>
+
+          <h2>
+            {section?.heading} <span>{section?.highlightWord}</span>
+          </h2>
+        </div>
+
+        <a className="view-all">
+          {section?.viewAllText} →
+        </a>
+
+      </div>
+
+      <div className="featureTools-grid">
+        {section?.tools?.map((tool: any) => (
+          <div key={tool.id} className="tool-card">
+
+            {tool?.image?.url && (
+              <Image
+                src={`http://localhost:3000${tool.image.url}`}
+                alt={tool.image.alt || tool.title}
+                fill
+                className="tool-img"
+              />
+            )}
+
+            <div className="featureTools-overlay">
+              <p>{tool.title}</p>
+            </div>
+
+          </div>
+        ))}
+      </div>
+
+    </section>
+  );
+}

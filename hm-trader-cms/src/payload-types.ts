@@ -80,6 +80,7 @@ export interface Config {
     banner: Banner;
     'product-category-section': ProductCategorySection;
     'product-tools-section': ProductToolsSection;
+    'featured-tool-section': FeaturedToolSection;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -100,6 +101,7 @@ export interface Config {
     banner: BannerSelect<false> | BannerSelect<true>;
     'product-category-section': ProductCategorySectionSelect<false> | ProductCategorySectionSelect<true>;
     'product-tools-section': ProductToolsSectionSelect<false> | ProductToolsSectionSelect<true>;
+    'featured-tool-section': FeaturedToolSectionSelect<false> | FeaturedToolSectionSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -389,6 +391,31 @@ export interface ProductToolsSection {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "featured-tool-section".
+ */
+export interface FeaturedToolSection {
+  id: string;
+  smallTitle?: string | null;
+  heading?: string | null;
+  highlightWord?: string | null;
+  viewAllText?: string | null;
+  viewAllLink?: string | null;
+  tools?:
+    | {
+        image: string | Media;
+        title: string;
+        link?: string | null;
+        rating?: string | null;
+        reviewCount?: string | null;
+        price?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -462,6 +489,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'product-tools-section';
         value: string | ProductToolsSection;
+      } | null)
+    | ({
+        relationTo: 'featured-tool-section';
+        value: string | FeaturedToolSection;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -707,6 +738,30 @@ export interface ProductToolsSectionSelect<T extends boolean = true> {
         image?: T;
         title?: T;
         link?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "featured-tool-section_select".
+ */
+export interface FeaturedToolSectionSelect<T extends boolean = true> {
+  smallTitle?: T;
+  heading?: T;
+  highlightWord?: T;
+  viewAllText?: T;
+  viewAllLink?: T;
+  tools?:
+    | T
+    | {
+        image?: T;
+        title?: T;
+        link?: T;
+        rating?: T;
+        reviewCount?: T;
+        price?: T;
         id?: T;
       };
   updatedAt?: T;

@@ -17,6 +17,7 @@ import { Whychoose } from './collections/Whychoose'
 import { ProductCategorySection } from './collections/ProductCategorySection'
 import { ProductToolsSection } from './collections/ProductToolsSection'
 import { Banner } from './collections/Banner'
+import { FeaturedTools } from './collections/FeaturedTools'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 export default buildConfig({
@@ -26,7 +27,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Categories, Brands, Products, Ecatalogues, Enquiries, Menu, About, Whychoose,Banner,ProductCategorySection,ProductToolsSection], 
+  collections: [Users, Media, Categories, Brands, Products, Ecatalogues, Enquiries, Menu, About, Whychoose,Banner,ProductCategorySection,ProductToolsSection,FeaturedTools], 
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
