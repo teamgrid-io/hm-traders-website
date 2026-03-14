@@ -80,6 +80,8 @@ export interface Config {
     banner: Banner;
     'product-category-section': ProductCategorySection;
     'product-tools-section': ProductToolsSection;
+    'partners-section': PartnersSection;
+    'global-network': GlobalNetwork;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -100,6 +102,8 @@ export interface Config {
     banner: BannerSelect<false> | BannerSelect<true>;
     'product-category-section': ProductCategorySectionSelect<false> | ProductCategorySectionSelect<true>;
     'product-tools-section': ProductToolsSectionSelect<false> | ProductToolsSectionSelect<true>;
+    'partners-section': PartnersSectionSelect<false> | PartnersSectionSelect<true>;
+    'global-network': GlobalNetworkSelect<false> | GlobalNetworkSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -389,6 +393,54 @@ export interface ProductToolsSection {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "partners-section".
+ */
+export interface PartnersSection {
+  id: string;
+  tag?: string | null;
+  title?: string | null;
+  highlight?: string | null;
+  partners?:
+    | {
+        name: string;
+        description?: string | null;
+        logo: string | Media;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "global-network".
+ */
+export interface GlobalNetwork {
+  id: string;
+  tag?: string | null;
+  title?: string | null;
+  highlight?: string | null;
+  mapImage: string | Media;
+  locations?:
+    | {
+        country?: string | null;
+        top?: string | null;
+        left?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  features?:
+    | {
+        title?: string | null;
+        icon?: (string | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -462,6 +514,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'product-tools-section';
         value: string | ProductToolsSection;
+      } | null)
+    | ({
+        relationTo: 'partners-section';
+        value: string | PartnersSection;
+      } | null)
+    | ({
+        relationTo: 'global-network';
+        value: string | GlobalNetwork;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -707,6 +767,52 @@ export interface ProductToolsSectionSelect<T extends boolean = true> {
         image?: T;
         title?: T;
         link?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "partners-section_select".
+ */
+export interface PartnersSectionSelect<T extends boolean = true> {
+  tag?: T;
+  title?: T;
+  highlight?: T;
+  partners?:
+    | T
+    | {
+        name?: T;
+        description?: T;
+        logo?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "global-network_select".
+ */
+export interface GlobalNetworkSelect<T extends boolean = true> {
+  tag?: T;
+  title?: T;
+  highlight?: T;
+  mapImage?: T;
+  locations?:
+    | T
+    | {
+        country?: T;
+        top?: T;
+        left?: T;
+        id?: T;
+      };
+  features?:
+    | T
+    | {
+        title?: T;
+        icon?: T;
         id?: T;
       };
   updatedAt?: T;

@@ -8,6 +8,8 @@ import ProductTools from "@/components/home/ProductTools";
 import { getProducts } from "@/lib/getProducts";
 import HomeBanner from "@/components/common/HomeBanner";
 import { fetchBannerBySlug } from "@/lib/getBannerData";
+import Partners from "@/components/home/Partners";
+import GlobalNetworkSection from "@/components/home/GlobalNetworkSection";
 export default async function Home() {
   const posts = await getProducts();
 const banner = await fetchBannerBySlug("home");
@@ -22,6 +24,8 @@ const banner = await fetchBannerBySlug("home");
       <Ecatalogue /> */}
       <OurProductCategory /> 
       <ProductTools />
+      <Partners/>
+      <GlobalNetworkSection/> 
     </Container>
           {/* <WhyChooseUs/> */}
 </div> 

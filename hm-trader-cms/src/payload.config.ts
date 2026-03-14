@@ -17,16 +17,18 @@ import { Whychoose } from './collections/Whychoose'
 import { ProductCategorySection } from './collections/ProductCategorySection'
 import { ProductToolsSection } from './collections/ProductToolsSection'
 import { Banner } from './collections/Banner'
+import  PartnersSection  from './collections/PartnerSection'
+import GlobalNetwork from './collections/globalNetwork'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 export default buildConfig({
   admin: {
     user: Users.slug, 
-    importMap: {
+    importMap: { 
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Categories, Brands, Products, Ecatalogues, Enquiries, Menu, About, Whychoose,Banner,ProductCategorySection,ProductToolsSection], 
+  collections: [Users, Media, Categories, Brands, Products, Ecatalogues, Enquiries, Menu, About, Whychoose,Banner,ProductCategorySection,ProductToolsSection,PartnersSection,GlobalNetwork,],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
