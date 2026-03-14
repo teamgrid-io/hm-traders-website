@@ -1,38 +1,37 @@
-// components/home/TestimonialCard.tsx
+//
 import Image from "next/image";
 import { Testimonial } from "@/types/testimonial";
+import { constructMediaUrl } from "@/lib/constructMediaUrl";
+import "./TestimonialCard.css";
 
 export default function TestimonialCard({ card }: { card: Testimonial }) {
   const featured = card.featured;
+  const avatarUrl = constructMediaUrl(card.author.avatar?.url);
 
   return (
-    <div
-      className={`
-      rounded-2xl p-6 flex flex-col justify-between gap-4
-      ${featured ? "bg-orange-400 text-white" : "bg-white text-gray-800 shadow-md"}
-    `}
-    >
-      {/* Title */}
-      <h3 className="text-lg font-bold">{card.title}</h3>
+    <div className={`card ${featured ? "card--featured" : "card--default"}`}>
+      <h3 className="card__title">{card.title}</h3>
 
-      {/* Review */}
-      <p className={`text-sm ${featured ? "text-white/90" : "text-gray-500"}`}>
+      <p
+        className={`card__review ${featured ? "card__review--featured" : "card__review--default"}`}
+      >
         {card.review}
       </p>
 
-      {/* Author */}
-      <div className="flex items-center gap-3 mt-auto">
-        {card.author.avatar?.url && (
+      <div className="card__author">
+        {avatarUrl && (
           <Image
-            src={`${process.env.NEXT_PUBLIC_PAYLOAD_URL}${card.author.avatar.url}`}
-            alt={card.author.avatar.alt || card.author.name}
-            width={44}
-            height={44}
-            className="rounded-full object-cover w-11 h-11"
+            src={avatarUrl}
+            alt={card.author.avatar?.alt || card.author.name}
+            width={63}
+            height={63}
+            className="card__avatar"
           />
         )}
-        <div>
-          <p className="font-semibold text-sm">{card.author.name}</p>
+        <div className="card__author-info">
+          {" "}
+          {/* ← change this */}
+          <p className="card__author-name">{card.author.name}</p>
           <Stars rating={card.rating} featured={featured} />
         </div>
       </div>
@@ -40,23 +39,18 @@ export default function TestimonialCard({ card }: { card: Testimonial }) {
   );
 }
 
-// Star renderer
 function Stars({ rating, featured }: { rating: number; featured: boolean }) {
   return (
-    <div className="flex gap-0.5 mt-0.5">
+    <div className={`stars ${featured ? "stars--featured" : "stars--default"}`}>
       {[1, 2, 3, 4, 5].map((star) => (
-        <span
+        <Image
           key={star}
-          className={`text-base ${
-            star <= rating
-              ? "text-orange-400"
-              : featured
-                ? "text-white/40"
-                : "text-gray-300"
-          }`}
-        >
-          ★
-        </span>
+          src={star <= rating ? "/images/svg.png" : "/images/svg (1).png"}
+          alt={star <= rating ? "filled star" : "empty star"}
+          width={16}
+          height={16}
+          className={`star ${star <= rating ? "star--filled" : "star--empty"} ${featured ? "star--featured" : "star--default"}`}
+        />
       ))}
     </div>
   );

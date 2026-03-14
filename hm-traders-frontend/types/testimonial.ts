@@ -7,10 +7,10 @@ export type Testimonial = {
   featured: boolean
   author: {
     name: string
-    avatar: {
-      url: string
-      alt: string
-    }
+    avatar?: {
+      url?: string | null
+      alt?: string | null
+    } | null
   }
   status: 'draft' | 'published'
 }
