@@ -82,6 +82,7 @@ export interface Config {
     'product-category-section': ProductCategorySection;
     'product-tools-section': ProductToolsSection;
     'featured-tool-section': FeaturedToolSection;
+    testimonials: Testimonial;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -104,6 +105,7 @@ export interface Config {
     'product-category-section': ProductCategorySectionSelect<false> | ProductCategorySectionSelect<true>;
     'product-tools-section': ProductToolsSectionSelect<false> | ProductToolsSectionSelect<true>;
     'featured-tool-section': FeaturedToolSectionSelect<false> | FeaturedToolSectionSelect<true>;
+    testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -241,6 +243,10 @@ export interface Product {
   images?: (string | Media)[] | null;
   specifications?: string | null;
   catalogPdf?: (string | null) | Media;
+  price: number;
+  rating?: number | null;
+  reviewCount?: number | null;
+  isFeatureTool?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -429,6 +435,47 @@ export interface FeaturedToolSection {
   createdAt: string;
 }
 /**
+ * Manage customer testimonials shown on the homepage.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials".
+ */
+export interface Testimonial {
+  id: string;
+  /**
+   * Short heading shown at top of the card.
+   */
+  title: string;
+  /**
+   * The customer review paragraph.
+   */
+  review: string;
+  /**
+   * Star rating from 1 to 5.
+   */
+  rating: number;
+  /**
+   * Check this to show card with orange background. Only one should be featured at a time.
+   */
+  featured?: boolean | null;
+  author: {
+    /**
+     * Display name e.g. "Aaron Finch"
+     */
+    name: string;
+    /**
+     * Profile photo of the reviewer.
+     */
+    avatar: string | Media;
+  };
+  /**
+   * Only published testimonials appear on the site.
+   */
+  status: 'draft' | 'published';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
@@ -511,6 +558,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'featured-tool-section';
         value: string | FeaturedToolSection;
+      } | null)
+    | ({
+        relationTo: 'testimonials';
+        value: string | Testimonial;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -631,6 +682,10 @@ export interface ProductsSelect<T extends boolean = true> {
   images?: T;
   specifications?: T;
   catalogPdf?: T;
+  price?: T;
+  rating?: T;
+  reviewCount?: T;
+  isFeatureTool?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -793,6 +848,25 @@ export interface FeaturedToolSectionSelect<T extends boolean = true> {
         price?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials_select".
+ */
+export interface TestimonialsSelect<T extends boolean = true> {
+  title?: T;
+  review?: T;
+  rating?: T;
+  featured?: T;
+  author?:
+    | T
+    | {
+        name?: T;
+        avatar?: T;
+      };
+  status?: T;
   updatedAt?: T;
   createdAt?: T;
 }
