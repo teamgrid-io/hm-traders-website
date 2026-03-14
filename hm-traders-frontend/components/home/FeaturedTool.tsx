@@ -31,20 +31,32 @@ export default async function FeaturedTool() {
         {section?.tools?.map((tool: any) => (
           <div key={tool.id} className="tool-card">
 
-            {tool?.image?.url && (
-              <Image
-                src={`http://localhost:3000${tool.image.url}`}
-                alt={tool.image.alt || tool.title}
-                fill
-                className="tool-img"
-              />
-            )}
+  <div className="tool-image-wrapper">
+    {tool?.image?.url && (
+      <Image
+        src={`http://localhost:3000${tool.image.url}`}
+        alt={tool.image.alt || tool.title}
+        fill
+        className="tool-img"
+      />
+    )}
+  </div>
 
-            <div className="featureTools-overlay">
-              <p>{tool.title}</p>
-            </div>
+  <div className="tool-content">
 
-          </div>
+    <p className="tool-title">{tool.title}</p>
+
+    <div className="tool-rating">
+      <span className="stars">★★★★★</span>
+      <span className="rating">(5.0)</span>
+      <span className="reviews">• 120 Reviews</span>
+    </div>
+
+    <p className="tool-price">₹589.70</p>
+
+  </div>
+
+</div>
         ))}
       </div>
 
