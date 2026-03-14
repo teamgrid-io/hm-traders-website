@@ -14,6 +14,10 @@ import { Menu } from './collections/Menu'
 import { Ecatalogues } from './collections/Ecatalogues' 
 import { About } from './collections/About'
 import { Whychoose } from './collections/Whychoose'
+import { ProductCategorySection } from './collections/ProductCategorySection'
+import { ProductToolsSection } from './collections/ProductToolsSection'
+import { Banner } from './collections/Banner'
+import { FeaturedTools } from './collections/FeaturedTools'
 import { Banner } from './collections/Banner'
 import { ContactInfo } from './collections/ContactInfo'
 
@@ -21,7 +25,7 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 export default buildConfig({
   admin: {
-    user: Users.slug,
+    user: Users.slug, 
     importMap: {
       baseDir: path.resolve(dirname),
     },

@@ -22,7 +22,7 @@
 
 /* NAVBAR */
 .navbar {
-  display: flex;
+  display: flex; 
   gap: 25px;
   align-items: center;
 }
