@@ -78,6 +78,7 @@ export interface Config {
     about: About;
     whychoose: Whychoose;
     banner: Banner;
+    'contact-info': ContactInfo;
     'product-category-section': ProductCategorySection;
     'product-tools-section': ProductToolsSection;
     'featured-tool-section': FeaturedToolSection;
@@ -99,6 +100,7 @@ export interface Config {
     about: AboutSelect<false> | AboutSelect<true>;
     whychoose: WhychooseSelect<false> | WhychooseSelect<true>;
     banner: BannerSelect<false> | BannerSelect<true>;
+    'contact-info': ContactInfoSelect<false> | ContactInfoSelect<true>;
     'product-category-section': ProductCategorySectionSelect<false> | ProductCategorySectionSelect<true>;
     'product-tools-section': ProductToolsSectionSelect<false> | ProductToolsSectionSelect<true>;
     'featured-tool-section': FeaturedToolSectionSelect<false> | FeaturedToolSectionSelect<true>;
@@ -349,6 +351,18 @@ export interface Banner {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-info".
+ */
+export interface ContactInfo {
+  id: string;
+  address: string;
+  email: string;
+  phone: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "product-category-section".
  */
 export interface ProductCategorySection {
@@ -481,6 +495,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'banner';
         value: string | Banner;
+      } | null)
+    | ({
+        relationTo: 'contact-info';
+        value: string | ContactInfo;
       } | null)
     | ({
         relationTo: 'product-category-section';
@@ -698,6 +716,17 @@ export interface BannerSelect<T extends boolean = true> {
         icon?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-info_select".
+ */
+export interface ContactInfoSelect<T extends boolean = true> {
+  address?: T;
+  email?: T;
+  phone?: T;
   updatedAt?: T;
   createdAt?: T;
 }

@@ -51,5 +51,36 @@ export const Products: CollectionConfig = {
       type: "upload",
       relationTo: "media",
     },
+     {
+      name: "price",
+      type: "number",
+      required: true,
+      min: 0,
+    },
+
+    {
+      name: "rating",
+      type: "number",
+      min: 0,
+      max: 5,
+      defaultValue: 0,
+      admin: {
+        step: 0.1,
+      },
+    },
+
+    {
+      name: "reviewCount",
+      type: "number",
+      defaultValue: 0,
+      min: 0,
+    },
+
+    {
+      name: "isFeatureTool",
+      type: "checkbox",
+      defaultValue: false,
+      label: "Featured Product",
+    },
   ],
 };

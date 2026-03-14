@@ -1,0 +1,50 @@
+.contactSection{
+  display:flex;
+  gap:40px;
+  padding:60px;
+}
+
+.formBox{
+  flex:2;
+  background:#f6f6f6;
+  padding:40px;
+  border-radius:10px;
+}
+
+.infoBox{
+  flex:1;
+  background:#f6f6f6;
+  padding:40px;
+  border-radius:10px;
+}
+
+.row{
+  display:flex;
+  gap:15px;
+}
+
+.contactForm input,
+.contactForm textarea{
+  width:100%;
+  padding:12px;
+  border:1px solid #ccc;
+  margin-bottom:15px;
+  border-radius:4px;
+}
+
+.contactForm textarea{
+  min-height:120px;
+}
+
+.contactForm button{
+  background:#ff9800;
+  color:white;
+  border:none;
+  padding:12px 24px;
+  cursor:pointer;
+  border-radius:4px;
+}
+
+.infoItem{
+  margin-bottom:25px;
+}

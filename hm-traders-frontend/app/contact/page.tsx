@@ -1,12 +1,17 @@
 
-import HomeBanner from "@/components/common/HomeBanner";
 import Contact from "@/components/home/Contact";
-import { fetchBannerBySlug } from "@/lib/getBannerData";
-const banner = await fetchBannerBySlug("contact");
-
+import ContactSection from "@/components/contact/ContactSection";
+import Container from "@/components/layout/Container";
+import ContactMap from "@/components/contact/ContactMap";
 export default function Page() {
-  return <>
-      <HomeBanner slug={banner} />
-      <Contact />
-        </>;
+    // return <Contact />;
+
+  return (
+    <>
+  <Container>
+    <ContactSection />
+  </Container>
+  <ContactMap />
+  </>
+  )
 }

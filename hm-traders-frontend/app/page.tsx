@@ -6,6 +6,8 @@ import Ecatalogue from "@/components/home/Ecatalogue";
 import OurProductCategory from "@/components/home/OurProductCategory";
 import ProductTools from "@/components/home/ProductTools";
 import { getProducts } from "@/lib/getProducts";
+import { getBanner } from "@/lib/getBanner";
+
 import HomeBanner from "@/components/common/HomeBanner";
 import { fetchBannerBySlug } from "@/lib/getBannerData";
 import FeaturedTool from "@/components/home/FeaturedTool";
