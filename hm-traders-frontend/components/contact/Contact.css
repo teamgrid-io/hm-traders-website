@@ -1,50 +1,122 @@
-.contactSection{
-  display:flex;
-  gap:40px;
-  padding:60px;
+.contactSection {
+  display: flex;
+  gap: 40px;
+  padding: 60px;
 }
 
-.formBox{
-  flex:2;
-  background:#f6f6f6;
-  padding:40px;
-  border-radius:10px;
+/* LEFT FORM */
+.formBox {
+  flex: 2;
+  background: #fff;
+  padding: 40px;
+  border-radius: 22px;
+  height: 480px;
+  border: 1px solid #1a1a1a99;
 }
 
-.infoBox{
-  flex:1;
-  background:#f6f6f6;
-  padding:40px;
-  border-radius:10px;
+/* RIGHT CONTACT INFO */
+.infoBox {
+  flex: 1;
+  padding: 40px;
+  border-radius: 22px;
+  border: 1px solid #1a1a1a99;
+  height: 480px;
+  background: #fff;
 }
 
-.row{
-  display:flex;
-  gap:15px;
+/* INPUT ROW */
+.row {
+  display: flex;
+  gap: 15px;
 }
 
+/* INPUTS */
 .contactForm input,
-.contactForm textarea{
-  width:100%;
-  padding:12px;
-  border:1px solid #ccc;
-  margin-bottom:15px;
-  border-radius:4px;
+.contactForm textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  font-size: 14px;
 }
 
-.contactForm textarea{
-  min-height:120px;
+/* TEXTAREA */
+.contactForm textarea {
+  min-height: 120px;
 }
 
-.contactForm button{
-  background:#ff9800;
-  color:white;
-  border:none;
-  padding:12px 24px;
-  cursor:pointer;
-  border-radius:4px;
+/* BUTTON */
+.contactForm button {
+  background: #ff9800;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: 600;
 }
 
-.infoItem{
-  margin-bottom:25px;
+/* INFO ITEMS */
+.infoItem {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 25px;
+}
+
+.infoItem img {
+  width: 24px;
+  height: 24px;
+  margin-top: 5px;
+}
+
+.infoItem strong {
+  display: block;
+  margin-bottom: 6px;
+}
+.contactTitle {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 58px;
+  text-transform: capitalize;
+  margin-bottom: 20px;
+}
+.contactDivider {
+  width: 362px;
+  border: 1px solid #1a1a1a66;
+  margin-bottom: 30px;
+}
+/* LABEL STYLE (Address, Contact, Email Address) */
+.contactLabel {
+  font-family: "Poppins", sans-serif;
+  /* font-weight: 500; */
+  color: #1a1a1a;
+  /* font-size: 28px; */
+  /* line-height: 58px; */
+  /* text-transform: capitalize; */
+}
+
+/* VALUE STYLE (email, phone, address text) */
+.contactText {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  /* font-size: 18px; */
+  /* line-height: 100%; */
+  color: #1a1a1a99;
+  text-transform: lowercase;
+}
+.formTitle {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 58px;
+  letter-spacing: 0%;
+  text-transform: capitalize;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+
+  width: 253px;
+  height: 58px;
 }

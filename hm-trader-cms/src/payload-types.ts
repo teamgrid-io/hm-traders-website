@@ -241,6 +241,10 @@ export interface Product {
   images?: (string | Media)[] | null;
   specifications?: string | null;
   catalogPdf?: (string | null) | Media;
+  price: number;
+  rating?: number | null;
+  reviewCount?: number | null;
+  isFeatureTool?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -282,6 +286,7 @@ export interface Ecatalogue {
  */
 export interface Enquiry {
   id: string;
+  formTitle?: string | null;
   name?: string | null;
   email?: string | null;
   phone?: string | null;
@@ -355,9 +360,16 @@ export interface Banner {
  */
 export interface ContactInfo {
   id: string;
-  address: string;
-  email: string;
-  phone: string;
+  formTitle?: string | null;
+  addressIcon?: (string | null) | Media;
+  addressLabel?: string | null;
+  address?: string | null;
+  phoneIcon?: (string | null) | Media;
+  phoneLabel?: string | null;
+  phone?: string | null;
+  emailIcon?: (string | null) | Media;
+  emailLabel?: string | null;
+  email?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -631,6 +643,10 @@ export interface ProductsSelect<T extends boolean = true> {
   images?: T;
   specifications?: T;
   catalogPdf?: T;
+  price?: T;
+  rating?: T;
+  reviewCount?: T;
+  isFeatureTool?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -656,6 +672,7 @@ export interface EcataloguesSelect<T extends boolean = true> {
  * via the `definition` "enquiries_select".
  */
 export interface EnquiriesSelect<T extends boolean = true> {
+  formTitle?: T;
   name?: T;
   email?: T;
   phone?: T;
@@ -724,9 +741,16 @@ export interface BannerSelect<T extends boolean = true> {
  * via the `definition` "contact-info_select".
  */
 export interface ContactInfoSelect<T extends boolean = true> {
+  formTitle?: T;
+  addressIcon?: T;
+  addressLabel?: T;
   address?: T;
-  email?: T;
+  phoneIcon?: T;
+  phoneLabel?: T;
   phone?: T;
+  emailIcon?: T;
+  emailLabel?: T;
+  email?: T;
   updatedAt?: T;
   createdAt?: T;
 }

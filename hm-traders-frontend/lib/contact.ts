@@ -19,3 +19,11 @@ export async function submitContactForm(form: {
 console.log("Contact form submission response:", res); // Debugging log
   return res.json();
 }
+export async function getEnquiryForm() {
+  const res = await fetch(`${API_URL}/enquiries`, {
+    cache: "no-store",
+  });
+
+  const data = await res.json();
+  return data?.docs?.[0];
+}
