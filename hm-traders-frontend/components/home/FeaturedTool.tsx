@@ -1,13 +1,16 @@
 import Image from "next/image";
 import './FeaturedTool.css'
 import { getFeaturedTool } from "@/lib/getFeaturedTool";
+import { getProducts } from "@/lib/getProducts";
 
 export default async function FeaturedTool() {
 
   const data = await getFeaturedTool();
-  console.log("data",data)
   const section = data?.docs?.[0];
-
+  const ProductData = await getProducts();
+  const featuredProducts = ProductData.filter((product:any)=>{
+    return product.isFeatureTool === true;
+  })
   return ( 
     <section className="feartureTools-section">
  
@@ -21,30 +24,42 @@ export default async function FeaturedTool() {
           </h2>
         </div>
 
-        <a className="view-all">
+        <a className="feature-view-all">
           {section?.viewAllText} →
         </a>
 
       </div>
 
       <div className="featureTools-grid">
-        {section?.tools?.map((tool: any) => (
+        {featuredProducts?.map((tool: any) => (
           <div key={tool.id} className="tool-card">
 
-            {tool?.image?.url && (
-              <Image
-                src={`http://localhost:3000${tool.image.url}`}
-                alt={tool.image.alt || tool.title}
-                fill
-                className="tool-img"
-              />
-            )}
+  <div className="tool-image-wrapper">
+    {tool?.images[0]?.url && (
+      <Image
+        src={`http://localhost:3000${tool.images[0].url}`}
+        alt={tool.images[0].alt || tool.title}
+        fill
+        className="tool-img"
+      />
+    )}
+  </div>
 
-            <div className="featureTools-overlay">
-              <p>{tool.title}</p>
-            </div>
+  <div className="tool-content">
 
-          </div>
+    <p className="tool-title">{tool.name}</p>
+
+    <div className="tool-rating">
+      <span className="stars">★★★★★</span>
+      <span className="rating">({tool.rating})</span>
+      <span className="reviews">• {tool.reviewCount} Reviews</span>
+    </div>
+
+    <p className="tool-price">₹{tool.price}</p>
+
+  </div>
+
+</div>
         ))}
       </div>
 

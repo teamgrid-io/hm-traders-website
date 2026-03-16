@@ -31,81 +31,30 @@
   color:#FF9C00;
 }
 
-.view-all{
+.feature-view-all{
   font-family:Poppins;
   cursor:pointer;
+  color: #1A1A1A;
   font-size:16px;
 }
 
-/* GRID */
 
-.featureTools-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:30px;
+.tool-content{
+  background:#f3f3f3;
+  padding:16px;
 }
 
-/* CARD */
-
-.tool-card{
-  position:relative;
-  height:260px;
-  border-radius:16px;
-  overflow:hidden;
-  cursor:pointer;
-  box-shadow:0 10px 20px rgba(0,0,0,0.25);
+.stars{
+  color:#ff9c00;
+  font-size:14px;
 }
 
-.tool-img{
-  object-fit:cover;
-  transition:transform .4s ease;
+.rating{
+  color:#555;
 }
 
-/* OVERLAY */
-
-.featureTools-overlay{
-  position:absolute;
-  bottom:0;
-  left:0;
-  width:100%;
-  height:100%;
-  display:flex;
-  align-items:flex-end;
-  padding:20px;
-
-  background:linear-gradient(
-    to top,
-    rgba(255,156,0,0.95),
-    rgba(255,156,0,0.6),
-    transparent
-  );
-
-  opacity:0;
-  transition:opacity .4s ease;
-}
-
-/* TITLE */
-
-.tool-overlay p{
-  color:white;
-  font-weight:600;
-  font-family:Poppins;
-  transform:translateY(20px);
-  transition:transform .4s ease;
-}
-
-/* HOVER EFFECT */
-
-.tool-card:hover .tool-overlay{
-  opacity:1;
-}
-
-.tool-card:hover .tool-overlay p{
-  transform:translateY(0);
-}
-
-.tool-card:hover .tool-img{
-  transform:scale(1.08);
+.reviews{
+  color:#777;
 }
 
 /* RESPONSIVE */

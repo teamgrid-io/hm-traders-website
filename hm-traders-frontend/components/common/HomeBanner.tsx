@@ -8,14 +8,13 @@ export default function HomeBanner({ slug }:any) {
 
 
 
-
   return (
     <section
       className="banner"
       style={{ backgroundImage: `url(${imageUrl})` }}
     >
       <div className="banner-overlay"></div>
-    <div className="banner-container">
+    <div className="banner-container" style={slug?.slug== "home"? {justifyContent:"space-between"}:{justifyContent:"center"}}>
         
       <div className="banner-content">
         <h1 className="banner-title">

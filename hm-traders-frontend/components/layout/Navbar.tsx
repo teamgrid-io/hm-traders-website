@@ -13,6 +13,7 @@ export default async function Header() {
    <>
       {/* TOP HEADER */}
       <div className="topHeader">
+        <div className="headerContainer">
         
           <div className="logo">
             {/* <Image src={HmLogo} alt="HM Traders Logo" /> */}
@@ -36,6 +37,7 @@ export default async function Header() {
             <button>
               Request a Quote
             </button>
+          </div>
           </div>
       </div>  
     </>
