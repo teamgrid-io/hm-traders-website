@@ -52,3 +52,40 @@ export async function getProductBySlug(slug: string) {
 console.log("Product by slug data:", data); // Debugging log
   return data.docs[0];
 }
+export async function getProductsByCategorySlugPagination(
+  slug: string,
+  page = 1,
+  limit = 5
+) {
+  try {
+    const category = await getCategoryBySlug(slug);
+console.log("Category for pagination:", category); // Debugging log
+console.log("limit ID for pagination:", limit); // Debugging log
+    if (!category) {
+      return { products: [], totalPages: 1, page: 1 };
+    }
+
+    const res = await fetch(
+      `${API_URL}/products?where[category][equals]=${category.id}&page=${page}&limit=${limit}&depth=1`,
+      { cache: "no-store" }
+    );
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch products by category with pagination");
+    }
+
+    const data = await res.json();
+console.log("Paginated category products:", data); // Debugging log
+
+    console.log("Paginated category products:", data);
+
+    return {
+      products: data.docs,
+      totalPages: data.totalPages,
+      page: data.page,
+    };
+  } catch (error) {
+    console.error(error);
+    return { products: [], totalPages: 1, page: 1 };
+  }
+}

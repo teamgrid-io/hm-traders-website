@@ -1,11 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getCategories } from "@/lib/getCategories";
+import { getCategories,getCategoriesByPagination } from "@/lib/getCategories";
 import { constructMediaUrl } from "@/lib/constructMediaUrl";
-
-export default async function ProductCategories() {
-  const categories = await getCategories();
-  
+import Pagination from "@/components/common/Pagination";
+export default async function ProductCategories({ page }: any) {
+  // const categories = await getCategories();
+  const data = await getCategoriesByPagination(page, 10);
+console.log("Fetched page data:", page);  
+const categories = data?.categories || [];
+console.log("Fetched categories:", data);
   // Calculate grid positioning
   const totalItems = categories?.length || 0;
   const itemsInLastRow = totalItems % 3 || 3;
@@ -55,7 +58,7 @@ export default async function ProductCategories() {
               {/* TITLE BAR */}
               <Link
                 href={`/products/${cat.slug}`}
-                className="absolute bottom-4 left-4 right-4 bg-[#f5a623] text-white flex items-center justify-between px-6 py-4 rounded-md font-semibold hover:bg-[#e09112] transition-colors"
+                className="absolute bottom-4 left-4 right-4 bg-[#FF9C00] text-white flex items-center justify-between px-6 py-4 rounded-md font-semibold hover:bg-[#e09112] transition-colors"
               >
                 {cat.name}
                 <span className="text-xl">›</span>
@@ -64,6 +67,11 @@ export default async function ProductCategories() {
           );
         })}
       </div>
+      <Pagination
+  currentPage={data.page}
+  totalPages={data.totalPages}
+  basePath="/products"
+/>
     </section>
   );
 }

@@ -2,6 +2,7 @@ import { getProductBySlug } from "@/lib/getProducts";
 import Container from "@/components/layout/Container";
 import ProductGallery from "@/components/common/ProductGallery";
 
+
 export default async function ProductPage({ params }: any) {
   const { productSlug } = await params;
 
