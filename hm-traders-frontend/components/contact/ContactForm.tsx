@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { submitContactForm } from "@/lib/contact";
-import "./Contact.css"
-export default function ContactForm() {
+import "./Contact.css";
+
+export default function ContactForm({ title }: { title?: string }) {
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -30,43 +31,48 @@ export default function ContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="contactForm">
+    <>
+      <div className="formTitle">{title || "Any Questions?"}</div>
 
-      <div className="row">
+      <form onSubmit={handleSubmit} className="contactForm">
+
+        <div className="row">
+          <input
+            placeholder="Name"
+            value={form.name}
+            onChange={(e) =>
+              setForm({ ...form, name: e.target.value })
+            }
+          />
+
+          <input
+            placeholder="Email Address"
+            value={form.email}
+            onChange={(e) =>
+              setForm({ ...form, email: e.target.value })
+            }
+          />
+        </div>
+
         <input
-          placeholder="Name"
-          value={form.name}
+          placeholder="Phone Number"
+          value={form.phone}
           onChange={(e) =>
-            setForm({ ...form, name: e.target.value })
+            setForm({ ...form, phone: e.target.value })
           }
         />
 
-        <input
-          placeholder="Email Address"
-          value={form.email}
+        <textarea
+          placeholder="Message"
+          value={form.message}
           onChange={(e) =>
-            setForm({ ...form, email: e.target.value })
+            setForm({ ...form, message: e.target.value })
           }
         />
-      </div>
 
-      <input
-        placeholder="Phone Number"
-        value={form.phone}
-        onChange={(e) =>
-          setForm({ ...form, phone: e.target.value })
-        }
-      />
+        <button type="submit">Send Now</button>
 
-      <textarea
-        placeholder="Message"
-        value={form.message}
-        onChange={(e) =>
-          setForm({ ...form, message: e.target.value })
-        }
-      />
-
-      <button type="submit">Send Now</button>
-    </form>
+      </form>
+    </>
   );
 }

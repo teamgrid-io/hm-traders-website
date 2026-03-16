@@ -5,6 +5,8 @@ export async function getContactInfo() {
     `${API_URL}/contact-info`,
     { cache: "no-store" }
   );
-console.log("Contact info response:", res); // Debugging log
-  return res.json();
+  const data = await res.json();
+
+console.log("Contact info response:", data?.docs); // Debugging log
+  return data?.docs?.[0];
 }

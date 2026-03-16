@@ -5,6 +5,13 @@ access:{
 create: () => true,
 },
   fields: [
+        {
+      name: "formTitle",
+      label: "Form Title",
+      type: "text",
+      defaultValue: "Any Questions?",
+    },
+
     {
       name: "name",
       type: "text",
