@@ -1,7 +1,7 @@
 import { CollectionConfig } from "payload";
 
-const Stats: CollectionConfig = {
-  slug: "stats",
+const About_Stats: CollectionConfig = {
+  slug: "About_Stats",
   admin: {
     useAsTitle: "title",
   },
@@ -24,4 +24,4 @@ const Stats: CollectionConfig = {
   ],
 };
 
-export default Stats; 
+export default About_Stats; 

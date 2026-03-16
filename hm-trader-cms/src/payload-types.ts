@@ -76,7 +76,6 @@ export interface Config {
     enquiries: Enquiry;
     menu: Menu;
     about: About;
-    whychoose: Whychoose;
     banner: Banner;
     'contact-info': ContactInfo;
     'product-category-section': ProductCategorySection;
@@ -85,7 +84,7 @@ export interface Config {
     testimonials: Testimonial;
     'partners-section': PartnersSection;
     'global-network': GlobalNetwork;
-    stats: Stat;
+    About_Stats: About_Stat;
     cta: Cta;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
@@ -103,7 +102,6 @@ export interface Config {
     enquiries: EnquiriesSelect<false> | EnquiriesSelect<true>;
     menu: MenuSelect<false> | MenuSelect<true>;
     about: AboutSelect<false> | AboutSelect<true>;
-    whychoose: WhychooseSelect<false> | WhychooseSelect<true>;
     banner: BannerSelect<false> | BannerSelect<true>;
     'contact-info': ContactInfoSelect<false> | ContactInfoSelect<true>;
     'product-category-section': ProductCategorySectionSelect<false> | ProductCategorySectionSelect<true>;
@@ -112,7 +110,7 @@ export interface Config {
     testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
     'partners-section': PartnersSectionSelect<false> | PartnersSectionSelect<true>;
     'global-network': GlobalNetworkSelect<false> | GlobalNetworkSelect<true>;
-    stats: StatsSelect<false> | StatsSelect<true>;
+    About_Stats: About_StatsSelect<false> | About_StatsSelect<true>;
     cta: CtaSelect<false> | CtaSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -331,16 +329,6 @@ export interface About {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "whychoose".
- */
-export interface Whychoose {
-  id: string;
-  whychoose: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "banner".
  */
 export interface Banner {
@@ -535,9 +523,9 @@ export interface GlobalNetwork {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "stats".
+ * via the `definition` "About_Stats".
  */
-export interface Stat {
+export interface About_Stat {
   id: string;
   title: string;
   number: string;
@@ -621,10 +609,6 @@ export interface PayloadLockedDocument {
         value: string | About;
       } | null)
     | ({
-        relationTo: 'whychoose';
-        value: string | Whychoose;
-      } | null)
-    | ({
         relationTo: 'banner';
         value: string | Banner;
       } | null)
@@ -657,8 +641,8 @@ export interface PayloadLockedDocument {
         value: string | GlobalNetwork;
       } | null)
     | ({
-        relationTo: 'stats';
-        value: string | Stat;
+        relationTo: 'About_Stats';
+        value: string | About_Stat;
       } | null)
     | ({
         relationTo: 'cta';
@@ -841,15 +825,6 @@ export interface AboutSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "whychoose_select".
- */
-export interface WhychooseSelect<T extends boolean = true> {
-  whychoose?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "banner_select".
  */
 export interface BannerSelect<T extends boolean = true> {
@@ -1017,9 +992,9 @@ export interface GlobalNetworkSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "stats_select".
+ * via the `definition` "About_Stats_select".
  */
-export interface StatsSelect<T extends boolean = true> {
+export interface About_StatsSelect<T extends boolean = true> {
   title?: T;
   number?: T;
   updatedAt?: T;

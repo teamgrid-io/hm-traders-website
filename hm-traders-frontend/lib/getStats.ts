@@ -2,7 +2,7 @@ import { API_URL } from "@/api/Api";
 
 export const fetchStatsData = async () => {
     try {
-        const response = await fetch(`${API_URL}/stats`);
+        const response = await fetch(`${API_URL}/About_Stats`);
         if (!response.ok) {
             throw new Error('Failed to fetch stats data');
         }
