@@ -28,9 +28,10 @@ export default async function Home() {
         <OurProductCategory />
         <ProductTools />
         <FeaturedTool />
-        <TestimonialsSection />
         <Partners/>
       <GlobalNetworkSection/> 
+              <TestimonialsSection />
+
     </Container>
       {/* <WhyChooseUs/> */}
     </div>
