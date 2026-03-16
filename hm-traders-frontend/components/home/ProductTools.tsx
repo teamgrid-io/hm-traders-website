@@ -1,6 +1,7 @@
 import Image from "next/image";
 import "./ProductTools.css";
 import { getProductToolsSection } from "@/lib/getProductToolsSection";
+import Container from "../layout/Container";
 
 export default async function ProductTools() {
 
@@ -10,7 +11,8 @@ export default async function ProductTools() {
   return ( 
     <section className="tools-section">
  
-      <div className="tools-header">
+      <Container>
+        <div className="tools-header">
 
         <div>
           <p className="tools-tag">★ {section?.smallTitle}</p>
@@ -47,6 +49,7 @@ export default async function ProductTools() {
         ))}
       </div>
 
+      </Container>
     </section>
   );
 }

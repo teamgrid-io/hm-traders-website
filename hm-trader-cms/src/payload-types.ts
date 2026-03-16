@@ -81,8 +81,10 @@ export interface Config {
     'contact-info': ContactInfo;
     'product-category-section': ProductCategorySection;
     'product-tools-section': ProductToolsSection;
-    'featured-tool-section': FeaturedToolSection;
+    'tool-section': ToolSection;
     testimonials: Testimonial;
+    'partners-section': PartnersSection;
+    'global-network': GlobalNetwork;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -104,8 +106,10 @@ export interface Config {
     'contact-info': ContactInfoSelect<false> | ContactInfoSelect<true>;
     'product-category-section': ProductCategorySectionSelect<false> | ProductCategorySectionSelect<true>;
     'product-tools-section': ProductToolsSectionSelect<false> | ProductToolsSectionSelect<true>;
-    'featured-tool-section': FeaturedToolSectionSelect<false> | FeaturedToolSectionSelect<true>;
+    'tool-section': ToolSectionSelect<false> | ToolSectionSelect<true>;
     testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
+    'partners-section': PartnersSectionSelect<false> | PartnersSectionSelect<true>;
+    'global-network': GlobalNetworkSelect<false> | GlobalNetworkSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -115,8 +119,12 @@ export interface Config {
     defaultIDType: string;
   };
   fallbackLocale: null;
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    footer: Footer;
+  };
+  globalsSelect: {
+    footer: FooterSelect<false> | FooterSelect<true>;
+  };
   locale: null;
   widgets: {
     collections: CollectionsWidget;
@@ -419,26 +427,16 @@ export interface ProductToolsSection {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "featured-tool-section".
+ * via the `definition` "tool-section".
  */
-export interface FeaturedToolSection {
+export interface ToolSection {
   id: string;
+  slug: string;
   smallTitle?: string | null;
   heading?: string | null;
   highlightWord?: string | null;
   viewAllText?: string | null;
   viewAllLink?: string | null;
-  tools?:
-    | {
-        image: string | Media;
-        title: string;
-        link?: string | null;
-        rating?: string | null;
-        reviewCount?: string | null;
-        price?: string | null;
-        id?: string | null;
-      }[]
-    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -480,6 +478,54 @@ export interface Testimonial {
    * Only published testimonials appear on the site.
    */
   status: 'draft' | 'published';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "partners-section".
+ */
+export interface PartnersSection {
+  id: string;
+  tag?: string | null;
+  title?: string | null;
+  highlight?: string | null;
+  partners?:
+    | {
+        name: string;
+        description?: string | null;
+        logo: string | Media;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "global-network".
+ */
+export interface GlobalNetwork {
+  id: string;
+  tag?: string | null;
+  title?: string | null;
+  highlight?: string | null;
+  mapImage: string | Media;
+  locations?:
+    | {
+        country?: string | null;
+        top?: string | null;
+        left?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  features?:
+    | {
+        title?: string | null;
+        icon?: (string | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -564,12 +610,20 @@ export interface PayloadLockedDocument {
         value: string | ProductToolsSection;
       } | null)
     | ({
-        relationTo: 'featured-tool-section';
-        value: string | FeaturedToolSection;
+        relationTo: 'tool-section';
+        value: string | ToolSection;
       } | null)
     | ({
         relationTo: 'testimonials';
         value: string | Testimonial;
+      } | null)
+    | ({
+        relationTo: 'partners-section';
+        value: string | PartnersSection;
+      } | null)
+    | ({
+        relationTo: 'global-network';
+        value: string | GlobalNetwork;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -845,25 +899,15 @@ export interface ProductToolsSectionSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "featured-tool-section_select".
+ * via the `definition` "tool-section_select".
  */
-export interface FeaturedToolSectionSelect<T extends boolean = true> {
+export interface ToolSectionSelect<T extends boolean = true> {
+  slug?: T;
   smallTitle?: T;
   heading?: T;
   highlightWord?: T;
   viewAllText?: T;
   viewAllLink?: T;
-  tools?:
-    | T
-    | {
-        image?: T;
-        title?: T;
-        link?: T;
-        rating?: T;
-        reviewCount?: T;
-        price?: T;
-        id?: T;
-      };
   updatedAt?: T;
   createdAt?: T;
 }
@@ -883,6 +927,52 @@ export interface TestimonialsSelect<T extends boolean = true> {
         avatar?: T;
       };
   status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "partners-section_select".
+ */
+export interface PartnersSectionSelect<T extends boolean = true> {
+  tag?: T;
+  title?: T;
+  highlight?: T;
+  partners?:
+    | T
+    | {
+        name?: T;
+        description?: T;
+        logo?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "global-network_select".
+ */
+export interface GlobalNetworkSelect<T extends boolean = true> {
+  tag?: T;
+  title?: T;
+  highlight?: T;
+  mapImage?: T;
+  locations?:
+    | T
+    | {
+        country?: T;
+        top?: T;
+        left?: T;
+        id?: T;
+      };
+  features?:
+    | T
+    | {
+        title?: T;
+        icon?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
@@ -925,6 +1015,97 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer".
+ */
+export interface Footer {
+  id: string;
+  brand: {
+    companyName: string;
+    description?: string | null;
+    socialLinks?:
+      | {
+          platform: 'facebook' | 'linkedin' | 'instagram' | 'x' | 'youtube' | 'whatsapp';
+          url: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  navColumns?:
+    | {
+        heading: string;
+        links?:
+          | {
+              label: string;
+              url: string;
+              openInNewTab?: boolean | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  newsletter?: {
+    enabled?: boolean | null;
+    tagline?: string | null;
+    placeholder?: string | null;
+    buttonLabel?: string | null;
+    successMessage?: string | null;
+  };
+  /**
+   * Use {{year}} for the current year.
+   */
+  copyright?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer_select".
+ */
+export interface FooterSelect<T extends boolean = true> {
+  brand?:
+    | T
+    | {
+        companyName?: T;
+        description?: T;
+        socialLinks?:
+          | T
+          | {
+              platform?: T;
+              url?: T;
+              id?: T;
+            };
+      };
+  navColumns?:
+    | T
+    | {
+        heading?: T;
+        links?:
+          | T
+          | {
+              label?: T;
+              url?: T;
+              openInNewTab?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  newsletter?:
+    | T
+    | {
+        enabled?: T;
+        tagline?: T;
+        placeholder?: T;
+        buttonLabel?: T;
+        successMessage?: T;
+      };
+  copyright?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
