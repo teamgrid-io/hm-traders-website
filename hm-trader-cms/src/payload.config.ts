@@ -20,6 +20,8 @@ import { Banner } from './collections/Banner'
 import { FeaturedTools } from './collections/FeaturedTools'
 import { ContactInfo } from './collections/ContactInfo'
 import Testimonials from './collections/Testimonials'
+import Stats from './collections/Stats'
+import CTA from './collections/Cta'
 
 import  PartnersSection  from './collections/PartnerSection'
 import GlobalNetwork from './collections/GlobalNetwork'
@@ -35,7 +37,7 @@ export default buildConfig({
   cors: [
     "http://localhost:3001","*"
   ],
-  collections: [Users, Media, Categories, Brands, Products, Ecatalogues, Enquiries, Menu, About, Whychoose,Banner, ContactInfo,ProductCategorySection, ProductToolsSection, FeaturedTools,Testimonials,PartnersSection,GlobalNetwork],
+  collections: [Users, Media, Categories, Brands, Products, Ecatalogues, Enquiries, Menu, About, Whychoose,Banner, ContactInfo,ProductCategorySection, ProductToolsSection, FeaturedTools,Testimonials,PartnersSection,GlobalNetwork,Stats,CTA],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
@@ -47,3 +49,4 @@ export default buildConfig({
   sharp,
   plugins: [],
 })
+ 

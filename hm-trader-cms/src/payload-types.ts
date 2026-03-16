@@ -85,6 +85,8 @@ export interface Config {
     testimonials: Testimonial;
     'partners-section': PartnersSection;
     'global-network': GlobalNetwork;
+    stats: Stat;
+    cta: Cta;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -110,6 +112,8 @@ export interface Config {
     testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
     'partners-section': PartnersSectionSelect<false> | PartnersSectionSelect<true>;
     'global-network': GlobalNetworkSelect<false> | GlobalNetworkSelect<true>;
+    stats: StatsSelect<false> | StatsSelect<true>;
+    cta: CtaSelect<false> | CtaSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -537,6 +541,33 @@ export interface GlobalNetwork {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "stats".
+ */
+export interface Stat {
+  id: string;
+  title: string;
+  number: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "cta".
+ */
+export interface Cta {
+  id: string;
+  title: string;
+  highlightWord?: string | null;
+  description?: string | null;
+  primaryButtonText?: string | null;
+  primaryButtonLink?: string | null;
+  secondaryButtonText?: string | null;
+  secondaryButtonLink?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -630,6 +661,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'global-network';
         value: string | GlobalNetwork;
+      } | null)
+    | ({
+        relationTo: 'stats';
+        value: string | Stat;
+      } | null)
+    | ({
+        relationTo: 'cta';
+        value: string | Cta;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -989,6 +1028,31 @@ export interface GlobalNetworkSelect<T extends boolean = true> {
         icon?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "stats_select".
+ */
+export interface StatsSelect<T extends boolean = true> {
+  title?: T;
+  number?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "cta_select".
+ */
+export interface CtaSelect<T extends boolean = true> {
+  title?: T;
+  highlightWord?: T;
+  description?: T;
+  primaryButtonText?: T;
+  primaryButtonLink?: T;
+  secondaryButtonText?: T;
+  secondaryButtonLink?: T;
   updatedAt?: T;
   createdAt?: T;
 }

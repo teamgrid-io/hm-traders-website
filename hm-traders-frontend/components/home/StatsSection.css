@@ -1,0 +1,33 @@
+.stats-section{
+  background-image:url("/images/stats.png");
+  background-size:cover; 
+  background-position:center;
+  background-repeat:no-repeat;  
+}
+
+.stats-overlay{
+  background:rgba(11,59,117,0.85);
+  padding:90px 20px;
+}
+
+.stats-container{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:40px;
+  text-align:center;
+  align-items:center;
+}
+
+.stat-card h2{
+  color:#ffb200;
+  font-size:42px;
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+.stat-card p{
+  color:white;
+  font-size:18px;
+} 

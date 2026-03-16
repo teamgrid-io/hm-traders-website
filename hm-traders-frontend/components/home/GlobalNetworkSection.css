@@ -23,6 +23,11 @@
 .global-section > *{
   position:relative;
   z-index:1;
+  max-width:1200px;
+  margin:0 auto;
+  width:100%;
+  padding:0 20px;
+  box-sizing:border-box;
 } 
 
 .global-header p{
@@ -56,8 +61,8 @@
 }
 
 .world-map{
-  width:100%;
-  opacity:.6;
+  width:100%; 
+  opacity:1;
 }
 
 .map-pin{
@@ -95,6 +100,8 @@
   background:transparent;   /* important */
   padding:10px 25px;
   border-radius:0;
+  max-width:260px;
+  justify-self:center;
 }  
 .feature-card::after{
   content:"";
