@@ -20,20 +20,26 @@ import { Banner } from './collections/Banner'
 import { FeaturedTools } from './collections/FeaturedTools'
 import { ContactInfo } from './collections/ContactInfo'
 import Testimonials from './collections/Testimonials'
+import { Footer } from './globals/Footer'
 
+import  PartnersSection  from './collections/PartnerSection'
+import GlobalNetwork from './collections/GlobalNetwork'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 export default buildConfig({
   admin: {
     user: Users.slug, 
-    importMap: {
+    importMap: { 
       baseDir: path.resolve(dirname),
     },
   },
   cors: [
     "http://localhost:3001","*"
   ],
-  collections: [Users, Media, Categories, Brands, Products, Ecatalogues, Enquiries, Menu, About, Whychoose,Banner, ContactInfo,ProductCategorySection, ProductToolsSection, FeaturedTools,Testimonials],
+  collections: [Users, Media, Categories, Brands, Products, Ecatalogues, Enquiries, Menu, About, Whychoose, Banner, ContactInfo, ProductCategorySection, ProductToolsSection, FeaturedTools, Testimonials,PartnersSection,GlobalNetwork],
+    globals: [    // 
+    Footer,
+  ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
