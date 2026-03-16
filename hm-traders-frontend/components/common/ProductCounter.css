@@ -1,0 +1,14 @@
+.Counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.operator {
+  padding: 5px 15px;
+  border: 1px solid #bebdbd;
+  cursor: pointer;
+}
+.count {
+  padding: 5px 15px;
+  border: 1px solid #bebdbd;
+}

@@ -26,7 +26,7 @@ const banner = await fetchBannerBySlug("home");
       <Ecatalogue /> */}
       <OurProductCategory /> 
       <ProductTools />
-      <FeaturedTool />
+      <FeaturedTool slug={"home"} />
     </Container>
           {/* <WhyChooseUs/> */}
 </div> 

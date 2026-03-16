@@ -6,15 +6,6 @@ import { constructMediaUrl } from "@/lib/constructMediaUrl";
 
 export default function ProductGallery({ images, name }: any) {
   const [activeIndex, setActiveIndex] = useState(0);
-
-  const nextImage = () => {
-    setActiveIndex((prev) => (prev + 1) % images.length);
-  };
-
-  const prevImage = () => {
-    setActiveIndex((prev) => (prev - 1 + images.length) % images.length);
-  };
-
   const activeImage = constructMediaUrl(images?.[activeIndex]?.url);
 
   return (
@@ -22,8 +13,6 @@ export default function ProductGallery({ images, name }: any) {
 
       {/* Main Image */}
       <div className="mainImage">
-        <button className="arrow left" onClick={prevImage}>‹</button>
-
         <Image
           src={activeImage}
           alt={name}
@@ -31,8 +20,6 @@ export default function ProductGallery({ images, name }: any) {
           height={450}
           className="mainImg"
         />
-
-        <button className="arrow right" onClick={nextImage}>›</button>
       </div>
 
       {/* Thumbnails */}
