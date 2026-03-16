@@ -19,6 +19,7 @@ import { ProductToolsSection } from './collections/ProductToolsSection'
 import { Banner } from './collections/Banner'
 import { FeaturedTools } from './collections/FeaturedTools'
 import { ContactInfo } from './collections/ContactInfo'
+import Testimonials from './collections/Testimonials'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -32,7 +33,7 @@ export default buildConfig({
   cors: [
     "http://localhost:3001","*"
   ],
-  collections: [Users, Media, Categories, Brands, Products, Ecatalogues, Enquiries, Menu, About, Whychoose,Banner, ContactInfo,ProductCategorySection, ProductToolsSection, FeaturedTools],
+  collections: [Users, Media, Categories, Brands, Products, Ecatalogues, Enquiries, Menu, About, Whychoose,Banner, ContactInfo,ProductCategorySection, ProductToolsSection, FeaturedTools,Testimonials],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
