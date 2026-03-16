@@ -47,15 +47,15 @@
 
 .tool-card{
   position:relative;
-  height:260px;
-  border-radius:16px;
+  height:260px; 
+  border-radius:16px; 
   overflow:hidden;
   cursor:pointer;
   box-shadow:0 10px 20px rgba(0,0,0,0.25);
 }
 
 .tool-img{
-  object-fit:cover;
+  object-fit:contain; 
   transition:transform .4s ease;
 }
 

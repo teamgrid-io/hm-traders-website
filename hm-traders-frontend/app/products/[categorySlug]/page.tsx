@@ -50,7 +50,7 @@ export default async function CategoryPage({ params }: any) {
 
                 <div className="tool-rating">
                   <span className="stars">★★★★★</span>
-                  <span className="rating">{product.rating}</span>
+                  <span className="rating">({product.rating})</span>
                   <span className="reviews">• {product.reviewCount} Reviews</span>
                 </div>
 
