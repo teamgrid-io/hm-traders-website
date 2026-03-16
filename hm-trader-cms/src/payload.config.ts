@@ -21,12 +21,14 @@ import { FeaturedTools } from './collections/FeaturedTools'
 import { ContactInfo } from './collections/ContactInfo'
 import Testimonials from './collections/Testimonials'
 
+import  PartnersSection  from './collections/PartnerSection'
+import GlobalNetwork from './collections/globalNetwork'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 export default buildConfig({
   admin: {
     user: Users.slug, 
-    importMap: {
+    importMap: { 
       baseDir: path.resolve(dirname),
     },
   },
