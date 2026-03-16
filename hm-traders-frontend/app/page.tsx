@@ -11,24 +11,24 @@ import { getBanner } from "@/lib/getBanner";
 import HomeBanner from "@/components/common/HomeBanner";
 import { fetchBannerBySlug } from "@/lib/getBannerData";
 import FeaturedTool from "@/components/home/FeaturedTool";
+import TestimonialsSection from "@/components/home/TestimonialsSection";
 export default async function Home() {
   const posts = await getProducts();
-const banner = await fetchBannerBySlug("home");
- 
- 
+  const banner = await fetchBannerBySlug("home");
+
   return (
     <div>
-       <HomeBanner slug={banner} />
-    <Container>
-     
-      {/* <HeroSection/>
+      <HomeBanner slug={banner} />
+      <Container>
+        {/* <HeroSection/>
       <ProductCategories />
       <Ecatalogue /> */}
-      <OurProductCategory /> 
-      <ProductTools />
-      <FeaturedTool slug={"home"} />
-    </Container>
-          {/* <WhyChooseUs/> */}
-</div> 
+        <OurProductCategory />
+        <ProductTools />
+        <FeaturedTool slug={"home"} />
+        <TestimonialsSection />
+      </Container>
+      {/* <WhyChooseUs/> */}
+    </div>
   );
 }
