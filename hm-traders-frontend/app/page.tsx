@@ -24,10 +24,11 @@ export default async function Home() {
       <ProductCategories />
       <Ecatalogue /> */}
         <OurProductCategory />
+         </Container>
         <ProductTools />
         <FeaturedTool slug={"home"} />
         <TestimonialsSection />
-      </Container>
+     
       {/* <WhyChooseUs/> */}
     </div>
   );
