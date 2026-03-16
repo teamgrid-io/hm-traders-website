@@ -52,7 +52,7 @@ export default async function GlobalNetworkSection() {
   <div className="global-features">
 
     {section?.features?.map((item: any) => (
-      <div key={item.id} className="feature-card">
+      <div key={item.id} className="feature-card-network">
 
         {item?.icon?.url && (
           <img

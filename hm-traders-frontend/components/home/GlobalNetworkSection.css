@@ -89,14 +89,14 @@
   gap:85px;
 }
 
-.feature-card{
+.feature-card-network{
   text-align:center;
   position:relative;
-  background:transparent;   /* important */
+  background:transparent;  
   padding:10px 25px;
   border-radius:0;
 }  
-.feature-card::after{
+.feature-card-network::after{
   content:"";
   position:absolute;
   right:-40px;
@@ -107,15 +107,15 @@
   background:rgba(255,255,255,0.4);
 }
  
-.feature-card:last-child::after{
+.feature-card-network:last-child::after{
   display:none;
 } 
-.feature-card img{ 
+.feature-card-network img{ 
   width:40px; 
   margin-bottom:10px;
 }
 
-.feature-card p{
+.feature-card-network p{
   font-size:18px; 
   font-weight: 500;
   color: #fff;
