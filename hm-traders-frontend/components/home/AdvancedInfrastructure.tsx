@@ -28,7 +28,7 @@ export default async function AdvancedInfrastructure() {
           <p className="infra-desc">{section2.description1}</p>
           <p className="infra-desc">{section2.description2}</p>
 
-          <button className="infra-btn">
+          <button className="infra-btn"> 
             {section2.buttonText}
           </button>
         </div>

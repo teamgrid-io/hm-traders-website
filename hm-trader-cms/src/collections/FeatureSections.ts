@@ -1,12 +1,12 @@
 import { CollectionConfig } from "payload";
 
 export const ProductCategorySection: CollectionConfig = {
-  slug: "product-category-section",
+  slug: "feature-sections",
 
   access: {
     read: () => true,
   },
-
+  
   fields: [
     {
       name: "sectionName",
@@ -17,7 +17,7 @@ export const ProductCategorySection: CollectionConfig = {
         description: "Give a unique name like homeSection1, homeSection2",
       },
     },
-
+ 
     {
       name: "smallTitle",
       label: "Small Title",
