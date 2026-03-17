@@ -1,0 +1,150 @@
+.infra-section {
+  padding: 80px 0;
+  background: #0b3b75;
+  color: #fff;
+   
+}
+
+.infra-container {
+  max-width: 1200px;
+  margin: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 120px;
+}
+
+/* LEFT CONTENT */
+
+.infra-left {
+  width: 50%;
+}
+
+.infra-tag {
+  font-size: 16px;
+  margin-bottom: 10px;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.infra-title {
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 44px;
+  margin-bottom: 20px;
+}
+
+.infra-title span {
+  color: #ff9c00;
+}
+
+.infra-desc {
+  font-size: 18px;
+  line-height: 30px;
+  margin-bottom: 15px;
+  opacity: 0.9;
+}
+
+/* BUTTON */
+
+.infra-btn {
+  margin-top: 20px;
+  padding: 12px 26px;
+  background: #ff9c00;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+  font-size: 16px;
+  height: 42px;
+
+  border-top-left-radius: 5px;
+  border-top-right-radius: 1px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 1px;
+}
+
+.infra-btn:hover {
+  background: #d97706;
+}
+
+/* RIGHT IMAGE WRAPPER */
+
+.infra-right {
+  position: relative;
+  width: 517px;
+}
+
+/* TOP IMAGE (like left-image) */
+
+.img-box.large {
+  position: relative;
+  width: 517px;
+  height: 475px;
+
+  border-top-left-radius: 16px;
+  border-top-right-radius: 72px;
+  border-bottom-right-radius: 16px;
+  border-bottom-left-radius: 72px;
+
+  overflow: hidden;
+}
+
+/* SMALL IMAGE (overlay) */
+
+.img-box.small {
+  position: absolute;
+  width: 383px;
+  height: 352px;
+
+  top: 160px;
+  left: 210px;
+
+  border-top-left-radius: 16px;
+  border-top-right-radius: 72px;
+  border-bottom-right-radius: 16px;
+  border-bottom-left-radius: 72px;
+
+  border: 9px solid #fff;
+  overflow: hidden;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* IMAGE */
+
+.img {
+  object-fit: cover;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .infra-container {
+    flex-direction: column;
+    gap: 50px;
+  }
+
+  .infra-left,
+  .infra-right {
+    width: 100%;
+  }
+
+  .infra-right {
+    width: 100%;
+  }
+
+  .img-box.large {
+    width: 100%;
+    height: 350px;
+  }
+
+  .img-box.small {
+    width: 250px;
+    height: 220px;
+    left: 80px;
+    top: 200px;
+  }
+} 

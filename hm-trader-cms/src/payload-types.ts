@@ -381,6 +381,10 @@ export interface ContactInfo {
  */
 export interface ProductCategorySection {
   id: string;
+  /**
+   * Give a unique name like homeSection1, homeSection2
+   */
+  sectionName: string;
   smallTitle?: string | null;
   heading?: string | null;
   highlightWord?: string | null;
@@ -874,6 +878,7 @@ export interface ContactInfoSelect<T extends boolean = true> {
  * via the `definition` "product-category-section_select".
  */
 export interface ProductCategorySectionSelect<T extends boolean = true> {
+  sectionName?: T;
   smallTitle?: T;
   heading?: T;
   highlightWord?: T;

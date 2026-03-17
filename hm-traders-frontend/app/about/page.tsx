@@ -8,6 +8,7 @@ import CTASection from "@/components/about/CTASection";
 import Container from "@/components/layout/Container";
 import { fetchBannerBySlug } from "@/lib/getBannerData";
  import ToolSection from "@/components/common/ToolSection";
+ import AdvancedInfrastructure from "@/components/home/AdvancedInfrastructure";
 const banner = await fetchBannerBySlug("about");
 export default function AboutPage() {
   return <>
@@ -18,7 +19,7 @@ export default function AboutPage() {
         <StatsSection /> 
         <Container>
         <ToolSection slug={"about us"} />
-        
+        <AdvancedInfrastructure /> 
         </Container>
         <Partners/> 
       <GlobalNetworkSection/> 
