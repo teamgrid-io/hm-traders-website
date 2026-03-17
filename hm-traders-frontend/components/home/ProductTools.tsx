@@ -1,20 +1,23 @@
 import Image from "next/image";
 import "./ProductTools.css";
 import { getProductToolsSection } from "@/lib/getProductToolsSection";
+import {getCategories} from "@/lib/getCategories";
 import Container from "../layout/Container";
-
+import { constructMediaUrl } from "@/lib/constructMediaUrl";
+import ToolsSection from "../common/ToolSection";
 export default async function ProductTools() {
 
-  const data = await getProductToolsSection();
-  const section = data?.docs?.[0];
+  const data = await getCategories();
+  console.log("categories data", data);
+  const section = data;
 
   return ( 
-    <section className="tools-section">
- 
-      <Container>
-        <div className="tools-header">
+    <section className="category-section">
 
-        <div>
+       <Container>
+        {/* <div className="tools-header"> */}
+<ToolsSection slug={"home" }sectionKey="our_category" />
+        {/* <div>
           <p className="tools-tag">★ {section?.smallTitle}</p>
 
           <h2>
@@ -24,30 +27,29 @@ export default async function ProductTools() {
 
         <a className="view-all">
           {section?.viewAllText} →
-        </a>
+        </a> */}
 
+      {/* </div> */}
+<div className="tools-grid">
+  {section?.slice(0, 4)?.map((tool: any) => (
+    <div key={tool.id} className="tool-card">
+
+      {tool?.images?.[0]?.url && (
+        <Image
+          src={constructMediaUrl(tool.images[0].url)}
+          alt={tool.images[0].alt || tool.name}
+          fill
+          className="tool-img"
+        />
+      )}
+
+      <div className="tool-overlay">
+        <p>{tool.name}</p> {/* ✅ use name instead of title */}
       </div>
 
-      <div className="tools-grid">
-        {section?.tools?.map((tool: any) => (
-          <div key={tool.id} className="tool-card">
-
-            {tool?.image?.url && (
-              <Image
-                src={`http://localhost:3000${tool.image.url}`}
-                alt={tool.image.alt || tool.title}
-                fill
-                className="tool-img"
-              />
-            )}
-
-            <div className="tool-overlay">
-              <p>{tool.title}</p>
-            </div>
-
-          </div>
-        ))}
-      </div>
+    </div>
+  ))}
+</div>
 
       </Container>
     </section>
