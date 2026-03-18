@@ -56,7 +56,7 @@ export default async function ProductPage({ params }: any) {
         <p>{product.specifications}</p>
       </div>
       <ToolSection slug={"product details"} sectionKey={"Related Products"} /> 
-      <ToolsGrid tools={products?.filter((p: any) => p.id !== product.id)} />
+      <ToolsGrid tools={products?.filter((p: any) => p.id !== product.id)}  enableLink={true} basePath={`/products/${product?.category?.slug}`}/>
       {/* <div className="featureTools-grid">
         {products?.slice(0, 4).map((product: any) => {
           const image = product.images?.[0];

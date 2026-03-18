@@ -9,7 +9,7 @@
 /* CONTAINER */
 
 .infra-container {
-  max-width: 1200px;
+  /* max-width: 1200px; */
   margin: auto;
 
   display: flex;
@@ -35,11 +35,14 @@
   font-size: 36px;
   margin-bottom: 10px;
   line-height: 44px;
+   white-space: nowrap;
 }
 
 .infra-title span {
   color: #FF9C00;
+  /* display: inline; */
 }
+
 
 .infra-desc {
   color: #FFFFFFCC;
@@ -47,6 +50,7 @@
   font-size: 20px;
   margin-bottom: 10px; 
   line-height: 30px;
+  font-family: Lato
 }
 
 /* BUTTON */

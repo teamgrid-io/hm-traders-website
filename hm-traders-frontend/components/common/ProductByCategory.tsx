@@ -64,7 +64,7 @@ const filteredProducts = products
       <div className="Productbycategories">
         <div className="productSide">
           <div className="productSorting">
-            <span>Showing 10 of 10 results</span>
+            <span>Showing {filteredProducts.length} of {products.length} results</span>
             {/* Sorting */}
             <SortingProduct onSortChange={setSortOption} />
           </div>

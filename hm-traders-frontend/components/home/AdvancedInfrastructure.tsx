@@ -1,7 +1,8 @@
 import Image from "next/image";
 import "./AdvancedInfrastructure.css";
 import { getCategorySection } from "@/lib/getCategorySection";
-
+import Container from "../layout/Container";
+import {constructMediaUrl} from "@/lib/constructMediaUrl";
 export default async function AdvancedInfrastructure() {
 
   const data = await getCategorySection();
@@ -11,9 +12,11 @@ export default async function AdvancedInfrastructure() {
   );
 
   if (!section2) return null;
-
+console.log("section2",section2)
   return (
     <section className="infra-section">
+          <Container>
+
       <div className="infra-container">
 
         {/* LEFT CONTENT */}
@@ -37,7 +40,7 @@ export default async function AdvancedInfrastructure() {
         <div className="infra-right">
           <div className="img-box large">
             <Image
-              src={`http://localhost:3000${section2?.images?.topImage?.url}`}
+              src={constructMediaUrl(section2?.images?.topImage?.url)}
               alt={section2?.images?.topImage?.alt || "top"}
               fill
               className="img"
@@ -46,7 +49,7 @@ export default async function AdvancedInfrastructure() {
 
           <div className="img-box small">
             <Image
-              src={`http://localhost:3000${section2?.images?.bottomImage?.url}`}
+              src={constructMediaUrl(section2?.images?.bottomImage?.url)}
               alt={section2?.images?.bottomImage?.alt || "bottom"}
               fill
               className="img"
@@ -55,6 +58,8 @@ export default async function AdvancedInfrastructure() {
         </div>
 
       </div>
+          </Container>
+
     </section>
   );
 } 

@@ -10,7 +10,10 @@ export default async function OurProductCategory() {
   const section = data?.docs?.find(
     (item: any) => item.sectionName === "section1"
   );
+console.log('Fetched category section data:', section
 
+
+);
   return (
     <section className="product-section">
       <div className="product-container">

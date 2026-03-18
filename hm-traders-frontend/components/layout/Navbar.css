@@ -6,6 +6,10 @@
   z-index: 10000;
   width: 100%;
   background: #ffffff;
+  transition: box-shadow 0.3s ease;
+}
+.topHeader.scrolled {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
 }
 .headerContainer{
   max-width: 1200px;

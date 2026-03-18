@@ -14,7 +14,6 @@ import { Menu } from './collections/Menu'
 import { Ecatalogues } from './collections/Ecatalogues' 
 import { About } from './collections/About'
 import { ProductCategorySection } from './collections/FeatureSections'
-import { ProductToolsSection } from './collections/ProductToolsSection'
 import { Banner } from './collections/Banner'
 import { ToolSection } from './collections/ToolSection'
 import { ContactInfo } from './collections/ContactInfo'
@@ -37,7 +36,7 @@ export default buildConfig({
   cors: [
     "http://localhost:3001","*"
   ],
-  collections: [Users, Media, Categories, Brands, Products, Ecatalogues, Enquiries, Menu, About, Banner, ContactInfo, ProductCategorySection, ProductToolsSection, ToolSection, Testimonials,PartnersSection,GlobalNetwork,About_Stats,CTA],
+  collections: [Users, Media, Categories, Brands, Products, Ecatalogues, Enquiries, Menu, About, Banner, ContactInfo, ProductCategorySection, ToolSection, Testimonials,PartnersSection,GlobalNetwork,About_Stats,CTA],
     globals: [    // 
     Footer,
   ],
