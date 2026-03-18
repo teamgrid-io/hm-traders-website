@@ -9,6 +9,7 @@ import Container from "@/components/layout/Container";
 import { fetchBannerBySlug } from "@/lib/getBannerData";
  import ToolSection from "@/components/common/ToolSection";
  import ToolsGrid from "@/components/common/ToolsGrid";
+ import AdvancedInfrastructure from "@/components/home/AdvancedInfrastructure";
 const banner = await fetchBannerBySlug("about");
 import { getProducts } from "@/lib/getProducts";
 export default async function AboutPage() {
@@ -25,7 +26,7 @@ export default async function AboutPage() {
         <StatsSection /> 
         <Container className="mb-12">
         <ToolSection slug={"about"} sectionKey={"producte_expertise"} />
-        <ToolsGrid tools={featuredProducts} />  
+        <ToolsGrid tools={featuredProducts} />  <AdvancedInfrastructure /> 
         </Container>
         <Partners/> 
       <GlobalNetworkSection/> 
