@@ -5,12 +5,14 @@ import HmLogo from "../../public/HmLogo.png";
 import { IoSearchSharp } from "react-icons/io5";;
 import { FaRegHeart } from "react-icons/fa6";
 import "./Navbar.css";
+import NavbarScrollEffect from "../common/NavbarScrollEffect";
 
 export default async function Header() {
   const menu = await getMenu();
 
   return (
    <>
+    <NavbarScrollEffect />
       {/* TOP HEADER */}
       <div className="topHeader">
         <div className="headerContainer">
