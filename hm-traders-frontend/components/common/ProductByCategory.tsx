@@ -12,11 +12,13 @@ const ProductByCategory = ({ products, categorySlug }: any) => {
   const [priceRange, setPriceRange] = useState([200, 800]);
   const [query, setQuery] = useState("");
   const [Brands, setBrands] = useState<any[]>([]);
-  const [selectedBrands, setSelectedBrands] = useState<number[]>([]);
+  const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
+  const [price, setPrice] = useState(1000);
+
   const [availability, setAvailability] = useState({
     inStock: false,
     outOfStock: false,
-  })
+  });
 
   useEffect(() => {
     async function fetchBrands() {
@@ -44,27 +46,39 @@ const ProductByCategory = ({ products, categorySlug }: any) => {
     setAvailability((prev) => ({
       ...prev,
       [type]: !prev[type],
-    }))
-  }
+    }));
+  };
 
-
-
-const filteredProducts = products
-  .filter((p: any) => p.name.toLowerCase().includes(query))
-  .filter((p: any) =>
-    selectedBrands.length > 0 ? selectedBrands.includes(p.brand) : true)
-  .filter((p: any) => {
-    if (availability.inStock && availability.outOfStock) return true
-    if (availability.inStock) return p.numberOfStock > 0;
-    if (availability.outOfStock) return p.numberOfStock === 0;
-    return true;
-  })
+  const filteredProducts = products
+    .filter((p: any) => p.name.toLowerCase().includes(query))
+    .filter((p: any) =>
+      selectedBrands.length > 0 ? selectedBrands.includes(p.brand) : true,
+    )
+    .filter((p: any) => {
+      if (availability.inStock && availability.outOfStock) return true;
+      if (availability.inStock) return p.numberOfStock > 0;
+      if (availability.outOfStock) return p.numberOfStock === 0;
+      return true;
+    })
+    .filter((p: any) => {
+      if (p.price === undefined || p.price === null) return true;
+      return p.price <= price;
+    })
+     .sort((a: any, b: any) => {
+    if (sortOption === "asc") {
+      return a.price - b.price;
+    } else {
+      return b.price - a.price; 
+    }
+  });
   return (
     <>
       <div className="Productbycategories">
         <div className="productSide">
           <div className="productSorting">
-            <span>Showing {filteredProducts.length} of {products.length} results</span>
+            <span>
+              Showing {filteredProducts.length} of {products.length} results
+            </span>
             {/* Sorting */}
             <SortingProduct onSortChange={setSortOption} />
           </div>
@@ -72,47 +86,46 @@ const filteredProducts = products
           {/* Product Grid */}
           {filteredProducts.length > 0 ? (
             <div className="featureTools-grid py-10">
-            {filteredProducts.map((product: any) => {
-              const image = product.images?.[0];
-              const imageUrl = constructMediaUrl(image?.url);
+              {filteredProducts.map((product: any) => {
+                const image = product.images?.[0];
+                const imageUrl = constructMediaUrl(image?.url);
 
-              return (
-                <Link
-                  key={product.id}
-                  href={`/products/${categorySlug}/${product.slug}`}
-                  className="tool-card"
-                >
-                  <div className="tool-image-wrapper">
-                    {imageUrl && (
-                      <Image
-                        src={imageUrl}
-                        alt={product.name}
-                        fill
-                        className="tool-img"
-                      />
-                    )}
-                  </div>
-
-                  <div className="tool-content">
-                    <p className="tool-title">{product.name}</p>
-
-                    <div className="tool-rating">
-                      <span className="stars">★★★★★</span>
-                      <span className="rating">({product.rating})</span>
-                      <span className="reviews">
-                        • {product.reviewCount} Reviews
-                      </span>
+                return (
+                  <Link
+                    key={product.id}
+                    href={`/products/${categorySlug}/${product.slug}`}
+                    className="tool-card"
+                  >
+                    <div className="tool-image-wrapper">
+                      {imageUrl && (
+                        <Image
+                          src={imageUrl}
+                          alt={product.name}
+                          fill
+                          className="tool-img"
+                        />
+                      )}
                     </div>
 
-                    <p className="tool-price">₹{product.price}</p>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>):(
-            <div className="no-products">
-              No Products to show
+                    <div className="tool-content">
+                      <p className="tool-title">{product.name}</p>
+
+                      <div className="tool-rating">
+                        <span className="stars">★★★★★</span>
+                        <span className="rating">({product.rating})</span>
+                        <span className="reviews">
+                          • {product.reviewCount} Reviews
+                        </span>
+                      </div>
+
+                      <p className="tool-price">₹{product.price}</p>
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
+          ) : (
+            <div className="no-products">No Products to show</div>
           )}
         </div>
         <div className="productFilters">
@@ -126,10 +139,20 @@ const filteredProducts = products
           <div className="productAvailablility">
             <span>Availability</span>
             <div className="checkboxdiv">
-              <input type="checkbox" checked={availability.inStock} onChange={()=> handleAvailabilityChange("inStock")} /> <label htmlFor="">In Stock</label>
+              <input
+                type="checkbox"
+                checked={availability.inStock}
+                onChange={() => handleAvailabilityChange("inStock")}
+              />{" "}
+              <label htmlFor="">In Stock</label>
             </div>
             <div className="checkboxdiv">
-              <input type="checkbox" checked={availability.outOfStock} onChange={()=> handleAvailabilityChange("outOfStock")} /> <label htmlFor="">Out of Stock</label>
+              <input
+                type="checkbox"
+                checked={availability.outOfStock}
+                onChange={() => handleAvailabilityChange("outOfStock")}
+              />{" "}
+              <label htmlFor="">Out of Stock</label>
             </div>
           </div>
           <div className="productCategory">
@@ -147,14 +170,14 @@ const filteredProducts = products
 
             <input
               type="range"
-              id="price"
-              name="price"
               min="0"
               max="1000"
               step="10"
-              oninput="priceValue.innerText = this.value"
-            ></input>
-            <p id="priceValue">Price- ₹0 to ₹1000</p>
+              value={price}
+              onChange={(e) => setPrice(Number(e.target.value))}
+            />
+
+            <p>Price - ₹0 to ₹{price}</p>
           </div>
           <div className="productBrands">
             <span>Brands</span>
