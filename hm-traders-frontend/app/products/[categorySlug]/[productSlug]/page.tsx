@@ -55,7 +55,7 @@ export default async function ProductPage({ params }: any) {
         <span className="productSpecstitle">SPECIFICATION</span>
         <p>{product.specifications}</p>
       </div>
-      <ToolSection slug={"product details"} />
+      <ToolSection slug={"product details"} sectionKey={"Related Products"} /> 
       <ToolsGrid tools={products?.filter((p: any) => p.id !== product.id)} />
       {/* <div className="featureTools-grid">
         {products?.slice(0, 4).map((product: any) => {

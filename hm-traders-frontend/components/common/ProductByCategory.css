@@ -9,6 +9,11 @@
     align-items: center;
     justify-content: space-between;
 }
+.productSide {
+  flex: 1;             
+  min-width: 0;
+  min-height: 400px;   
+}
 /* Product Filters Sidebar */
 .productFilters {
   width: 300px;
@@ -16,8 +21,10 @@
   border-radius: 8px;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 20px;
   font-family: Arial, sans-serif;
+  width: 300px;
+  flex-shrink: 0;
 }
 
 /* Search Box */
@@ -132,4 +139,19 @@
   font-size: 16px;
   font-weight: 600;
   color: #222;
+}
+.no-products {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  min-height: 300px;
+  text-align: center;
+  color: #777;
+}
+
+.no-products::before {
+  content: "😕";
+  font-size: 40px;
 }

@@ -82,5 +82,12 @@ export const Products: CollectionConfig = {
       defaultValue: false,
       label: "Featured Product",
     },
+    {
+      name: "numberOfStock",
+      type: "number",
+      required: true,
+      defaultValue: 0,
+      min: 0,
+    }
   ],
 };

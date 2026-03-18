@@ -13,6 +13,10 @@ const ProductByCategory = ({ products, categorySlug }: any) => {
   const [query, setQuery] = useState("");
   const [Brands, setBrands] = useState<any[]>([]);
   const [selectedBrands, setSelectedBrands] = useState<number[]>([]);
+  const [availability, setAvailability] = useState({
+    inStock: false,
+    outOfStock: false,
+  })
 
   useEffect(() => {
     async function fetchBrands() {
@@ -36,12 +40,25 @@ const ProductByCategory = ({ products, categorySlug }: any) => {
           : [...prev, name], // check
     );
   };
+  const handleAvailabilityChange = (type) => {
+    setAvailability((prev) => ({
+      ...prev,
+      [type]: !prev[type],
+    }))
+  }
+
+
+
 const filteredProducts = products
   .filter((p: any) => p.name.toLowerCase().includes(query))
   .filter((p: any) =>
-    selectedBrands.length > 0 ? selectedBrands.includes(p.brand) : true
-  ); 
-
+    selectedBrands.length > 0 ? selectedBrands.includes(p.brand) : true)
+  .filter((p: any) => {
+    if (availability.inStock && availability.outOfStock) return true
+    if (availability.inStock) return p.numberOfStock > 0;
+    if (availability.outOfStock) return p.numberOfStock === 0;
+    return true;
+  })
   return (
     <>
       <div className="Productbycategories">
@@ -53,7 +70,8 @@ const filteredProducts = products
           </div>
 
           {/* Product Grid */}
-          <div className="featureTools-grid py-10">
+          {filteredProducts.length > 0 ? (
+            <div className="featureTools-grid py-10">
             {filteredProducts.map((product: any) => {
               const image = product.images?.[0];
               const imageUrl = constructMediaUrl(image?.url);
@@ -91,7 +109,11 @@ const filteredProducts = products
                 </Link>
               );
             })}
-          </div>
+          </div>):(
+            <div className="no-products">
+              No Products to show
+            </div>
+          )}
         </div>
         <div className="productFilters">
           <div className="productSearch">
@@ -104,10 +126,10 @@ const filteredProducts = products
           <div className="productAvailablility">
             <span>Availability</span>
             <div className="checkboxdiv">
-              <input type="checkbox" /> <label htmlFor="">In Stock</label>
+              <input type="checkbox" checked={availability.inStock} onChange={()=> handleAvailabilityChange("inStock")} /> <label htmlFor="">In Stock</label>
             </div>
             <div className="checkboxdiv">
-              <input type="checkbox" /> <label htmlFor="">Out of Stock</label>
+              <input type="checkbox" checked={availability.outOfStock} onChange={()=> handleAvailabilityChange("outOfStock")} /> <label htmlFor="">Out of Stock</label>
             </div>
           </div>
           <div className="productCategory">

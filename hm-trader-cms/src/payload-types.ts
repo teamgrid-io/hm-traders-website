@@ -257,6 +257,7 @@ export interface Product {
   rating?: number | null;
   reviewCount?: number | null;
   isFeatureTool?: boolean | null;
+  numberOfStock: number;
   updatedAt: string;
   createdAt: string;
 }
@@ -777,6 +778,7 @@ export interface ProductsSelect<T extends boolean = true> {
   rating?: T;
   reviewCount?: T;
   isFeatureTool?: T;
+  numberOfStock?: T;
   updatedAt?: T;
   createdAt?: T;
 }
