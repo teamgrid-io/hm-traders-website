@@ -1,7 +1,7 @@
 import { API_URL } from "@/api/Api";
 
 export async function getCategorySection() {
-  const url = `${API_URL}/product-category-section`;
+  const url = `${API_URL}/feature-sections`;
   console.log('[frontend] fetching product category section from', url)
   const res = await fetch(url, {
     cache: "no-store",

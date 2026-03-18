@@ -7,6 +7,7 @@ import ProductGallery from "@/components/common/ProductGallery";
 import ProductCounter from "@/components/common/ProductCounter";
 import FeaturedTool from "@/components/home/FeaturedTool";
 import ToolSection from "@/components/common/ToolSection";
+import ToolsGrid from "@/components/common/ToolsGrid";
 
 
 export default async function ProductPage({ params }: any) {
@@ -54,8 +55,9 @@ export default async function ProductPage({ params }: any) {
         <span className="productSpecstitle">SPECIFICATION</span>
         <p>{product.specifications}</p>
       </div>
-      <ToolSection slug={"product details"} />
-      <div className="featureTools-grid">
+      <ToolSection slug={"product details"} sectionKey={"Related Products"} /> 
+      <ToolsGrid tools={products?.filter((p: any) => p.id !== product.id)} />
+      {/* <div className="featureTools-grid">
         {products?.slice(0, 4).map((product: any) => {
           const image = product.images?.[0];
           const imageUrl = constructMediaUrl(image?.url);
@@ -89,7 +91,7 @@ export default async function ProductPage({ params }: any) {
             </Link>
           );
         })}
-      </div>
+      </div> */}
     </Container>
   );
 }

@@ -78,7 +78,7 @@ export interface Config {
     about: About;
     banner: Banner;
     'contact-info': ContactInfo;
-    'product-category-section': ProductCategorySection;
+    'feature-sections': FeatureSection;
     'product-tools-section': ProductToolsSection;
     'tool-section': ToolSection;
     testimonials: Testimonial;
@@ -104,7 +104,7 @@ export interface Config {
     about: AboutSelect<false> | AboutSelect<true>;
     banner: BannerSelect<false> | BannerSelect<true>;
     'contact-info': ContactInfoSelect<false> | ContactInfoSelect<true>;
-    'product-category-section': ProductCategorySectionSelect<false> | ProductCategorySectionSelect<true>;
+    'feature-sections': FeatureSectionsSelect<false> | FeatureSectionsSelect<true>;
     'product-tools-section': ProductToolsSectionSelect<false> | ProductToolsSectionSelect<true>;
     'tool-section': ToolSectionSelect<false> | ToolSectionSelect<true>;
     testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
@@ -257,6 +257,7 @@ export interface Product {
   rating?: number | null;
   reviewCount?: number | null;
   isFeatureTool?: boolean | null;
+  numberOfStock: number;
   updatedAt: string;
   createdAt: string;
 }
@@ -377,10 +378,14 @@ export interface ContactInfo {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "product-category-section".
+ * via the `definition` "feature-sections".
  */
-export interface ProductCategorySection {
+export interface FeatureSection {
   id: string;
+  /**
+   * Give a unique name like homeSection1, homeSection2
+   */
+  sectionName: string;
   smallTitle?: string | null;
   heading?: string | null;
   highlightWord?: string | null;
@@ -424,9 +429,15 @@ export interface ProductToolsSection {
 export interface ToolSection {
   id: string;
   slug: string;
-  smallTitle?: string | null;
-  heading?: string | null;
-  highlightWord?: string | null;
+  sections?:
+    | {
+        sectionKey: string;
+        smallTitle?: string | null;
+        heading?: string | null;
+        highlightWord?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   viewAllText?: string | null;
   viewAllLink?: string | null;
   updatedAt: string;
@@ -617,8 +628,8 @@ export interface PayloadLockedDocument {
         value: string | ContactInfo;
       } | null)
     | ({
-        relationTo: 'product-category-section';
-        value: string | ProductCategorySection;
+        relationTo: 'feature-sections';
+        value: string | FeatureSection;
       } | null)
     | ({
         relationTo: 'product-tools-section';
@@ -771,6 +782,7 @@ export interface ProductsSelect<T extends boolean = true> {
   rating?: T;
   reviewCount?: T;
   isFeatureTool?: T;
+  numberOfStock?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -871,9 +883,10 @@ export interface ContactInfoSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "product-category-section_select".
+ * via the `definition` "feature-sections_select".
  */
-export interface ProductCategorySectionSelect<T extends boolean = true> {
+export interface FeatureSectionsSelect<T extends boolean = true> {
+  sectionName?: T;
   smallTitle?: T;
   heading?: T;
   highlightWord?: T;
@@ -917,9 +930,15 @@ export interface ProductToolsSectionSelect<T extends boolean = true> {
  */
 export interface ToolSectionSelect<T extends boolean = true> {
   slug?: T;
-  smallTitle?: T;
-  heading?: T;
-  highlightWord?: T;
+  sections?:
+    | T
+    | {
+        sectionKey?: T;
+        smallTitle?: T;
+        heading?: T;
+        highlightWord?: T;
+        id?: T;
+      };
   viewAllText?: T;
   viewAllLink?: T;
   updatedAt?: T;

@@ -8,17 +8,25 @@ import CTASection from "@/components/about/CTASection";
 import Container from "@/components/layout/Container";
 import { fetchBannerBySlug } from "@/lib/getBannerData";
  import ToolSection from "@/components/common/ToolSection";
+ import ToolsGrid from "@/components/common/ToolsGrid";
+ import AdvancedInfrastructure from "@/components/home/AdvancedInfrastructure";
 const banner = await fetchBannerBySlug("about");
-export default function AboutPage() {
+import { getProducts } from "@/lib/getProducts";
+export default async function AboutPage() {
+  const ProductData = await getProducts();
+  
+    const featuredProducts = ProductData.filter(
+      (product: any) => product.isFeatureTool === true
+    );
   return <>
         <HomeBanner slug={banner} />
-          <Container>
+          <Container className="mb-8">
         <OurProductCategory /> 
         </Container>
         <StatsSection /> 
-        <Container>
-        <ToolSection slug={"about us"} />
-        
+        <Container className="mb-12">
+        <ToolSection slug={"about"} sectionKey={"producte_expertise"} />
+        <ToolsGrid tools={featuredProducts} />  <AdvancedInfrastructure /> 
         </Container>
         <Partners/> 
       <GlobalNetworkSection/> 

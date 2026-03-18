@@ -1,13 +1,23 @@
 import { CollectionConfig } from "payload";
 
 export const ProductCategorySection: CollectionConfig = {
-  slug: "product-category-section",
- 
-    access: {
-      read: () => true, // Allow public read access
-    },
+  slug: "feature-sections",
 
-  fields: [ 
+  access: {
+    read: () => true,
+  },
+  
+  fields: [
+    {
+      name: "sectionName",
+      label: "Section Name",
+      type: "text",
+      required: true,
+      admin: {
+        description: "Give a unique name like homeSection1, homeSection2",
+      },
+    },
+ 
     {
       name: "smallTitle",
       label: "Small Title",
@@ -20,21 +30,21 @@ export const ProductCategorySection: CollectionConfig = {
       type: "text",
       defaultValue: "Your Trusted Partner in Industrial Tools",
     },
-      {
+    {
       name: "highlightWord",
       label: "Highlight Word",
       type: "text",
       defaultValue: "Tools",
-    }, 
+    },
     {
       name: "description1",
       label: "Description1",
       type: "textarea",
     },
-     {
+    {
       name: "description2",
       label: "Description 2",
-      type: "textarea", 
+      type: "textarea",
     },
     {
       name: "buttonText",
@@ -47,7 +57,6 @@ export const ProductCategorySection: CollectionConfig = {
       label: "Button Link",
       type: "text",
     },
-
     {
       name: "images",
       label: "Images",

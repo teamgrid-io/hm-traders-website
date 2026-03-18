@@ -14,7 +14,7 @@ export default async function CTASection() {
       {cta?.docs?.[0]?.title} 
       <span> {cta?.docs?.[0]?.highlightWord}</span>
     </h2>
-
+    
     <p className={styles['cta-desc']}>
       {cta?.docs?.[0]?.description}
     </p>

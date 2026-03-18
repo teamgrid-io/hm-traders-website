@@ -6,7 +6,10 @@ export default async function OurProductCategory() {
 
   const data = await getCategorySection();
 
-  const section = data?.docs?.[0];
+  // ✅ filter section1 correctly
+  const section = data?.docs?.find(
+    (item: any) => item.sectionName === "section1"
+  );
 
   return (
     <section className="product-section">
@@ -49,13 +52,9 @@ export default async function OurProductCategory() {
             <span>{section?.highlightWord}</span>
           </h2>
 
-          <p className="desc"> 
-          {section?.description1 }
-          </p>
+          <p className="desc">{section?.description1}</p>
 
-          <p className="desc">
-            {section?.description2}
-          </p>
+          <p className="desc">{section?.description2}</p>
 
           <button className="explore-btn">
             {section?.buttonText}
@@ -66,4 +65,4 @@ export default async function OurProductCategory() {
       </div>
     </section>
   );
-}
+} 
