@@ -4,7 +4,7 @@ export default function ToolsGrid({ tools = [] }: any) {
   if (!tools.length) return null;
 
   return (
-    <div className="featureTools-grid">
+    <div className="Tools-grid">
       {tools.slice(0,4).map((tool: any) => (
         <div key={tool.id} className="tool-card">
           <div className="tool-image-wrapper">

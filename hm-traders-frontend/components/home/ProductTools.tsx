@@ -32,14 +32,14 @@ export default async function ProductTools() {
       {/* </div> */}
 <div className="tools-grid">
   {section?.slice(0, 4)?.map((tool: any) => (
-    <div key={tool.id} className="tool-card">
+    <div key={tool.id} className="tools-cards">
 
       {tool?.images?.[0]?.url && (
         <Image
           src={constructMediaUrl(tool.images[0].url)}
           alt={tool.images[0].alt || tool.name}
           fill
-          className="tool-img"
+          className="tools-img"
         />
       )}
 

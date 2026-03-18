@@ -49,16 +49,16 @@
 
 /* CARD */
 
-.tool-card{
+.tools-cards{
   position:relative;
   height:260px; 
   border-radius:16px; 
   overflow:hidden;
   cursor:pointer;
-  /* box-shadow:0 10px 20px rgba(0,0,0,0.25); */
+
 }
 
-.tool-img{
+.tools-img{
   object-fit:contain; 
   transition:transform .4s ease;
 }
@@ -98,15 +98,15 @@
 
 /* HOVER EFFECT */
 
-.tool-card:hover .tool-overlay{
+.tools-cards:hover .tool-overlay{
   opacity:1;
 }
 
-.tool-card:hover .tool-overlay p{
+.tools-cards:hover .tool-overlay p{
   transform:translateY(0);
 }
 
-.tool-card:hover .tool-img{
+.tools-cards:hover .tools-img{
   transform:scale(1.08);
 }
 
