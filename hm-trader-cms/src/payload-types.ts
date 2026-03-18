@@ -79,7 +79,6 @@ export interface Config {
     banner: Banner;
     'contact-info': ContactInfo;
     'feature-sections': FeatureSection;
-    'product-tools-section': ProductToolsSection;
     'tool-section': ToolSection;
     testimonials: Testimonial;
     'partners-section': PartnersSection;
@@ -105,7 +104,6 @@ export interface Config {
     banner: BannerSelect<false> | BannerSelect<true>;
     'contact-info': ContactInfoSelect<false> | ContactInfoSelect<true>;
     'feature-sections': FeatureSectionsSelect<false> | FeatureSectionsSelect<true>;
-    'product-tools-section': ProductToolsSectionSelect<false> | ProductToolsSectionSelect<true>;
     'tool-section': ToolSectionSelect<false> | ToolSectionSelect<true>;
     testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
     'partners-section': PartnersSectionSelect<false> | PartnersSectionSelect<true>;
@@ -402,28 +400,6 @@ export interface FeatureSection {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "product-tools-section".
- */
-export interface ProductToolsSection {
-  id: string;
-  smallTitle?: string | null;
-  heading?: string | null;
-  highlightWord?: string | null;
-  viewAllText?: string | null;
-  viewAllLink?: string | null;
-  tools?:
-    | {
-        image: string | Media;
-        title: string;
-        link?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "tool-section".
  */
 export interface ToolSection {
@@ -630,10 +606,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'feature-sections';
         value: string | FeatureSection;
-      } | null)
-    | ({
-        relationTo: 'product-tools-section';
-        value: string | ProductToolsSection;
       } | null)
     | ({
         relationTo: 'tool-section';
@@ -899,27 +871,6 @@ export interface FeatureSectionsSelect<T extends boolean = true> {
     | {
         topImage?: T;
         bottomImage?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "product-tools-section_select".
- */
-export interface ProductToolsSectionSelect<T extends boolean = true> {
-  smallTitle?: T;
-  heading?: T;
-  highlightWord?: T;
-  viewAllText?: T;
-  viewAllLink?: T;
-  tools?:
-    | T
-    | {
-        image?: T;
-        title?: T;
-        link?: T;
-        id?: T;
       };
   updatedAt?: T;
   createdAt?: T;
