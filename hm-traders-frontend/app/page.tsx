@@ -28,7 +28,7 @@ export default async function Home() {
         <OurProductCategory />
          </Container>
         <ProductTools />
-        <FeaturedTool slug={"home"} />
+        <FeaturedTool slug={"home"}  />
         <Partners/>
       <GlobalNetworkSection/> 
               <TestimonialsSection />

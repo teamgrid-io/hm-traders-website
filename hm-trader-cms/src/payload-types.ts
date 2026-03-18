@@ -424,9 +424,15 @@ export interface ProductToolsSection {
 export interface ToolSection {
   id: string;
   slug: string;
-  smallTitle?: string | null;
-  heading?: string | null;
-  highlightWord?: string | null;
+  sections?:
+    | {
+        sectionKey: string;
+        smallTitle?: string | null;
+        heading?: string | null;
+        highlightWord?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   viewAllText?: string | null;
   viewAllLink?: string | null;
   updatedAt: string;
@@ -917,9 +923,15 @@ export interface ProductToolsSectionSelect<T extends boolean = true> {
  */
 export interface ToolSectionSelect<T extends boolean = true> {
   slug?: T;
-  smallTitle?: T;
-  heading?: T;
-  highlightWord?: T;
+  sections?:
+    | T
+    | {
+        sectionKey?: T;
+        smallTitle?: T;
+        heading?: T;
+        highlightWord?: T;
+        id?: T;
+      };
   viewAllText?: T;
   viewAllLink?: T;
   updatedAt?: T;
