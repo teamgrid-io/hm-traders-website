@@ -2,49 +2,55 @@ import { constructMediaUrl } from "@/lib/constructMediaUrl";
 import "./HomeBanner.css";
 import Container from "../layout/Container";
 
-export default function HomeBanner({ slug }:any) {
+export default function HomeBanner({ slug }: any) {
   const imageUrl = constructMediaUrl(slug?.heroImage?.url);
- 
-
-
 
   return (
     <section
       className="banner"
-      style={{ backgroundImage: `url(${imageUrl})`,marginBottom: slug?.slug === "home" ? "50px" : "0px", }}
+      style={{
+        backgroundImage: `url(${imageUrl})`,
+        marginBottom: slug?.slug === "home" ? "50px" : "0px",
+      }}
     >
       <div className="banner-overlay"></div>
-    <div className="banner-container" style={slug?.slug== "home"? {justifyContent:"space-between"}:{justifyContent:"center"}}>
-        
-      <div className="banner-content">
-        <h1 className="banner-title">
-          {slug?.heroTitle || slug?.title}
-        </h1>
-
-        {slug?.heroSubtitle && (
-          <p className="banner-subtitle">{slug?.heroSubtitle}</p>
-        )}
-
-       {slug?.buttons?.length > 0 && (
-  <div className="banner-buttons">
-    {slug.buttons.map((btn, idx) => (
-      <a
-        key={idx}
-        href={btn.link}
-        className={`banner-btn ${idx === 1 ? "btn-outline" : ""}`}
+      <div
+        className="banner-container"
+        style={
+          slug?.slug == "home"
+            ? { justifyContent: "space-between" }
+            : { justifyContent: "center" }
+        }
       >
-        {btn.label}
-      </a>
-    ))}
-  </div>
-)}
+        <div className="banner-content">
+          <h1 className="banner-title">{slug?.heroTitle || slug?.title}</h1>
 
-        
-      </div>
-      {slug?.heroFeatures?.length > 0 && (
+          {slug?.heroSubtitle && (
+            <p className="banner-subtitle">{slug?.heroSubtitle}</p>
+          )}
+
+          {slug?.buttons?.length > 0 && (
+            <div className="banner-buttons">
+              {slug.buttons.map((btn, idx) => (
+                <a
+                  key={idx}
+                  href={btn.link}
+                  className={`banner-btn ${idx === 1 ? "btn-outline" : ""}`}
+                >
+                  {btn.label}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+        {slug?.heroFeatures?.length > 0 && (
           <div className="banner-features">
             {slug.heroFeatures.map((feature, idx) => (
-              <div key={idx} style={idx==1 ? { background: "#04316D",color:"#fff" } : {}} className="feature-card">
+              <div
+                key={idx}
+                style={idx == 1 ? { background: "#04316D", color: "#fff" } : {}}
+                className="feature-card"
+              >
                 {feature.icon?.url && (
                   <img
                     src={constructMediaUrl(feature.icon.url)}
@@ -58,7 +64,7 @@ export default function HomeBanner({ slug }:any) {
             ))}
           </div>
         )}
-    </div>
+      </div>
     </section>
   );
 }
