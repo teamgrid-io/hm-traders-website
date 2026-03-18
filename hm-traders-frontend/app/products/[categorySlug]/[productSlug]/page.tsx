@@ -8,56 +8,64 @@ import ProductCounter from "@/components/common/ProductCounter";
 import FeaturedTool from "@/components/home/FeaturedTool";
 import ToolSection from "@/components/common/ToolSection";
 import ToolsGrid from "@/components/common/ToolsGrid";
-
+import { fetchBannerBySlug } from "@/lib/getBannerData";
+import HomeBanner from "@/components/common/HomeBanner";
 
 export default async function ProductPage({ params }: any) {
   const { productSlug } = await params;
+  const banner = await fetchBannerBySlug("productDetails");
 
   const product = await getProductBySlug(productSlug);
   console.log("product", product);
   const products = await getProductsByCategorySlug(product?.category?.slug);
 
   return (
-    <Container>
-      <div className="productContainer">
-        <ProductGallery images={product?.images} name={product?.name} />
+    <>
+      <HomeBanner slug={banner} />
+      <Container>
+        <div className="productContainer">
+          <ProductGallery images={product?.images} name={product?.name} />
 
-        <div className="productDetails">
-          <h1>{product?.name}</h1>
-          <span className="price">₹{product?.price}</span>
-          <div className="reviewCount">
-            <span>★★★★★</span>({product.reviewCount} customer review)
-          </div>
+          <div className="productDetails">
+            <h1>{product?.name}</h1>
+            <span className="price">₹{product?.price}</span>
+            <div className="reviewCount">
+              <span>★★★★★</span>({product.reviewCount} customer review)
+            </div>
 
-          <div className="productDescription">
-            {product?.description?.root?.children?.map(
-              (block: any, i: number) => (
-                <p key={i}>{block.children?.[0]?.text}</p>
-              ),
-            )}
-          </div>
-          <div className="productBuyOption">
-            <ProductCounter />
-            <button className="button">CONTACT US</button>
-          </div>
+            <div className="productDescription">
+              {product?.description?.root?.children?.map(
+                (block: any, i: number) => (
+                  <p key={i}>{block.children?.[0]?.text}</p>
+                ),
+              )}
+            </div>
+            <div className="productBuyOption">
+              <ProductCounter />
+              <button className="button">CONTACT US</button>
+            </div>
 
-          <div className="productExtraInfo">
-            <p>
-              Categories: <span>{product?.category?.name}</span>
-            </p>
-            <p>
-              Brands: <span>{product.brand}</span>
-            </p>
+            <div className="productExtraInfo">
+              <p>
+                Categories: <span>{product?.category?.name}</span>
+              </p>
+              <p>
+                Brands: <span>{product.brand}</span>
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="productSpecs">
-        <span className="productSpecstitle">SPECIFICATION</span>
-        <p>{product.specifications}</p>
-      </div>
-      <ToolSection slug={"product details"} sectionKey={"Related Products"} /> 
-      <ToolsGrid tools={products?.filter((p: any) => p.id !== product.id)}  enableLink={true} basePath={`/products/${product?.category?.slug}`}/>
-      {/* <div className="featureTools-grid">
+        <div className="productSpecs">
+          <span className="productSpecstitle">SPECIFICATION</span>
+          <p>{product.specifications}</p>
+        </div>
+        <ToolSection slug={"product details"} sectionKey={"Related Products"} />
+        <ToolsGrid
+          tools={products?.filter((p: any) => p.id !== product.id)}
+          enableLink={true}
+          basePath={`/products/${product?.category?.slug}`}
+        />
+        {/* <div className="featureTools-grid">
         {products?.slice(0, 4).map((product: any) => {
           const image = product.images?.[0];
           const imageUrl = constructMediaUrl(image?.url);
@@ -92,6 +100,7 @@ export default async function ProductPage({ params }: any) {
           );
         })}
       </div> */}
-    </Container>
+      </Container>
+    </>
   );
 }
