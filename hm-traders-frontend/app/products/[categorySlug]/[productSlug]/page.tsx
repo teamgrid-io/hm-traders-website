@@ -8,26 +8,30 @@ import ProductCounter from "@/components/common/ProductCounter";
 import FeaturedTool from "@/components/home/FeaturedTool";
 import ToolSection from "@/components/common/ToolSection";
 import ToolsGrid from "@/components/common/ToolsGrid";
-import ProductTabs from "@/components/common/ProductTabs";
+import ProductTabs from "@/components/common/ProductTabs";import { fetchBannerBySlug } from "@/lib/getBannerData";
+import HomeBanner from "@/components/common/HomeBanner";
 
 export default async function ProductPage({ params }: any) {
   const { productSlug } = await params;
+  const banner = await fetchBannerBySlug("productDetails");
 
   const product = await getProductBySlug(productSlug);
   console.log("product", product);
   const products = await getProductsByCategorySlug(product?.category?.slug);
 
   return (
-    <Container>
-      <div className="productContainer">
-        <ProductGallery images={product?.images} name={product?.name} />
+    <>
+      <HomeBanner slug={banner} />
+      <Container>
+        <div className="productContainer">
+          <ProductGallery images={product?.images} name={product?.name} />
 
-        <div className="productDetails">
-          <h1>{product?.name}</h1>
-          <span className="price">₹{product?.price}</span>
-          <div className="reviewCount">
-            <span>★★★★★</span>({product.reviewCount} customer review)
-          </div>
+          <div className="productDetails">
+            <h1>{product?.name}</h1>
+            <span className="price">₹{product?.price}</span>
+            <div className="reviewCount">
+              <span>★★★★★</span>({product.reviewCount} customer review)
+            </div>
 
           <div className="productDescription">
             {product?.description?.root?.children?.map(
