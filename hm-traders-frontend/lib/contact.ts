@@ -16,7 +16,7 @@ export async function submitContactForm(form: {
   if (!res.ok) {
     throw new Error("Failed to send message");
   }
-console.log("Contact form submission response:", res); // Debugging log
+
   return res.json();
 }
 export async function getEnquiryForm() {

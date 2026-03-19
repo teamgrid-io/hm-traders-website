@@ -2,7 +2,6 @@ import {getBrands} from "@/lib/getBrands";
 import Container from "../layout/Container";
 export default async function BrandSection() {
     const brands = await getBrands();
-    console.log("Fetched brands in BrandSection:", brands);
     return (
       
   <div className="brand-section">

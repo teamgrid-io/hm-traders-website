@@ -3,7 +3,6 @@ import { ENDPOINTS } from "../api/Api";
 
 export async function getFooterData() {
   try {
-    console.log("📡 Fetching footer data from:", ENDPOINTS.footer);
     
     const res = await fetch(
       ENDPOINTS.footer,
@@ -15,7 +14,6 @@ export async function getFooterData() {
       }
     );
 
-    console.log("📡 Footer API response status:", res.status);
     
     if (!res.ok) {
       const error = await res.text();
@@ -23,7 +21,6 @@ export async function getFooterData() {
     }
     
     const data = await res.json();
-    console.log("✅ Footer data fetched successfully:", data);
     return data;
   } catch (error) {
     console.error("❌ Error fetching footer data:", error);

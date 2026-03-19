@@ -2,7 +2,6 @@ import { API_URL } from "@/api/Api";
 
 export async function getFeaturedTool(slug:string) {
   const url = `${API_URL}/tool-section?where[slug][equals]=${slug}`;
-  console.log('[frontend] fetching featured tools section from', url)
   const res = await fetch(url, {
     cache: "no-store",
   });

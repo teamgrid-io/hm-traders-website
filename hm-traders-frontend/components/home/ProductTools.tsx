@@ -8,7 +8,6 @@ import ToolsSection from "../common/ToolSection";
 export default async function ProductTools() {
 
   const data = await getCategories();
-  console.log("categories data", data);
   const section = data;
 
   return ( 

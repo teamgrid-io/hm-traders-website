@@ -10,7 +10,6 @@ export async function getCategories() {
     }
 
     const data = await res.json();
-    console.log("Categories data:", data.docs); // Debugging log
     return data.docs;
   } catch (error) {
     console.error(error);

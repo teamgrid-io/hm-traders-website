@@ -2,7 +2,6 @@ import { getBrands } from "../../lib/getBrands";
 import Container from "@/components/layout/Container";
 export default async function Home() {
   const brands = await getBrands();
-  console.log("Page brands:", brands);
 
   return (
     <Container>
