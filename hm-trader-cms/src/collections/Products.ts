@@ -1,66 +1,93 @@
-import { CollectionConfig } from "payload";
+import { CollectionConfig } from 'payload'
 export const Products: CollectionConfig = {
-  slug: "products",
+  slug: 'products',
   access: {
     read: () => true, // allows anyone to read posts
   },
 
   fields: [
     {
-      name: "name",
-      type: "text",
+      name: 'name',
+      type: 'text',
       required: true,
     },
     {
-      name: "slug",
-      type: "text",
+      name: 'slug',
+      type: 'text',
       required: true,
       unique: true,
     },
 
     {
-      name: "description",
-      type: "richText",
+      name: 'description',
+      type: 'richText',
     },
 
     {
-      name: "category",
-      type: "relationship",
-      relationTo: "categories",
+      name: 'category',
+      type: 'relationship',
+      relationTo: 'categories',
     },
 
     {
-      name: "brand",
-      type: "text",
+      name: 'brand',
+      type: 'text',
     },
 
     {
-      name: "images",
-      type: "upload",
-      relationTo: "media",
+      name: 'images',
+      type: 'upload',
+      relationTo: 'media',
       hasMany: true,
     },
 
     {
-      name: "specifications",
-      type: "textarea",
+      name: 'technicalSpecifications',
+      type: 'array',
+      label: 'Technical Specifications',
+      fields: [
+        {
+          name: 'title',
+          type: 'text',
+          required: true,
+          label: 'Specification Name',
+        },
+        {
+          name: 'value',
+          type: 'text',
+          required: true,
+          label: 'Specification Value',
+        },
+      ],
+    },
+    {
+      name: 'productFeatures',
+      type: 'array',
+      label: 'Product Features',
+      fields: [
+        {
+          name: 'feature',
+          type: 'text',
+          required: true,
+        },
+      ],
     },
 
     {
-      name: "catalogPdf",
-      type: "upload",
-      relationTo: "media",
+      name: 'catalogPdf',
+      type: 'upload',
+      relationTo: 'media',
     },
-     {
-      name: "price",
-      type: "number",
+    {
+      name: 'price',
+      type: 'number',
       required: true,
       min: 0,
     },
 
     {
-      name: "rating",
-      type: "number",
+      name: 'rating',
+      type: 'number',
       min: 0,
       max: 5,
       defaultValue: 0,
@@ -70,24 +97,24 @@ export const Products: CollectionConfig = {
     },
 
     {
-      name: "reviewCount",
-      type: "number",
+      name: 'reviewCount',
+      type: 'number',
       defaultValue: 0,
       min: 0,
     },
 
     {
-      name: "isFeatureTool",
-      type: "checkbox",
+      name: 'isFeatureTool',
+      type: 'checkbox',
       defaultValue: false,
-      label: "Featured Product",
+      label: 'Featured Product',
     },
     {
-      name: "numberOfStock",
-      type: "number",
+      name: 'numberOfStock',
+      type: 'number',
       required: true,
       defaultValue: 0,
       min: 0,
-    }
+    },
   ],
-};
+}
