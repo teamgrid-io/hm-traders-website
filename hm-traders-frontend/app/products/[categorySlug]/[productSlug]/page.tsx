@@ -4,11 +4,11 @@ import Link from "next/link";
 import Image from "next/image";
 import Container from "@/components/layout/Container";
 import ProductGallery from "@/components/common/ProductGallery";
-import ProductCounter from "@/components/common/ProductCounter";
 import FeaturedTool from "@/components/home/FeaturedTool";
 import ToolSection from "@/components/common/ToolSection";
 import ToolsGrid from "@/components/common/ToolsGrid";
-import ProductTabs from "@/components/common/ProductTabs";import { fetchBannerBySlug } from "@/lib/getBannerData";
+import ProductTabs from "@/components/common/ProductTabs";
+import { fetchBannerBySlug } from "@/lib/getBannerData";
 import HomeBanner from "@/components/common/HomeBanner";
 
 export default async function ProductPage({ params }: any) {
@@ -66,5 +66,6 @@ export default async function ProductPage({ params }: any) {
         basePath={`/products/${product?.category?.slug}`}
       />
     </Container>
+    </>
   );
 }
