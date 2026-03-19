@@ -249,7 +249,19 @@ export interface Product {
   category?: (string | null) | Category;
   brand?: string | null;
   images?: (string | Media)[] | null;
-  specifications?: string | null;
+  technicalSpecifications?:
+    | {
+        title: string;
+        value: string;
+        id?: string | null;
+      }[]
+    | null;
+  productFeatures?:
+    | {
+        feature: string;
+        id?: string | null;
+      }[]
+    | null;
   catalogPdf?: (string | null) | Media;
   price: number;
   rating?: number | null;
@@ -748,7 +760,19 @@ export interface ProductsSelect<T extends boolean = true> {
   category?: T;
   brand?: T;
   images?: T;
-  specifications?: T;
+  technicalSpecifications?:
+    | T
+    | {
+        title?: T;
+        value?: T;
+        id?: T;
+      };
+  productFeatures?:
+    | T
+    | {
+        feature?: T;
+        id?: T;
+      };
   catalogPdf?: T;
   price?: T;
   rating?: T;

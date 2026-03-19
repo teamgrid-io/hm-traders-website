@@ -1,0 +1,73 @@
+.productSpecs {
+  border: 1px solid #eee;
+  min-height: 300px;
+}
+.tabs {
+  display: flex;
+  background: #eee;
+}
+
+.tabs button {
+  padding: 10px 20px;
+  border: none;
+  /* background: #eee; */
+  cursor: pointer;
+}
+
+.tabs .activeTab {
+  /* background-color: #fff; */
+  border-bottom: 2.5px solid #fcae1b;
+  color: #000;
+}
+.tableArea {
+  background-color: #ffffff;
+  width: 100%;
+  padding: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Table */
+.specTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.specTable td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.specLabel {
+  font-weight: 500;
+  font-size: 14px;
+  width: 40%;
+  background: #f6f4f4; 
+  text-align: center;
+}
+
+.specValue {
+  width: 60%;
+   font-size: 14px;
+   text-align: center;
+  background-color: #fff;
+}
+
+/* Features */
+.featureList {
+  list-style: none;
+  padding-left: 0;
+}
+
+.featureList li {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.point {
+  color: #fcae1b;
+  margin-right: 15px;
+  font-weight: bold;
+}

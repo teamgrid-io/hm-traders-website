@@ -8,7 +8,7 @@ import ProductCounter from "@/components/common/ProductCounter";
 import FeaturedTool from "@/components/home/FeaturedTool";
 import ToolSection from "@/components/common/ToolSection";
 import ToolsGrid from "@/components/common/ToolsGrid";
-
+import ProductTabs from "@/components/common/ProductTabs";
 
 export default async function ProductPage({ params }: any) {
   const { productSlug } = await params;
@@ -37,8 +37,8 @@ export default async function ProductPage({ params }: any) {
             )}
           </div>
           <div className="productBuyOption">
-            <ProductCounter />
-            <button className="button">CONTACT US</button>
+            <button className="button">Download Catelogue</button>
+            <button className="button">Enquire Now</button>
           </div>
 
           <div className="productExtraInfo">
@@ -51,47 +51,16 @@ export default async function ProductPage({ params }: any) {
           </div>
         </div>
       </div>
-      <div className="productSpecs">
-        <span className="productSpecstitle">SPECIFICATION</span>
-        <p>{product.specifications}</p>
-      </div>
-      <ToolSection slug={"product details"} sectionKey={"Related Products"} /> 
-      <ToolsGrid tools={products?.filter((p: any) => p.id !== product.id)}  enableLink={true} basePath={`/products/${product?.category?.slug}`}/>
-      {/* <div className="featureTools-grid">
-        {products?.slice(0, 4).map((product: any) => {
-          const image = product.images?.[0];
-          const imageUrl = constructMediaUrl(image?.url);
-
-          return (
-            <Link key={product.id} href="#" className="tool-card">
-              <div className="tool-image-wrapper">
-                {imageUrl && (
-                  <Image
-                    src={imageUrl}
-                    alt={product.name}
-                    fill
-                    className="tool-img"
-                  />
-                )}
-              </div>
-
-              <div className="tool-content">
-                <p className="tool-title">{product.name}</p>
-
-                <div className="tool-rating">
-                  <span className="stars">★★★★★</span>
-                  <span className="rating">{product.rating}</span>
-                  <span className="reviews">
-                    • {product.reviewCount} Reviews
-                  </span>
-                </div>
-
-                <p className="tool-price">₹{product.price}</p>
-              </div>
-            </Link>
-          );
-        })}
-      </div> */}
+      <ProductTabs
+        specifications={product?.technicalSpecifications}
+        features={product?.productFeatures}
+      />
+      <ToolSection slug={"product details"} sectionKey={"Related Products"} />
+      <ToolsGrid
+        tools={products?.filter((p: any) => p.id !== product.id)}
+        enableLink={true}
+        basePath={`/products/${product?.category?.slug}`}
+      />
     </Container>
   );
 }
