@@ -10,7 +10,6 @@ export async function getProducts() {
     }
 
     const data = await res.json();
-console.log("Products data:", data); // Debugging log
     return data.docs;
   } catch (error) {
     console.error(error);
@@ -24,7 +23,6 @@ export async function getCategoryBySlug(slug: string) {
   );
 
   const data = await res.json();
-  console.log("Category by slug data:", data); // Debugging log
   return data.docs[0];
 }
 
@@ -39,7 +37,6 @@ export async function getProductsByCategorySlug(slug: string) {
   );
 
   const data = await res.json();
-console.log("Products by category slug data:", data); // Debugging log
   return data.docs;
 }
 export async function getProductBySlug(slug: string) {
@@ -49,7 +46,6 @@ export async function getProductBySlug(slug: string) {
   );
 
   const data = await res.json();
-console.log("Product by slug data:", data); // Debugging log
   return data.docs[0];
 }
 export async function getProductsByCategorySlugPagination(
@@ -59,8 +55,6 @@ export async function getProductsByCategorySlugPagination(
 ) {
   try {
     const category = await getCategoryBySlug(slug);
-console.log("Category for pagination:", category); // Debugging log
-console.log("limit ID for pagination:", limit); // Debugging log
     if (!category) {
       return { products: [], totalPages: 1, page: 1 };
     }
@@ -75,9 +69,6 @@ console.log("limit ID for pagination:", limit); // Debugging log
     }
 
     const data = await res.json();
-console.log("Paginated category products:", data); // Debugging log
-
-    console.log("Paginated category products:", data);
 
     return {
       products: data.docs,

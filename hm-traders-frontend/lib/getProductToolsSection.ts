@@ -2,7 +2,6 @@ import { API_URL } from "@/api/Api";
 
 export async function getProductToolsSection() {
   const url = `${API_URL}/product-tools-section`;
-  console.log('[frontend] fetching product tools section from', url)
   const res = await fetch(url, {
     cache: "no-store",
   });

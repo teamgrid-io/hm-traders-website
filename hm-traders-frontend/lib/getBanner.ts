@@ -7,6 +7,5 @@ export async function getBanner(slug: string) {
   );
 
   const data = await res.json();
-  console.log("Banner API response:", JSON.stringify(data, null, 2));
   return data.docs[0];
 }

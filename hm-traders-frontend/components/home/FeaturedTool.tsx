@@ -5,7 +5,7 @@ import Container from "../layout/Container";
 import ToolsGrid from "../common/ToolsGrid";
 
 export default async function FeaturedTool({ slug }: any) {
-  console.log("slug in featured tool", slug);
+
   const data = await getFeaturedTool(slug);
   const section = data?.docs?.[0];
 

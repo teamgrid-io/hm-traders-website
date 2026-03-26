@@ -12,7 +12,7 @@ export default async function AdvancedInfrastructure() {
   );
 
   if (!section2) return null;
-console.log("section2",section2)
+
   return (
     <section className="infra-section">
           <Container>

@@ -4,10 +4,10 @@ import Link from "next/link";
 import Image from "next/image";
 import Container from "@/components/layout/Container";
 import ProductGallery from "@/components/common/ProductGallery";
-import ProductCounter from "@/components/common/ProductCounter";
 import FeaturedTool from "@/components/home/FeaturedTool";
 import ToolSection from "@/components/common/ToolSection";
 import ToolsGrid from "@/components/common/ToolsGrid";
+import ProductTabs from "@/components/common/ProductTabs";
 import { fetchBannerBySlug } from "@/lib/getBannerData";
 import HomeBanner from "@/components/common/HomeBanner";
 
@@ -16,7 +16,6 @@ export default async function ProductPage({ params }: any) {
   const banner = await fetchBannerBySlug("productDetails");
 
   const product = await getProductBySlug(productSlug);
-  console.log("product", product);
   const products = await getProductsByCategorySlug(product?.category?.slug);
 
   return (
@@ -33,74 +32,39 @@ export default async function ProductPage({ params }: any) {
               <span>★★★★★</span>({product.reviewCount} customer review)
             </div>
 
-            <div className="productDescription">
-              {product?.description?.root?.children?.map(
-                (block: any, i: number) => (
-                  <p key={i}>{block.children?.[0]?.text}</p>
-                ),
-              )}
-            </div>
-            <div className="productBuyOption">
-              <ProductCounter />
-              <button className="button">CONTACT US</button>
-            </div>
+          <div className="productDescription">
+            {product?.description?.root?.children?.map(
+              (block: any, i: number) => (
+                <p key={i}>{block.children?.[0]?.text}</p>
+              ),
+            )}
+          </div>
+          <div className="productBuyOption">
+            <button className="button">Download Catelogue</button>
+            <button className="button">Enquire Now</button>
+          </div>
 
-            <div className="productExtraInfo">
-              <p>
-                Categories: <span>{product?.category?.name}</span>
-              </p>
-              <p>
-                Brands: <span>{product.brand}</span>
-              </p>
-            </div>
+          <div className="productExtraInfo">
+            <p>
+              Categories: <span>{product?.category?.name}</span>
+            </p>
+            <p>
+              Brands: <span>{product.brand}</span>
+            </p>
           </div>
         </div>
-        <div className="productSpecs">
-          <span className="productSpecstitle">SPECIFICATION</span>
-          <p>{product.specifications}</p>
-        </div>
-        <ToolSection slug={"product details"} sectionKey={"Related Products"} />
-        <ToolsGrid
-          tools={products?.filter((p: any) => p.id !== product.id)}
-          enableLink={true}
-          basePath={`/products/${product?.category?.slug}`}
-        />
-        {/* <div className="featureTools-grid">
-        {products?.slice(0, 4).map((product: any) => {
-          const image = product.images?.[0];
-          const imageUrl = constructMediaUrl(image?.url);
-
-          return (
-            <Link key={product.id} href="#" className="tool-card">
-              <div className="tool-image-wrapper">
-                {imageUrl && (
-                  <Image
-                    src={imageUrl}
-                    alt={product.name}
-                    fill
-                    className="tool-img"
-                  />
-                )}
-              </div>
-
-              <div className="tool-content">
-                <p className="tool-title">{product.name}</p>
-
-                <div className="tool-rating">
-                  <span className="stars">★★★★★</span>
-                  <span className="rating">{product.rating}</span>
-                  <span className="reviews">
-                    • {product.reviewCount} Reviews
-                  </span>
-                </div>
-
-                <p className="tool-price">₹{product.price}</p>
-              </div>
-            </Link>
-          );
-        })}
-      </div> */}
-      </Container>
+      </div>
+      <ProductTabs
+        specifications={product?.technicalSpecifications}
+        features={product?.productFeatures}
+      />
+      <ToolSection slug={"product details"} sectionKey={"Related Products"} />
+      <ToolsGrid
+        tools={products?.filter((p: any) => p.id !== product.id)}
+        enableLink={true}
+        basePath={`/products/${product?.category?.slug}`}
+      />
+    </Container>
     </>
   );
 }

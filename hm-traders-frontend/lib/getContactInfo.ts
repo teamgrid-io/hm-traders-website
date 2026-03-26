@@ -7,6 +7,5 @@ export async function getContactInfo() {
   );
   const data = await res.json();
 
-console.log("Contact info response:", data?.docs); // Debugging log
   return data?.docs?.[0];
 }

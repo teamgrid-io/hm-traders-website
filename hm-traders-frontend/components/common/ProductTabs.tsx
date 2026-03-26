@@ -1,0 +1,70 @@
+"use client";
+
+import { useState } from "react";
+import "./ProductTabs.css";
+
+type Spec = {
+  title: string;
+  value: string;
+};
+
+type Feature = {
+  feature: string;
+};
+
+export default function ProductTabs({
+  specifications,
+  features,
+}: {
+  specifications?: Spec[];
+  features?: Feature[];
+}) {
+  const [activeTab, setActiveTab] = useState<"specs" | "features">("specs");
+
+  return (
+    <div className="productSpecs">
+      {/* Tabs */}
+      <div className="tabs">
+        <button
+          className={activeTab === "specs" ? "activeTab" : ""}
+          onClick={() => setActiveTab("specs")}
+        >
+          Technical Specifications
+        </button>
+
+        <button
+          className={activeTab === "features" ? "activeTab" : ""}
+          onClick={() => setActiveTab("features")}
+        >
+          Product Features
+        </button>
+      </div>
+
+      <div className="tableArea">
+        {/* Content */}
+        {activeTab === "specs" && (
+          <table className="specTable">
+            <tbody>
+              {specifications?.map((spec, i) => (
+                <tr key={i}>
+                  <td className="specLabel">{spec.title}</td>
+                  <td className="specValue">{spec.value}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+
+        {activeTab === "features" && (
+          <ul className="featureList">
+            {features?.map((item, i) => (
+              <li key={i}>
+                 <span className="point">✔</span> {item.feature}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
+  );
+}

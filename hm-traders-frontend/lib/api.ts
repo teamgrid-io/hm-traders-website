@@ -26,7 +26,6 @@ import { API_URL } from '../api/Api';
 
 export async function getAbout() {
   const url = `${API_URL}/about`;
-  console.log('[frontend] fetching about from', url)
   const res = await fetch(url, {
     cache: "no-store",
   });
@@ -42,7 +41,6 @@ export async function getAbout() {
 
 export async function getWhyChoose() {
   const url = `${API_URL}/whychoose`;
-  console.log('[frontend] fetching whychoose from', url)
   const res = await fetch(url, {
     cache: "no-store",
   });

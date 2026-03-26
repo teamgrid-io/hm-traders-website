@@ -6,9 +6,8 @@ import Pagination from "@/components/common/Pagination";
 export default async function ProductCategories({ page }: any) {
   // const categories = await getCategories();
   const data = await getCategoriesByPagination(page, 10);
-console.log("Fetched page data:", page);  
 const categories = data?.categories || [];
-console.log("Fetched categories:", data);
+
   // Calculate grid positioning
   const totalItems = categories?.length || 0;
   const itemsInLastRow = totalItems % 3 || 3;
