@@ -696,6 +696,9 @@ body {
   .tool-price {
     font-size: 15px;
   }
+  .home-product-spacing {
+    margin-top: 210px;
+  }
 }
 
 /* ========================= */
@@ -722,9 +725,7 @@ body {
   .tool-price {
     font-size: 14px;
   }
-  .home-product-spacing {
-    margin-top: 200px;
-  }
+  
 }
 .button {
   display: inline-block;
