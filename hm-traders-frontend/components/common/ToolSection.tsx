@@ -13,7 +13,6 @@ export default async function ToolSection({ slug, sectionKey }: any) {
 
   if (!section) return null;
 
-  // ✅ 👉 ADD HERE
   const variantClassMap: any = {
     our_category: {
       section: "tools-section",
@@ -22,7 +21,7 @@ export default async function ToolSection({ slug, sectionKey }: any) {
       btn: "view-all",
     },
     featured_products: {
-      section: "feartureTools-section",
+      section: "featureTools-section",
       header: "featureTools-header",
       tag: "featureTools-tag",
       btn: "feature-view-all",

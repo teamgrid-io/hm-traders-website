@@ -168,7 +168,7 @@ export default function Footer({ data }: { data: FooterData }) {
               ))}
             </ul>
           </div>
-        ))}
+        ))} 
 
         {/* Newsletter Column */}
         {data.newsletter?.enabled && (

@@ -10,6 +10,7 @@ export default function SearchBarToggle() {
   const [open, setOpen] = useState(false);
   const [allProducts, setAllProducts] = useState([]);
   const [query, setQuery] = useState("");
+
   useEffect(() => {
     async function fetchProducts() {
       const data = await getProducts();
@@ -18,35 +19,44 @@ export default function SearchBarToggle() {
     fetchProducts();
   }, []);
 
-  const handleChange = (value: any) => {
-    setQuery(value.toLowerCase());
-  };
+  const handleChange = (value: any) => setQuery(value.toLowerCase());
 
   const searchedData = query
     ? allProducts.filter((p: any) => p.name.toLowerCase().includes(query))
     : [];
 
+  // Check if mobile
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
   return (
     <div className="searchWrapper">
-      <IoSearchSharp className="searchIcon" onClick={() => setOpen(!open)} />
+      {/* Show icon only on desktop */}
+      {!isMobile && (
+        <IoSearchSharp className="searchIcon" onClick={() => setOpen(!open)} />
+      )}
 
       <input
         type="text"
         placeholder="Search..."
         value={query}
         onChange={(e) => handleChange(e.target.value)}
-        className={`searchInput ${open ? "open" : ""}`}
+        className={`searchInput ${open || isMobile ? "open" : ""}`}
       />
 
-      <div className={`searchDropdown ${open && query ? "open" : ""}`}>
+      {/* Dropdown shows if query exists and either open (desktop) or mobile */}
+      <div
+        className={`searchDropdown ${
+          query && (open || isMobile) ? "open" : ""
+        }`}
+      >
         {searchedData.length === 0 ? (
           <div className="noResult">No results found</div>
         ) : (
           searchedData.map((data: any, i: number) => (
             <Link
               onClick={() => {
-                setOpen(false); 
-                setQuery(""); 
+                setOpen(false);
+                setQuery("");
               }}
               href={`/products/${data.category.slug}/${data.slug}`}
               key={i}

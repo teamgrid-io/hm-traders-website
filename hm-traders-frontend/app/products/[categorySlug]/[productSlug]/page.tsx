@@ -29,7 +29,7 @@ export default async function ProductPage({ params }: any) {
             <h1>{product?.name}</h1>
             <span className="price">₹{product?.price}</span>
             <div className="reviewCount">
-              <span>★★★★★</span>({product.reviewCount} customer review)
+              <span>★★★★★</span>({product?.reviewCount} customer review)
             </div>
 
           <div className="productDescription">
@@ -49,7 +49,7 @@ export default async function ProductPage({ params }: any) {
               Categories: <span>{product?.category?.name}</span>
             </p>
             <p>
-              Brands: <span>{product.brand}</span>
+              Brands: <span>{product?.brand}</span>
             </p>
           </div>
         </div>

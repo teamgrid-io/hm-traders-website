@@ -8,12 +8,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 40px; 
+    margin-top: 40px;
 }
 .productSide {
-  flex: 1;             
+  flex: 1;            
   min-width: 0;
-  min-height: 400px;   
+  min-height: 400px;  
 }
 /* Product Filters Sidebar */
 .productFilters {
@@ -28,7 +28,7 @@
   flex-shrink: 0;
   margin-top: 20px;
 }
-
+ 
 /* Search Box */
 .productSearch{
     border: 1px solid #1A1A1A66;
@@ -44,7 +44,7 @@
   border: 1px solid #ccc;
   font-size: 14px;
 }
-
+ 
 /* Filter Sections */
 .productFilters div > span {
   display: block;
@@ -57,7 +57,7 @@
     align-items: center;
     justify-content: flex-start;
 }
-
+ 
 /* Checkboxes */
 .productAvailablility,
 .productCategory,
@@ -75,7 +75,7 @@
   margin-right: 6px;
   cursor: pointer;
 }
-
+ 
 .productAvailablility label,
 .productCategory label,
 .productBrands label {
@@ -93,7 +93,7 @@
     padding-bottom: 5px;
     border-bottom: 1px solid #1A1A1A66;
 }
-
+ 
 /* Price Slider Container */
 .productFilters input[type="range"] {
   width: 100%;
@@ -104,7 +104,7 @@
   background: #ddd;
   outline: none;
 }
-
+ 
 /* Slider Thumb */
 .productFilters input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -118,7 +118,7 @@
   box-shadow: 0 0 2px rgba(0,0,0,0.5);
   transition: background 0.3s;
 }
-
+ 
 .productFilters input[type="range"]::-moz-range-thumb {
   width: 16px;
   height: 16px;
@@ -128,13 +128,13 @@
   border: 2px solid #fff;
   box-shadow: 0 0 2px rgba(0,0,0,0.5);
 }
-
+ 
 /* Optional: Hover Effect */
 .productFilters input[type="range"]::-webkit-slider-thumb:hover,
 .productFilters input[type="range"]::-moz-range-thumb:hover {
   background: #005bb5;
 }
-
+ 
 /* Headings */
 .productFilters h3 {
   margin-bottom: 10px;
@@ -152,8 +152,147 @@
   text-align: center;
   color: #777;
 }
-
+ 
 .no-products::before {
   content: "😕";
   font-size: 40px;
+}
+/* Responsive Styles */
+ 
+/* Tablet Devices (768px - 1024px) */
+@media screen and (max-width: 1024px) {
+  .Productbycategories {
+    gap: 15px;
+    padding: 0 15px;
+  }
+ 
+  .productFilters {
+    width: 280px;
+    padding: 15px;
+    position: static;
+  }
+ 
+  .productAvailablility span,
+  .productCategory span,
+  .productBrands span,
+  .filterByPrice span {
+    font-size: 28px;
+  }
+ 
+  .productAvailablility,
+  .productCategory,
+  .productBrands,
+  .filterByPrice {
+    padding: 15px;
+  }
+ 
+  .featureTools-grid {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+    padding: 30px 0;
+  }
+}
+/* Hide mobile filter button on desktop */
+.mobileFilterBar {
+  display: none;
+}
+.filterHeader {
+  display: none;
+}
+.filterFooter {
+  display: none;
+}
+/* ================= MOBILE FILTER ================= */
+@media (max-width: 768px) {
+  .filterHeader {
+    display: flex;
+  }
+  .mobileFilterBar {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+  }
+ 
+  .filterBtn {
+    padding: 8px 14px;
+    background: #ff9c00;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+ 
+  /* Overlay background */
+  .productFilters {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    height: 100%;
+    background: #fff;
+    z-index: 1000;
+    overflow-y: auto;
+    transition: right 0.3s ease;
+    box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+  }
+/* Hide mobile-only filter header on desktop */
+ 
+  .productFilters.active {
+    right: 0;
+    z-index: 100000;
+  }
+ 
+  /* Header */
+  .filterHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    border-bottom: 1px solid #ddd;
+  }
+ 
+  .filterHeader button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+ 
+ 
+/* Footer buttons layout */
+.filterFooter {
+  display: flex;
+  gap:10px;
+    position: sticky;
+    bottom: 0;
+    background: #fff;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+  }
+/* Clear button */
+.clearBtn {
+  flex: 1;
+  padding: 10px;
+  background: #eee;
+  color: #333;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+}
+ 
+/* Apply button */
+.applyBtn {
+  flex: 1;
+  padding: 10px;
+  background: #ff9c00;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+ 
 }

@@ -2,11 +2,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { getMenu } from "@/lib/getMenu";
 import HmLogo from "../../public/images/hmlogo.svg";
-import { IoSearchSharp } from "react-icons/io5";
-import { FaRegHeart } from "react-icons/fa6";
 import "./Navbar.css";
 import NavbarScrollEffect from "../common/NavbarScrollEffect";
 import SearchBarToggle from "../common/SearchBarToggle";
+import MobileMenu from "../common/MobileMenu";
 
 export default async function Header() {
   const menu = await getMenu();
@@ -14,29 +13,35 @@ export default async function Header() {
   return (
     <>
       <NavbarScrollEffect />
-      {/* TOP HEADER */}
+
       <div className="topHeader">
         <div className="headerContainer">
-          {/* <div className="logo">
-            <Image src={HmLogo} alt="HM Traders Logo" /> */}
-          {/* <h1>H.M Traders</h1> */}
-          {/* </div> */}
 
+          {/* LOGO */}
           <div className="logo">
             <Image src={HmLogo} alt="HM Traders Logo" width={98} height={36} />
           </div>
-          {/* NAVBAR */}
-          <nav className="navbar">
+
+          {/* DESKTOP NAV */}
+          <nav className="navbar desktopNav">
             {menu?.map((item: any) => (
               <Link key={item.id} href={item.link}>
                 {item.title}
               </Link>
             ))}
           </nav>
+
+          {/* RIGHT SIDE */}
           <div className="headerIcons">
-           <SearchBarToggle/>
-            <button>Request a Quote</button>
+            <div className="desktopOnly">
+              <SearchBarToggle />
+              <button>Request a Quote</button>
+            </div>
+
+            {/* MOBILE MENU */}
+            <MobileMenu menu={menu} />
           </div>
+
         </div>
       </div>
     </>

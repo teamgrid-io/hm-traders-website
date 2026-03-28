@@ -26,16 +26,17 @@ export default async function Home() {
         {/* <HeroSection/>
       <ProductCategories />
       <Ecatalogue /> */}
-        <OurProductCategory />
-         </Container>
-        <ProductTools />
-        <FeaturedTool slug={"home"}  />
-        <AdvancedInfrastructure /> 
-        <Partners/>
-      <GlobalNetworkSection/> 
-         <TestimonialsSection />
+        <div className="home-product-spacing">
+          <OurProductCategory />
+        </div>
+      </Container>
+      <ProductTools />
+      <FeaturedTool slug={"home"} />
+      <AdvancedInfrastructure />
+      <Partners />
+      <GlobalNetworkSection />
+      <TestimonialsSection />
 
-   
       {/* <WhyChooseUs/> */}
     </div>
   );

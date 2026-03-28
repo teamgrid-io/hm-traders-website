@@ -1,33 +1,85 @@
-.stats-section{
-  background-image:url("/images/stats.png");
-  background-size:cover; 
-  background-position:center;
-  background-repeat:no-repeat;  
+/* ================= SECTION ================= */
+
+.stats-section {
+  background-image: url("/images/stats.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-.stats-overlay{
-  background:rgba(11,59,117,0.85);
-  padding:90px 20px;
+/* overlay */
+.stats-overlay {
+  background: rgba(11, 59, 117, 0.85);
+  padding: clamp(50px, 8vw, 100px) clamp(15px, 5vw, 30px);
 }
 
-.stats-container{
-  max-width:1200px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:40px;
-  text-align:center;
-  align-items:center;
+/* ================= CONTAINER ================= */
+
+.stats-container {
+  max-width: 1200px;
+  margin: auto;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: clamp(20px, 4vw, 50px);
+
+  text-align: center;
+  align-items: center;
 }
 
-.stat-card h2{
-  color:#ffb200;
-  font-size:42px;
-  font-weight:700;
-  margin-bottom:10px;
+/* ================= CARD ================= */
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.stat-card p{
-  color:white;
-  font-size:18px;
-} 
+/* number */
+.stat-card h2 {
+  color: #ffb200;
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: 700;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+/* text */
+.stat-card p {
+  color: #ffffff;
+  font-size: clamp(14px, 2vw, 18px);
+  line-height: 1.4;
+}
+
+/* ================= TABLET ================= */
+
+@media (max-width: 1024px) {
+  .stats-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 600px) {
+  .stats-container {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-overlay {
+    padding: 50px 15px;
+  }
+}
+
+/* ================= SMALL MOBILE ================= */
+
+@media (max-width: 400px) {
+  .stat-card h2 {
+    font-size: 26px;
+  }
+
+  .stat-card p {
+    font-size: 13px;
+  }
+}

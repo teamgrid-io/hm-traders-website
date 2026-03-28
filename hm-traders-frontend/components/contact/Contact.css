@@ -3,7 +3,7 @@
   gap: 40px;
   padding: 60px;
 }
-
+ 
 /* LEFT FORM */
 .formBox {
   flex: 2;
@@ -13,7 +13,7 @@
   height: 480px;
   border: 1px solid #1a1a1a99;
 }
-
+ 
 /* RIGHT CONTACT INFO */
 .infoBox {
   flex: 1;
@@ -23,13 +23,13 @@
   height: 480px;
   background: #fff;
 }
-
+ 
 /* INPUT ROW */
 .row {
   display: flex;
   gap: 15px;
 }
-
+ 
 /* INPUTS */
 .contactForm input,
 .contactForm textarea {
@@ -40,12 +40,12 @@
   border-radius: 6px;
   font-size: 14px;
 }
-
+ 
 /* TEXTAREA */
 .contactForm textarea {
   min-height: 120px;
 }
-
+ 
 /* BUTTON */
 .contactForm button {
   background: #ff9800;
@@ -56,7 +56,7 @@
   border-radius: 6px;
   font-weight: 600;
 }
-
+ 
 /* INFO ITEMS */
 .infoItem {
   display: flex;
@@ -64,17 +64,18 @@
   align-items: flex-start;
   margin-bottom: 25px;
 }
-
+ 
 .infoItem img {
   width: 24px;
   height: 24px;
   margin-top: 5px;
 }
-
+ 
 .infoItem strong {
   display: block;
   margin-bottom: 6px;
 }
+ 
 .contactTitle {
   font-family: "Poppins", sans-serif;
   font-weight: 600;
@@ -83,30 +84,27 @@
   text-transform: capitalize;
   margin-bottom: 20px;
 }
+ 
 .contactDivider {
   width: 362px;
   border: 1px solid #1a1a1a66;
   margin-bottom: 30px;
 }
+ 
 /* LABEL STYLE (Address, Contact, Email Address) */
 .contactLabel {
   font-family: "Poppins", sans-serif;
-  /* font-weight: 500; */
   color: #1a1a1a;
-  /* font-size: 28px; */
-  /* line-height: 58px; */
-  /* text-transform: capitalize; */
 }
-
+ 
 /* VALUE STYLE (email, phone, address text) */
 .contactText {
   font-family: "Lato", sans-serif;
   font-weight: 400;
-  /* font-size: 18px; */
-  /* line-height: 100%; */
   color: #1a1a1a99;
   text-transform: lowercase;
 }
+ 
 .formTitle {
   font-family: "Poppins", sans-serif;
   font-weight: 600;
@@ -116,7 +114,118 @@
   text-transform: capitalize;
   color: #1a1a1a;
   margin-bottom: 20px;
-
   width: 253px;
   height: 58px;
+}
+ 
+/* ─── MAP ─────────────────────────────────────────── */
+.mapContainer iframe {
+  display: block;
+  width: 100%;
+}
+ 
+/* ─── TABLET  (≤ 1024px) ──────────────────────────── */
+@media (max-width: 1024px) {
+  .contactSection {
+    padding: 40px;
+    gap: 24px;
+  }
+ 
+  .formBox,
+  .infoBox {
+    height: auto; /* let content breathe */
+    padding: 32px;
+  }
+ 
+  .contactTitle {
+    font-size: 26px;
+    line-height: 1.4;
+  }
+ 
+  .contactDivider {
+    width: 100%;
+  }
+ 
+  .formTitle {
+    font-size: 26px;
+    line-height: 1.4;
+    width: auto;
+    height: auto;
+  }
+}
+ 
+/* ─── MOBILE  (≤ 768px) ───────────────────────────── */
+@media (max-width: 768px) {
+  .contactSection {
+    flex-direction: column; /* stack form above info */
+    padding: 24px 16px;
+    gap: 20px;
+  }
+ 
+  .formBox,
+  .infoBox {
+    flex: unset;
+    width: 100%;
+    height: auto;
+    padding: 24px 20px;
+    border-radius: 16px;
+    box-sizing: border-box;
+  }
+ 
+  /* Stack the Name / Email row vertically on small screens */
+  .row {
+    flex-direction: column;
+    gap: 0;
+  }
+ 
+  .contactForm input,
+  .contactForm textarea {
+    font-size: 16px; /* prevents iOS zoom-in on focus */
+  }
+ 
+  .contactForm button {
+    width: 100%;
+    padding: 14px;
+    font-size: 15px;
+  }
+ 
+  .contactTitle {
+    font-size: 22px;
+    line-height: 1.35;
+    margin-bottom: 12px;
+  }
+ 
+  .contactDivider {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+ 
+  .formTitle {
+    font-size: 22px;
+    line-height: 1.35;
+    width: auto;
+    height: auto;
+    margin-bottom: 16px;
+  }
+ 
+  .infoItem {
+    margin-bottom: 20px;
+  }
+}
+ 
+/* ─── SMALL MOBILE  (≤ 400px) ────────────────────── */
+@media (max-width: 400px) {
+  .contactSection {
+    padding: 16px 12px;
+  }
+ 
+  .formBox,
+  .infoBox {
+    padding: 20px 16px;
+  }
+ 
+  .contactTitle,
+  .formTitle {
+    font-size: 20px;
+  }
 }

@@ -16,7 +16,7 @@
    margin: 0 auto;
   width: 100%;
   background: #ffffff;
-  padding: 20px 40px;
+  padding: 20px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -81,6 +81,11 @@
   font-size: 14px;
   transition: 0.3s;
 }
+.desktopOnly{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
 .headerIcons button:hover {
   background: #FF9C00;
@@ -105,59 +110,67 @@
   }
 }
 
-/* ---------------------- */
-/* MOBILE RESPONSIVE */
-/* ---------------------- */
-
-@media (max-width: 768px) {
-  .topHeader {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 15px 20px;
-  }
-
-  .navbar {
-    width: 100%;
-    flex-wrap: wrap;
-    margin-top: 10px;
-    gap: 12px;
-  }
-
-  .headerIcons {
-    margin-top: 10px;
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .headerIcons button {
-    flex-grow: 1;
-  }
+/* HAMBURGER */
+.hamburger {
+  display: none;
+  cursor: pointer;
 }
 
-/* ---------------------- */
-/* SMALL MOBILE */
-/* ---------------------- */
+/* MOBILE MENU */
+.mobileMenu {
+  position: absolute;
+  top: 70px;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  gap: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  z-index: 9999;
+}
 
-@media (max-width: 480px) {
-  .logo h1 {
-    font-size: 20px;
+.mobileMenu a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+}
+
+.mobileMenu.show {
+  display: flex;
+}
+
+/* MOBILE EXTRAS */
+.mobileExtras {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.mobileExtras button {
+  width: 100%;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+
+  .desktopNav {
+    display: none;
   }
 
-  .navbar {
-    gap: 10px;
+  .desktopOnly {
+    display: none;
   }
 
-  .navbar a {
-    font-size: 13px;
+  .hamburger {
+    display: block;
   }
 
-  .searchIcon,
-  .heartIcon {
-    font-size: 16px;
-  }
-
-  .headerIcons button {
-    font-size: 12px;
-    padding: 6px 10px;
+  .headerContainer {
+    padding: 15px 10px;
   }
 }

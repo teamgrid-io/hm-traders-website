@@ -1,9 +1,5 @@
-/* ─────────────────────────────────────────────────────
-   Footer.module.css
-   Matches H.M Traders Figma — dark navy footer
-───────────────────────────────────────────────────── */
+/* ───────────────── BASE ───────────────── */
 
-/* ── Variables ─────────────────────────────────────── */
 .footer {
   --navy: #0d1b3e;
   --text-muted: #a0aec0;
@@ -15,43 +11,38 @@
 
   background-color: var(--navy);
   color: var(--text-muted);
-  font-family: inherit;
 }
 
-/* ── Inner Grid ─────────────────────────────────────── */
+/* ───────────────── INNER GRID ───────────────── */
+
 .inner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 64px 40px 16px;
+  padding: 40px 20px;
+
   display: grid;
-  grid-template-columns: 1.6fr 1fr 1fr 1.5fr;
-  gap: 48px;
-  align-items: start;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(24px, 4vw, 48px);
 }
 
-/* ── Brand Column ───────────────────────────────────── */
-.brand {
-  display: flex;
-  flex-direction: column;
-}
+/* ───────────────── BRAND ───────────────── */
 
 .brandName {
   color: var(--white);
-  font-size: 18px;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  margin: 0 0 18px 0;
+  font-size: clamp(16px, 2vw, 18px);
+  font-weight: 600;
+  margin-bottom: 16px;
 }
 
 .brandDesc {
-  font-size: 0.875rem;
-  line-height: 1.8;
-  color: var(--text-muted);
-  max-width: 300px;
-  margin: 0 0 26px 0;
+  font-size: clamp(13px, 1.5vw, 14px);
+  line-height: 1.7;
+  max-width: 320px;
+  margin-bottom: 20px;
 }
 
-/* ── Social Icons ───────────────────────────────────── */
+/* ───────────────── SOCIALS ───────────────── */
+
 .socials {
   display: flex;
   gap: 10px;
@@ -59,98 +50,73 @@
 }
 
 .socialLink {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  border: 0.4px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #ffffff;
-  text-decoration: none;
-  transition:
-    border-color 0.2s ease,
-    color 0.2s ease,
-    background-color 0.2s ease;
+
+  transition: all 0.25s ease;
 }
 
 .socialLink:hover {
   border-color: var(--amber);
   color: var(--amber);
-  background-color: rgba(245, 158, 11, 0.12);
+  background: rgba(245, 158, 11, 0.15);
+  transform: translateY(-2px);
 }
 
-/* ── Nav Column ─────────────────────────────────────── */
-.navCol {
-  font-weight: 600;
-  font-size: 20px;
-  display: flex;
-  flex-direction: column;
-}
+/* ───────────────── NAV ───────────────── */
 
 .navHeading {
   color: var(--white);
-  font-size: 1rem;
+  font-size: 15px;
   font-weight: 700;
-  letter-spacing: -0.01em;
-  margin: 0 0 20px 0;
+  margin-bottom: 18px;
 }
 
 .navList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 13px;
+  gap: 12px;
 }
 
 .navLink {
-  position: relative;
-  display: inline-block;
+  font-size: 14px;
   color: var(--text-muted);
-  text-decoration: none;
-  font-size: 0.875rem;
-  transition: color 0.2s ease;
-}
-
-.navLink::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background-color: var(--amber);
-  transition: width 0.25s ease;
+  position: relative;
+  transition: color 0.25s ease;
 }
 
 .navLink:hover {
   color: var(--white);
 }
 
+/* underline animation */
+.navLink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0%;
+  height: 1px;
+  background: var(--amber);
+  transition: width 0.3s ease;
+}
+
 .navLink:hover::after {
   width: 100%;
 }
 
-/* ── Newsletter Column ──────────────────────────────── */
-.newsletter {
-  display: flex;
-  flex-direction: column;
-}
+/* ───────────────── NEWSLETTER ───────────────── */
 
 .newsletterTagline {
-  font-size: 0.875rem;
-  line-height: 1.75;
-  color: var(--text-muted);
-  margin: 0 0 18px 0;
-}
-
-.subscribeWrap {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 16px;
 }
 
 .subscribeForm {
@@ -162,109 +128,94 @@
 
 .subscribeInput {
   flex: 1;
+  padding: 12px;
   background: transparent;
   border: none;
   outline: none;
-  padding: 11px 14px;
-  font-size: 0.85rem;
   color: var(--text-main);
-  font-family: inherit;
-  min-width: 0;
-}
-
-.subscribeInput::placeholder {
-  color: var(--text-muted);
+  font-size: 14px;
 }
 
 .subscribeBtn {
-  background-color: var(--amber);
-  border: none;
-  padding: 11px 20px;
-  font-size: 0.85rem;
-  font-weight: 600;
+  padding: 12px 18px;
+  background: var(--amber);
   color: var(--white);
+  font-weight: 600;
+  border: none;
   cursor: pointer;
-  font-family: inherit;
-  white-space: nowrap;
-  transition: background-color 0.2s ease;
-  letter-spacing: 0.01em;
+  transition: background 0.25s ease;
 }
 
 .subscribeBtn:hover {
-  background-color: var(--amber-hover);
+  background: var(--amber-hover);
 }
 
-.subscribeBtn:disabled {
-  opacity: 0.65;
-  cursor: not-allowed;
-}
+/* ───────────────── BOTTOM BAR ───────────────── */
 
-/* ── Messages ───────────────────────────────────────── */
-.successMsg {
-  color: var(--amber);
-  font-size: 0.9rem;
-  font-weight: 500;
-  margin: 0;
-}
-
-.errorMsg {
-  color: #fc8181;
-  font-size: 0.78rem;
-  margin: 0;
-}
-
-/* ── Bottom Bar ─────────────────────────────────────── */
 .bottomBar {
-  max-width: 1280px;
-  margin: 40px auto 0;
-  padding: 0 40px;
   border-top: 1px solid var(--border);
+  margin-top: 40px;
+  padding: 0 clamp(16px, 5vw, 40px);
 }
 
 .copyright {
-  padding: 22px 0;
   text-align: center;
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--text-muted);
+  padding: 18px 0;
+  font-size: clamp(13px, 1.5vw, 15px);
 }
 
-/* ── Responsive: Tablet ─────────────────────────────── */
+
+/* ───────────────── TABLET ───────────────── */
+
 @media (max-width: 1024px) {
   .inner {
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* ── Responsive: Mobile ─────────────────────────────── */
+/* ───────────────── MOBILE ───────────────── */
+
 @media (max-width: 640px) {
+  .nav{
+    display: flex;
+    align-items: center;
+    gap: 50px;
+  }
   .inner {
     grid-template-columns: 1fr;
-    padding: 48px 20px 16px;
-    gap: 36px;
-  }
-
-  .bottomBar {
-    padding: 0 20px;
+    gap: 28px;
   }
 
   .brandDesc {
     max-width: 100%;
   }
 
+  /* stack input + button */
   .subscribeForm {
     flex-direction: column;
-    border-radius: 6px;
   }
 
   .subscribeInput {
-    padding: 12px 14px;
     border-bottom: 1px solid var(--border);
   }
 
   .subscribeBtn {
-    padding: 12px 20px;
-    border-radius: 0 0 5px 5px;
+    width: 100%;
+  }
+
+  .bottomBar {
+    margin-top: 30px;
+  }
+}
+
+/* ───────────────── SMALL MOBILE ───────────────── */
+
+@media (max-width: 400px) {
+  .navHeading {
+    font-size: 14px;
+  }
+
+  .navLink {
+    font-size: 13px;
   }
 }

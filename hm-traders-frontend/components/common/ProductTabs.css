@@ -1,6 +1,7 @@
 .productSpecs {
   border: 1px solid #eee;
   min-height: 300px;
+  margin-bottom: 30px;
 }
 .tabs {
   display: flex;
@@ -70,4 +71,9 @@
   color: #fcae1b;
   margin-right: 15px;
   font-weight: bold;
+}
+@media (max-width:480px) {
+  .tableArea {
+    padding: 0px;
+  }
 }

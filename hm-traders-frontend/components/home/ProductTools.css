@@ -1,125 +1,177 @@
-.tools-section{
-  background:#0B3B75;
-  padding: 40px 0px;
-  color:white;
+/* SECTION */
+
+.tools-section {
+  background: #0B3B75;
+  padding: 40px 0px; /* ✅ add side padding */
+  color: white;
 }
-.category-section{
-  background:#0B3B75;
-  padding-bottom: 40px;
-  color:white;
+
+.category-section {
+  background: #0B3B75;
+
+  color: white;
 }
+
 /* HEADER */
 
-.tools-header{ 
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  /* margin-bottom:50px; */
+.tools-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap; /* ✅ allow wrapping */
 }
 
-.tools-tag{
-  font-family:Poppins;
-  font-size:14px;
-  margin-bottom:7px;
+.tools-tag {
+  font-family: Poppins;
+  font-size: 14px;
+  margin-bottom: 7px;
 }
 
-.tools-header h2{
-  font-size:36px;
-  font-family:Poppins;
-  font-weight:600;
+.tools-header h2 {
+  font-size: 36px;
+  font-family: Poppins;
+  font-weight: 600;
+  line-height: 1.3;
 }
 
-.tools-header span{
-  color:#FF9C00;
+.tools-header span {
+  color: #FF9C00;
 }
 
-.view-all{
-  font-family:Poppins;
-  cursor:pointer;
-  font-size:16px;
+.view-all {
+  font-family: Poppins;
+  cursor: pointer;
+  font-size: 16px;
+  white-space: nowrap;
 }
 
 /* GRID */
 
-.tools-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:30px;
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  margin-top: 30px;
 }
 
 /* CARD */
 
-.tools-cards{
-  position:relative;
-  height:260px; 
-  border-radius:16px; 
-  overflow:hidden;
-  cursor:pointer;
-
+.tools-cards {
+  position: relative;
+  height: 260px;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
 }
 
-.tools-img{
-  object-fit:contain; 
-  transition:transform .4s ease;
+/* IMAGE */
+
+.tools-img {
+  object-fit: cover; /* ✅ better than contain */
+  width: 100%;
+  height: 100%;
+  transition: transform 0.4s ease;
 }
 
 /* OVERLAY */
 
-.tool-overlay{
-  position:absolute;
-  bottom:0;
-  left:0;
-  width:100%;
-  height:100%;
-  display:flex;
-  align-items:flex-end;
-  padding:20px;
+.tool-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 
-  background:linear-gradient(
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+
+  background: linear-gradient(
     to top,
-    rgba(255,156,0,0.95),
-    rgba(255,156,0,0.6),
+    rgba(255, 156, 0, 0.95),
+    rgba(255, 156, 0, 0.6),
     transparent
   );
 
-  opacity:0;
-  transition:opacity .4s ease;
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
 /* TITLE */
 
-.tool-overlay p{
-  color:white;
-  font-weight:600;
-  font-family:Poppins;
-  transform:translateY(20px);
-  transition:transform .4s ease;
+.tool-overlay p {
+  color: white;
+  font-weight: 600;
+  font-family: Poppins;
+  transform: translateY(20px);
+  transition: transform 0.4s ease;
 }
 
-/* HOVER EFFECT */
+/* HOVER */
 
-.tools-cards:hover .tool-overlay{
-  opacity:1;
+.tools-cards:hover .tool-overlay {
+  opacity: 1;
 }
 
-.tools-cards:hover .tool-overlay p{
-  transform:translateY(0);
+.tools-cards:hover .tool-overlay p {
+  transform: translateY(0);
 }
 
-.tools-cards:hover .tools-img{
-  transform:scale(1.08);
+.tools-cards:hover .tools-img {
+  transform: scale(1.08);
 }
 
-/* RESPONSIVE */
 
-@media (max-width:1000px){
-.tools-grid{
-  grid-template-columns:repeat(2,1fr);
-}
+
+@media (max-width: 1200px) {
+  .tools-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
-@media (max-width:600px){
-.tools-grid{
-  grid-template-columns:1fr;
+
+@media (max-width: 1000px) {
+  .tools-section {
+  padding: 40px 0px;
+
 }
-} 
+  .tools-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tools-header h2 {
+    font-size: 28px;
+  }
+}
+
+
+@media (max-width: 768px) {
+   .tools-section {
+  padding: 10px 0px; 
+
+}
+  .tools-header {
+    flex-direction: column; 
+    align-items: flex-start;
+  }
+
+  .view-all {
+    margin-top: 10px;
+  }
+
+  .tools-header h2 {
+    font-size: 24px;
+  }
+
+  .tools-cards {
+    height: 220px; 
+  }
+}
+@media (max-width: 480px){
+   .tools-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+}
+
