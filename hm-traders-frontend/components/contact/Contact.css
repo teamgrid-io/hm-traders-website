@@ -77,7 +77,6 @@
 }
  
 .contactTitle {
-  font-family: "Poppins", sans-serif;
   font-weight: 600;
   font-size: 32px;
   line-height: 58px;
@@ -93,20 +92,17 @@
  
 /* LABEL STYLE (Address, Contact, Email Address) */
 .contactLabel {
-  font-family: "Poppins", sans-serif;
   color: #1a1a1a;
 }
  
 /* VALUE STYLE (email, phone, address text) */
 .contactText {
-  font-family: "Lato", sans-serif;
   font-weight: 400;
   color: #1a1a1a99;
   text-transform: lowercase;
 }
  
 .formTitle {
-  font-family: "Poppins", sans-serif;
   font-weight: 600;
   font-size: 32px;
   line-height: 58px;

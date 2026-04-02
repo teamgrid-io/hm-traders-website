@@ -22,3 +22,14 @@ export async function getBrands() {
     return [];
   }
 }
+
+// import data from "@/data/brands.json"
+
+// export async function getBrands() {
+//   try {
+//     return data
+//   } catch (error) {
+//     console.error("Error fetching brands:", error);
+//      return [];
+//   }
+// }

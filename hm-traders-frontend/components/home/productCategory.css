@@ -73,7 +73,6 @@
   color: #04316d;
   font-size: 16px;
   margin-bottom: 10px;
-  font-family: Poppins;
   font-weight: 500;
   line-height: 1.5;
   text-transform: capitalize;
@@ -81,7 +80,6 @@
 
 /* TITLE */
 .product-content h2 {
-  font-family: Poppins;
   font-weight: 600;
   font-size: 36px;
   line-height: 44px;
@@ -93,7 +91,6 @@
 
 /* DESCRIPTION */
 .desc {
-  font-family: Lato;
   color: #1a1a1a99;
   font-weight: 500;
   font-size: 20px;
@@ -113,7 +110,6 @@
   font-weight: 500;
   transition: 0.3s;
   font-size: 16px;
-  height: 42px;
   border-top-left-radius: 5px;
   border-top-right-radius: 1px;
   border-bottom-right-radius: 5px;
@@ -199,6 +195,9 @@
   }
   .product-container {
     flex-direction: column;
+  }
+  .tag {
+    font-size: 14px;
   }
   .right-image {
     left: 50%;

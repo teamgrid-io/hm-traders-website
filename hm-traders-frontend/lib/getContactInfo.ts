@@ -9,3 +9,15 @@ export async function getContactInfo() {
 
   return data?.docs?.[0];
 }
+
+// import data from "@/data/contactnfo.json"
+
+// export async function getContactInfo() {
+//   try {
+//     return data[0]
+    
+//   } catch (error) {
+//     console.error("Failed to load contact info:",error);
+//       return [];
+//   }
+// }

@@ -13,3 +13,21 @@ export async function getFeaturedTool(slug:string) {
     return res.json();
 }
  
+
+
+// import data from "@/data/tool-section.json";
+
+// export async function getFeaturedTool(slug) {
+//   try {
+//     const result = data.docs.find(item => item.slug === slug);
+
+//     // mimic API response shape
+//     return {
+//       docs: result ? [result] : []
+//     };
+
+//   } catch (error) {
+//     console.error("[frontend] product tools section load failed", error);
+//     throw new Error("Failed to load product tools section data");
+//   }
+// }

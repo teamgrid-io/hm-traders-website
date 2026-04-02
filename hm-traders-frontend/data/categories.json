@@ -1,0 +1,36 @@
+{
+  "docs": [
+    {
+      "id": "1",
+      "name": "Power Tools",
+      "slug": "power-tools",
+      "description": "High-performance tools for professionals.",
+      "images": [
+        { "url": "/images/power1.jpg" },
+        { "url": "/images/power2.jpg" }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Hand Tools",
+      "slug": "hand-tools",
+      "description": "Durable and reliable hand tools.",
+      "images": [
+        { "url": "/images/hand1.jpg" },
+        { "url": "/images/hand2.jpg" }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Garden Tools",
+      "slug": "garden-tools",
+      "description": "Everything you need for your garden.",
+      "images": [
+        { "url": "/images/garden1.jpg" }
+      ]
+    }
+
+  ],
+  "totalPages": 1,
+  "page": 1
+}

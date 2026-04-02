@@ -23,10 +23,10 @@ export default function HomeBanner({ slug }: any) {
         }
       >
         <div className="banner-content">
-          <h1 className="banner-title">{slug?.heroTitle || slug?.title}</h1>
+          <h1 className="banner-title ">{slug?.heroTitle || slug?.title}</h1>
 
           {slug?.heroSubtitle && (
-            <p className="banner-subtitle">{slug?.heroSubtitle}</p>
+            <p className="banner-subtitle lato " style={{textAlign: slug?.slug !== "home" ? "center":undefined}}>{slug?.heroSubtitle}</p>
           )}
 
           {slug?.buttons?.length > 0 && (

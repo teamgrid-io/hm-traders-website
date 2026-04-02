@@ -13,3 +13,14 @@ export const fetchCtaData = async () => {
         return null;
     }
 };
+
+// import data from "@/data/cta.json"
+
+// export async function fetchCtaData () {
+//     try {
+//         return data
+//     } catch (error) {
+//         console.error("Failed to load Cta:",error);
+//         return [];
+//     }
+// }

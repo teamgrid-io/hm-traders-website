@@ -51,7 +51,7 @@ export default async function ContactSection() {
 
             <div>
               <strong className="contactLabel">{item?.label}</strong>
-              <p className="contactText">
+              <p className="contactText lato">
                 {item?.value?.split(",").map((line: string, i: number) => (
                   <span key={i}>
                     {line}

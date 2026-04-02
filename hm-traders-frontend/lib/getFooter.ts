@@ -27,3 +27,14 @@ export async function getFooterData() {
     throw error;
   }
 }
+
+// import data from "@/data/footer.json"
+
+// export async function getFooterData() {
+//   try {
+//     return data
+//   } catch (error) {
+//     console.error(" Error fetching footer data:", error);
+//     return [];
+//   }
+// }

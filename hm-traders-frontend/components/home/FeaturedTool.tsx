@@ -20,7 +20,7 @@ export default async function FeaturedTool({ slug }: any) {
       <ToolSection slug="home" sectionKey="featured_products" />
 
       {/* ✅ Reusable Component */}
-      <ToolsGrid tools={featuredProducts} />
+      <ToolsGrid tools={featuredProducts} enableLink={true} basePath = {`/products/${featuredProducts?.category?.slug}`}/>
     </Container>
   );
 }

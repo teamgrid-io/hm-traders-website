@@ -1,0 +1,44 @@
+{
+  "docs": [
+    {
+      "id": "1",
+      "slug": "home",
+      "viewAllText": "View All",
+      "viewAllLink": "/tools",
+      "sections": [
+        {
+          "sectionKey": "featured_products",
+          "smallTitle": "Featured Products",
+          "heading": "Explore Our Featured",
+          "highlightWord": "Tools"
+        },
+        {
+          "sectionKey": "trending",
+          "smallTitle": "Trending Now",
+          "heading": "Most Popular",
+          "highlightWord": "Items"
+        },
+        {
+          "sectionKey": "our_category",
+          "smallTitle": "Our Product Category",
+          "heading": "Explore our Wide Range of",
+          "highlightWord": "Tools"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "slug": "products",
+      "viewAllText": "Browse All",
+      "viewAllLink": "/products",
+      "sections": [
+        {
+          "sectionKey": "featured",
+          "smallTitle": "Top Picks",
+          "heading": "Best in Category",
+          "highlightWord": "Tools"
+        }
+      ]
+    }
+  ]
+}

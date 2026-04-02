@@ -39,3 +39,36 @@ export async function getCategoriesByPagination(page = 1, limit = 10) {
     return { categories: [], totalPages: 1, page: 1 };
   }
 }
+
+// import data from "@/data/categories.json";
+
+// // Get all categories
+// export async function getCategories() {
+//   try {
+//     return data.docs; // return same as API
+//   } catch (error) {
+//     console.error("[frontend] failed to load categories", error);
+//     return [];
+//   }
+// }
+
+// // Get paginated categories
+// export async function getCategoriesByPagination(page = 1, limit = 10) {
+//   try {
+//     const start = (page - 1) * limit;
+//     const end = start + limit;
+
+//     const categories = data.docs.slice(start, end);
+
+//     const totalPages = Math.ceil(data.docs.length / limit);
+
+//     return {
+//       categories,
+//       totalPages,
+//       page
+//     };
+//   } catch (error) {
+//     console.error("[frontend] failed to load paginated categories", error);
+//     return { categories: [], totalPages: 1, page: 1 };
+//   }
+// }

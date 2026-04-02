@@ -5,7 +5,7 @@ import Header from "@/components/layout/Navbar";
 import Footer from "@/components/footer/Footer";
 import WhatsAppButton from "@/components/common/WhatsappButton";
 import { getFooterData } from "@/lib/getFooter";
-import { Poppins } from "next/font/google";
+import { Poppins, Lato} from "next/font/google";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,6 +20,11 @@ const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-poppins",
+});
+const lato = Lato({
+  subsets: ['latin'],
+  weight: ["100", "300", "400", "700"],
+  variable: '--font-lato',
 });
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -45,7 +50,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-  <body className={`${poppins.className} layoutBody`}>
+  <body className={`${poppins.variable} ${lato.variable} layoutBody`}>
     <Header />
 
     <main className="mainContent">{children}</main>

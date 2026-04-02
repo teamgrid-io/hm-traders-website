@@ -49,12 +49,12 @@ export default async function OurProductCategory() {
 
           <h2>
             {section?.heading}
-            <span>{section?.highlightWord}</span>
+            <span>{' '}{section?.highlightWord}</span>
           </h2>
 
-          <p className="desc">{section?.description1}</p>
+          <p className="desc lato">{section?.description1}</p>
 
-          <p className="desc">{section?.description2}</p>
+          <p className="desc lato">{section?.description2}</p>
 
           <button className="explore-btn">
             {section?.buttonText}

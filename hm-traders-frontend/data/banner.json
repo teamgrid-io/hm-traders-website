@@ -1,0 +1,47 @@
+{
+  "docs": [
+    {
+      "id": "1",
+      "title": "Home Banner",
+      "slug": "home",
+      "heroTitle": "Trusted Supplier of Industrial Tools Since 1998",
+      "heroSubtitle": "Retail and trading of HSS Cutting Tools, Carbide Tools, Hand Tools, Pneumatic Tools and Tool Storage Solutions",
+      "heroImage": {
+        "url": "/images/hero.jpg"
+      },
+      "buttons": [
+        { "label": "Explore Products", "link": "/products" },
+        { "label": "Request a Quote", "link": "/contact" }
+      ],
+      "heroFeatures": [
+        {
+          "title": "25+ Years Industry Experience",
+          "description": "",
+          "icon": { "url": "/icons/fast.svg" }
+        },
+        {
+          "title": "Global Import & Export",
+          "description": "",
+          "icon": { "url": "/icons/secure.svg" }
+        },
+        {
+          "title": "Premium Quality Tools",
+          "description": "",
+          "icon": { "url": "/icons/secure.svg" }
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "About Banner",
+      "slug": "about",
+      "heroTitle": "About Us",
+      "heroSubtitle": "Know our story",
+      "heroImage": {
+        "url": "/images/about.jpg"
+      },
+      "buttons": [],
+      "heroFeatures": []
+    }
+  ]
+}

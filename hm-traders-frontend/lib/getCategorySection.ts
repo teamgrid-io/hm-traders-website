@@ -13,3 +13,14 @@ export async function getCategorySection() {
 
     return res.json();
 }
+
+// import data from "@/data/feature-sections.json";
+
+// export async function getCategorySection() {
+//   try {
+//     return data; // keep same structure as API
+//   } catch (error) {
+//     console.error("[frontend] product category section load failed", error);
+//     throw new Error("Failed to load product category section data");
+//   }
+// }

@@ -46,6 +46,11 @@
   transition: 0.3s;
 }
 
+.navbar a.active-link {
+  color: #FF9C00;
+
+}
+
 .navbar a:hover {
   color: #FF9C00;
 }
@@ -70,26 +75,14 @@
   color: #FF9C00;
 }
 
-/* BUTTON */
-.headerIcons button {
-  padding: 8px 16px;
-  border: none;
-  background: #FF9C00;
-  color: #fff;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: 0.3s;
-}
+
 .desktopOnly{
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.headerIcons button:hover {
-  background: #FF9C00;
-}
+
 
 /* ---------------------- */
 /* TABLET RESPONSIVE */

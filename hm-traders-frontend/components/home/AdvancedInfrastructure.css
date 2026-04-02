@@ -47,36 +47,15 @@
 
 .infra-desc {
   color: #FFFFFFCC;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 20px;
-  margin-bottom: 10px; 
+  margin-bottom: 20px; 
   line-height: 30px;
-  font-family: Lato
 }
 
 /* BUTTON */
 
-.infra-btn {
-  margin-top: 20px;
-  padding: 12px 26px;
-  background: #FF9C00; 
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  font-weight: 500;
-  transition: 0.3s;
-  font-size: 16px;
-  height: 42px;
 
-  border-top-left-radius: 5px;
-  border-top-right-radius: 1px;
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 1px;
-}
-
-.infra-btn:hover {
-  background: #d97706;
-}
 
 /* IMAGE WRAPPER */
 
@@ -218,8 +197,11 @@
   }
 
   .infra-title {
-    font-size: 26px;
-    line-height: 34px;
+    font-size: 22px;
+    line-height: 28px;
+  }
+  .infra-tag {
+    font-size: 14px;
   }
 
   .infra-desc {
@@ -250,10 +232,6 @@
 @media (max-width: 480px) {
   .infra-section {
     padding: 20px 0px;
-  }
-
-  .infra-title {
-    font-size: 20px;
   }
 
   .infra-right {

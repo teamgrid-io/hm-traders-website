@@ -76,4 +76,10 @@
   .tableArea {
     padding: 0px;
   }
+  .featureValue{
+    font-size: 14px;
+  }
+  .featureList {
+  padding:10px;
+}
 }

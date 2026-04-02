@@ -80,3 +80,62 @@ export async function getProductsByCategorySlugPagination(
     return { products: [], totalPages: 1, page: 1 };
   }
 }
+
+// import productsData from "@/data/products.json";
+
+// export async function getProducts() {
+//   try {
+//     return productsData.docs;
+//   } catch (error) {
+//     console.error("[frontend] products load failed", error);
+//     return [];
+//   }
+// }
+
+// import categoriesData from "@/data/categories.json";
+
+// export async function getCategoryBySlug(slug) {
+//   return categoriesData.docs.find(cat => cat.slug === slug) || null;
+// }
+
+// export async function getProductsByCategorySlug(slug) {
+//   const category = await getCategoryBySlug(slug);
+//   if (!category) return [];
+
+//   return productsData.docs.filter(
+//     product => product.category === category.id
+//   );
+// }
+
+// export async function getProductBySlug(slug) {
+//   return productsData.docs.find(p => p.slug === slug) || null;
+// }
+
+// export async function getProductsByCategorySlugPagination(
+//   slug,
+//   page = 1,
+//   limit = 5
+// ) {
+//   try {
+//     const category = await getCategoryBySlug(slug);
+//     if (!category) {
+//       return { products: [], totalPages: 1, page: 1 };
+//     }
+
+//     const filtered = productsData.docs.filter(
+//       product => product.category === category.id
+//     );
+
+//     const start = (page - 1) * limit;
+//     const end = start + limit;
+
+//     return {
+//       products: filtered.slice(start, end),
+//       totalPages: Math.ceil(filtered.length / limit),
+//       page
+//     };
+//   } catch (error) {
+//     console.error("[frontend] pagination failed", error);
+//     return { products: [], totalPages: 1, page: 1 };
+//   }
+// }

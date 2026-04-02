@@ -1,0 +1,29 @@
+{
+  "docs": [
+    {
+      "id": "1",
+      "title": "Home",
+      "link": "/"
+    },
+    {
+      "id": "2",
+      "title": "About Us",
+      "link": "/about"
+    },
+    {
+      "id": "3",
+      "title": "Products",
+      "link": "/products"
+    },
+    {
+      "id": "4",
+      "title": "Brands",
+      "link": "/brand"
+    },
+    {
+      "id": "5",
+      "title": "Contact",
+      "link": "/contact"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "docs": [
+    {
+      "title": "Grow Your Business",
+      "highlightWord": "Faster",
+      "description": "Join thousands of businesses that trust us to scale their operations and boost productivity.",
+      "primaryButtonText": "Get Started",
+      "primaryButtonLink": "/get-started",
+      "secondaryButtonText": "Learn More",
+      "secondaryButtonLink": "/about"
+    }
+  ]
+}

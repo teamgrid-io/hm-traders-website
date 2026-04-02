@@ -32,7 +32,7 @@ export default async function ProductPage({ params }: any) {
               <span>★★★★★</span>({product?.reviewCount} customer review)
             </div>
 
-          <div className="productDescription">
+          <div className="productDescription lato">
             {product?.description?.root?.children?.map(
               (block: any, i: number) => (
                 <p key={i}>{block.children?.[0]?.text}</p>

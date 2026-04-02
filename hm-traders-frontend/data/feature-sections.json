@@ -1,0 +1,42 @@
+{
+  "docs": [
+    {
+      "id": "1",
+      "sectionName": "section1",
+      "smallTitle": "Our Product Category",
+      "heading": "Your Trusted Partner in Industrial",
+      "highlightWord": "Tools",
+      "description1": "We provide high quality industrial tools.",
+      "description2": "Trusted by professionals worldwide.",
+      "buttonText": "Explore Products",
+      "buttonLink": "/products",
+      "images": {
+        "topImage": {
+          "url": "/images/top.jpg"
+        },
+        "bottomImage": {
+          "url": "/images/bottom.jpg"
+        }
+      }
+    },
+    {
+      "id": "2",
+      "sectionName": "section2",
+      "smallTitle": "Advanced Infrastructure",
+      "heading": "Our Advanced",
+      "highlightWord": "Infrastructure",
+      "description1": "Our robust infrastructure is equipped with state-of-the-art machinery and modern computerized systems, enabling us to deliver high precision products with consistent quality and reliability. ",
+      "description2": "We continuously upgrade our facilities with advanced technology to ensure efficient production processes and superior performance. This strong technological foundation allows us to meet diverse industry requirements and deliver products that match the highest standards of durability and precision.",
+      "buttonText": "Learn More",
+      "buttonLink": "/products",
+      "images": {
+        "topImage": {
+          "url": "/images/top.jpg"
+        },
+        "bottomImage": {
+          "url": "/images/bottom.jpg"
+        }
+      }
+    }
+  ]
+}

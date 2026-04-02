@@ -12,29 +12,29 @@ export default function ContactForm({ title }: { title?: string }) {
     message: "",
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault();
 
-    try {
-      await submitContactForm(form);
-      alert("Message sent!");
+  //   try {
+  //     await submitContactForm(form);
+  //     alert("Message sent!");
 
-      setForm({
-        name: "",
-        email: "",
-        phone: "",
-        message: "",
-      });
-    } catch {
-      alert("Something went wrong");
-    }
-  };
+  //     setForm({
+  //       name: "",
+  //       email: "",
+  //       phone: "",
+  //       message: "",
+  //     });
+  //   } catch {
+  //     alert("Something went wrong");
+  //   }
+  // };
 
   return (
     <>
       <div className="formTitle">{title || "Any Questions?"}</div>
 
-      <form onSubmit={handleSubmit} className="contactForm">
+      <form  className="contactForm">
 
         <div className="row">
           <input

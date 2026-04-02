@@ -1,0 +1,28 @@
+{
+  "docs": [
+    {
+      "id": "1",
+      "tag": "★ Global Import & Export Network",
+      "title": "Our Global Import & Export",
+      "highlight": "Operations",
+      "mapImage": {
+        "url": "/images/world-map.png"
+      },
+      "locations": [
+        { "country": "India", "top": "40%", "left": "65%" },
+        { "country": "USA", "top": "30%", "left": "20%" },
+        { "country": "Germany", "top": "25%", "left": "50%" }
+      ],
+      "features": [
+        {
+          "title": "Worldwide Shipping",
+          "icon": { "url": "/icons/shipping.svg" }
+        },
+        {
+          "title": "Trusted Partners",
+          "icon": { "url": "/icons/partners.svg" }
+        }
+      ]
+    }
+  ]
+}

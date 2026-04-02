@@ -28,10 +28,10 @@ export default async function AdvancedInfrastructure() {
             <span> {section2.highlightWord}</span>
           </h2>
 
-          <p className="infra-desc">{section2.description1}</p>
-          <p className="infra-desc">{section2.description2}</p>
+          <p className="infra-desc lato">{section2.description1}</p>
+          <p className="infra-desc lato">{section2.description2}</p>
 
-          <button className="infra-btn"> 
+          <button className="button"> 
             {section2.buttonText}
           </button>
         </div>

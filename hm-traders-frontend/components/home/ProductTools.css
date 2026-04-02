@@ -23,14 +23,12 @@
 }
 
 .tools-tag {
-  font-family: Poppins;
   font-size: 14px;
   margin-bottom: 7px;
 }
 
 .tools-header h2 {
   font-size: 36px;
-  font-family: Poppins;
   font-weight: 600;
   line-height: 1.3;
 }
@@ -40,7 +38,6 @@
 }
 
 .view-all {
-  font-family: Poppins;
   cursor: pointer;
   font-size: 16px;
   white-space: nowrap;
@@ -103,7 +100,6 @@
 .tool-overlay p {
   color: white;
   font-weight: 600;
-  font-family: Poppins;
   transform: translateY(20px);
   transition: transform 0.4s ease;
 }
@@ -154,14 +150,16 @@
   .tools-header {
     flex-direction: column; 
     align-items: flex-start;
+    gap: 0;
   }
 
   .view-all {
     margin-top: 10px;
+    font-size: 14px;
   }
 
   .tools-header h2 {
-    font-size: 24px;
+    font-size: 22px;
   }
 
   .tools-cards {

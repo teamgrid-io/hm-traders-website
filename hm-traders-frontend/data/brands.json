@@ -1,0 +1,26 @@
+[
+  {
+    "name": "TechNova",
+    "logo": "",
+    "description": "A leading innovator in smart technology solutions and AI-driven platforms.",
+    "catalogPdf": ""
+  },
+  {
+    "name": "GreenLeaf",
+    "logo": "",
+    "description": "Eco-friendly products focused on sustainability and natural living.",
+    "catalogPdf": ""
+  },
+  {
+    "name": "UrbanStyle",
+    "logo": "",
+    "description": "Modern fashion brand blending streetwear with premium quality materials.",
+    "catalogPdf": ""
+  },
+  {
+    "name": "BuildPro",
+    "logo": "",
+    "description": "Construction and infrastructure solutions for residential and commercial projects.",
+    "catalogPdf": ""
+  }
+]

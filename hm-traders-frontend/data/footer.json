@@ -1,0 +1,54 @@
+{
+  "brand": {
+    "companyName": "H.M Traders",
+    "description": "We provide high-quality industrial tools and solutions for businesses across India.",
+    "socialLinks": [
+      {
+        "platform": "facebook",
+        "url": "https://facebook.com/hmtraders"
+      },
+      {
+        "platform": "instagram",
+        "url": "https://instagram.com/hmtraders"
+      },
+      {
+        "platform": "linkedin",
+        "url": "https://linkedin.com/company/hmtraders"
+      },
+      {
+        "platform": "x",
+        "url": "https://twitter.com/hmtraders"
+      }
+    ]
+  },
+  "navColumns": [
+    {
+      "heading": "Company",
+      "links": [
+        { "label": "About Us", "url": "/about", "openInNewTab": false },
+        { "label": "Products", "url": "/products", "openInNewTab": false },
+        { "label": "Import & Export", "url": "/import-export", "openInNewTab": false },
+        { "label": "Blog", "url": "/blog", "openInNewTab": false },
+        { "label": "Contact", "url": "/contact", "openInNewTab": false }
+      ]
+    },
+    {
+      "heading": "Products",
+      "links": [
+        { "label": "Cutting Tools", "url": "/products/cutting", "openInNewTab": false },
+        { "label": "Carbide Tools", "url": "/products/carbide", "openInNewTab": false },
+        { "label": "Hand Tools", "url": "/products/hand", "openInNewTab": false },
+        { "label": "Pneumatic Tools", "url": "/products/pneumatic", "openInNewTab": false },
+        { "label": "Cordless Tools", "url": "/products/cordless", "openInNewTab": false }
+      ]
+    }
+  ],
+  "newsletter": {
+    "enabled": true,
+    "tagline": "Subscribe to get the latest updates on products and offers.",
+    "placeholder": "Enter your email",
+    "buttonLabel": "Subscribe",
+    "successMessage": "Thanks for subscribing!"
+  },
+  "copyright": "© {{year}} H.M Traders. All Rights Reserved"
+}

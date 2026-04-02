@@ -14,3 +14,14 @@ export async function getGlobalNetwork() {
 
 }
  
+
+// import data from "@/data/global-network.json";
+
+// export async function getGlobalNetwork() {
+//   try {
+//     return data; // keep same API shape
+//   } catch (error) {
+//     console.error("[frontend] global network load failed", error);
+//     return null;
+//   }
+// }

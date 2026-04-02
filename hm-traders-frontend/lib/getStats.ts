@@ -14,3 +14,15 @@ export const fetchStatsData = async () => {
     }
 };
 
+// import data from "@/data/stats.json"
+
+// export async function fetchStatsData() {
+//     try {
+//         return data
+        
+//     } catch (error) {
+//         console.error('Failed to load stats:', error);
+//         return [];
+//     }
+// }
+

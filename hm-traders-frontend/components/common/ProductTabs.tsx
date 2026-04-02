@@ -47,8 +47,8 @@ export default function ProductTabs({
             <tbody>
               {specifications?.map((spec, i) => (
                 <tr key={i}>
-                  <td className="specLabel">{spec.title}</td>
-                  <td className="specValue">{spec.value}</td>
+                  <td className="specLabel lato">{spec.title}</td>
+                  <td className="specValue lato">{spec.value}</td>
                 </tr>
               ))}
             </tbody>
@@ -56,9 +56,9 @@ export default function ProductTabs({
         )}
 
         {activeTab === "features" && (
-          <ul className="featureList">
+          <ul className="featureList lato">
             {features?.map((item, i) => (
-              <li key={i}>
+              <li className="featureValue" key={i}>
                  <span className="point">✔</span> {item.feature}
               </li>
             ))}

@@ -13,3 +13,15 @@ export async function getPartners() {
   }
 
 }  
+
+// import data from "@/data/partners-section.json";
+
+// export async function getPartners() {
+//   try {
+//     // Mimic API response
+//     return data;
+//   } catch (error) {
+//     console.error("[frontend] failed to load partners section", error);
+//     return null;
+//   }
+// }

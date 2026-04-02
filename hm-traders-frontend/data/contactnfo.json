@@ -1,0 +1,17 @@
+[
+  {
+    "formTitle": "Get In Touch",
+
+    "addressIcon": "64f1a2b3c9e1f00123456801",
+    "addressLabel": "Address",
+    "address": "123 Business Street, Suite 456, New Delhi, India",
+
+    "phoneIcon": "64f1a2b3c9e1f00123456802",
+    "phoneLabel": "Contact",
+    "phone": "1234567890",
+
+    "emailIcon": "64f1a2b3c9e1f00123456803",
+    "emailLabel": "Email Address",
+    "email": "info@example.com"
+  }
+]

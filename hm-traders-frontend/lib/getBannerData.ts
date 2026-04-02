@@ -13,3 +13,14 @@ export const fetchBannerBySlug = async (slug: string) => {
     return null;
   }
 };
+
+// import data from "@/data/banner.json";
+// export const fetchBannerBySlug = async (slug: string) => {
+//   try {
+//     const banner = data.docs.find(item => item.slug === slug);
+//     return banner || null;
+//   } catch (error) { 
+//     console.error("Banner fetch error:", error);
+//     return null;
+//   }
+// };

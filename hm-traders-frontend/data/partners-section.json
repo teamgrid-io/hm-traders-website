@@ -1,0 +1,27 @@
+{
+  "docs": [
+    {
+      "id": "1",
+      "tag": "★ Our Partners",
+      "title": "Our Trusted",
+      "highlight": "Partners",
+      "partners": [
+        {
+          "name": "Partner One",
+          "description": "Leading provider of industrial solutions.",
+          "logo": { "url": "/images/partner1.png" }
+        },
+        {
+          "name": "Partner Two",
+          "description": "Expert in quality manufacturing.",
+          "logo": { "url": "/images/partner2.png" }
+        },
+        {
+          "name": "Partner Three",
+          "description": "Global leader in tools and hardware.",
+          "logo": { "url": "/images/partner3.png" }
+        }
+      ]
+    }
+  ]
+}

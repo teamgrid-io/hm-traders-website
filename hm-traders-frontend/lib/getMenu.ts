@@ -5,3 +5,14 @@ export async function getMenu() {
   const data = await res.json();  
   return data.docs;
 }
+
+// import data from "@/data/menu.json";
+
+// export async function getMenu() {
+//   try {
+//     return data.docs;
+//   } catch (error) {
+//     console.error("Failed to load menu:", error);
+//     return [];
+//   }
+// }

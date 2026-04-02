@@ -27,3 +27,14 @@ export async function getEnquiryForm() {
   const data = await res.json();
   return data?.docs?.[0];
 }
+
+// import data from "@/data/enquiries.json"
+
+// export async function getEnquiryForm() {
+//   try {
+//     return data[0]
+//   } catch (error) {
+//     console.error("Failed to load data:",error);
+//     return [];
+//   }
+// }

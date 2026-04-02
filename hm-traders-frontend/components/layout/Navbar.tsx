@@ -6,6 +6,7 @@ import "./Navbar.css";
 import NavbarScrollEffect from "../common/NavbarScrollEffect";
 import SearchBarToggle from "../common/SearchBarToggle";
 import MobileMenu from "../common/MobileMenu";
+import Menu from "../common/Menu";
 
 export default async function Header() {
   const menu = await getMenu();
@@ -23,19 +24,15 @@ export default async function Header() {
           </div>
 
           {/* DESKTOP NAV */}
-          <nav className="navbar desktopNav">
-            {menu?.map((item: any) => (
-              <Link key={item.id} href={item.link}>
-                {item.title}
-              </Link>
-            ))}
-          </nav>
+          <Menu menu={menu} />
 
           {/* RIGHT SIDE */}
           <div className="headerIcons">
             <div className="desktopOnly">
               <SearchBarToggle />
-              <button>Request a Quote</button>
+              <Link href='/contact'>
+                <button className="button">Request a Quote</button>
+              </Link>
             </div>
 
             {/* MOBILE MENU */}

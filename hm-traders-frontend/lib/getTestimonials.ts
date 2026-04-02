@@ -10,3 +10,22 @@ export async function getTestimonials(): Promise<Testimonial[]> {
   const data = await res.json()
   return data.docs
 }
+
+// import data from "@/data/testimonials.json";
+
+// export async function getTestimonials() {
+//   try {
+//     // 1. filter published only
+//     const published = data.docs.filter(t => t.status === "published");
+
+//     // 2. sort by createdAt DESC (latest first)
+//     const sorted = published.sort(
+//       (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+//     );
+
+//     return sorted;
+//   } catch (error) {
+//     console.error("[frontend] testimonials load failed", error);
+//     return [];
+//   }
+// }

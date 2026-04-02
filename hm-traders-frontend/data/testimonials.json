@@ -1,0 +1,49 @@
+{
+  "docs": [
+    {
+      "id": "1",
+      "title": "Excellent Service",
+      "review": "Amazing quality and fast delivery.",
+      "rating": 5,
+      "featured": true,
+      "createdAt": "2025-01-10T10:00:00Z",
+      "status": "published",
+      "author": {
+        "name": "Aaron Finch",
+        "avatar": {
+          "url": "/images/users/aaron.jpg"
+        }
+      }
+    },
+    {
+      "id": "2",
+      "title": "Good Experience",
+      "review": "Satisfied with the purchase.",
+      "rating": 4,
+      "featured": false,
+      "createdAt": "2025-01-05T10:00:00Z",
+      "status": "published",
+      "author": {
+        "name": "John Doe",
+        "avatar": {
+          "url": "/images/users/john.jpg"
+        }
+      }
+    },
+    {
+      "id": "3",
+      "title": "Draft Example",
+      "review": "This should not appear.",
+      "rating": 3,
+      "featured": false,
+      "createdAt": "2025-01-01T10:00:00Z",
+      "status": "draft",
+      "author": {
+        "name": "Hidden User",
+        "avatar": {
+          "url": "/images/users/hidden.jpg"
+        }
+      }
+    }
+  ]
+}

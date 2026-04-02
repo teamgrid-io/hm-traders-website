@@ -1,0 +1,40 @@
+{
+  "docs": [
+    {
+      "id": "p1",
+      "name": "Drill Machine",
+      "slug": "drill-machine",
+      "description": "Powerful drilling machine",
+      "category": "1",
+      "brand": "Bosch",
+      "images": [{ "url": "/images/drill.jpg" }],
+      "technicalSpecifications": [
+        { "title": "Power", "value": "500W" }
+      ],
+      "productFeatures": [
+        { "feature": "High durability" }
+      ],
+      "price": 1200,
+      "rating": 4.5,
+      "reviewCount": 10,
+      "isFeatureTool": true,
+      "numberOfStock": 20
+    },
+    {
+      "id": "p2",
+      "name": "Hammer",
+      "slug": "hammer",
+      "description": "Strong hammer",
+      "category": "2",
+      "brand": "Stanley",
+      "images": [{ "url": "/images/hammer.jpg" }],
+      "technicalSpecifications": [],
+      "productFeatures": [],
+      "price": 300,
+      "rating": 4,
+      "reviewCount": 5,
+      "isFeatureTool": false,
+      "numberOfStock": 50
+    }
+  ]
+}
