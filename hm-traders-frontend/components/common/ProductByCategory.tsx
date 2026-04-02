@@ -14,6 +14,7 @@ const ProductByCategory = ({ products, categorySlug }: any) => {
   const [Brands, setBrands] = useState<any[]>([]);
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [price, setPrice] = useState(1000);
+  const [showFilters, setShowFilters] = useState(false);
 
   const [availability, setAvailability] = useState({
     inStock: false,
@@ -64,17 +65,31 @@ const ProductByCategory = ({ products, categorySlug }: any) => {
       if (p.price === undefined || p.price === null) return true;
       return p.price <= price;
     })
-     .sort((a: any, b: any) => {
-    if (sortOption === "asc") {
-      return a.price - b.price;
-    } else {
-      return b.price - a.price; 
-    }
+    .sort((a: any, b: any) => {
+      if (sortOption === "asc") {
+        return a.price - b.price;
+      } else {
+        return b.price - a.price;
+      }
+    });
+    const handleClearFilters = () => {
+  setQuery("");
+  setSelectedBrands([]);
+  setPrice(1000);
+  setAvailability({
+    inStock: false,
+    outOfStock: false,
   });
+};
   return (
     <>
       <div className="Productbycategories">
         <div className="productSide">
+          <div className="mobileFilterBar">
+            <button onClick={() => setShowFilters(true)} className="filterBtn">
+              ☰ Filters
+            </button>
+          </div>
           <div className="productSorting">
             <span>
               Showing {filteredProducts.length} of {products.length} results
@@ -128,13 +143,18 @@ const ProductByCategory = ({ products, categorySlug }: any) => {
             <div className="no-products">No Products to show</div>
           )}
         </div>
-        <div className="productFilters">
+        <div className={`productFilters ${showFilters ? "active" : ""}`}>
+          <div className="filterHeader">
+            <span>Filters</span>
+            <button onClick={() => setShowFilters(false)}>✕</button>
+          </div>
           <div className="productSearch">
-            <input
-              onChange={(e) => handleSearch(e.target.value)}
-              placeholder="search tools"
-              type="text"
-            />
+           <input
+  value={query}
+  onChange={(e) => handleSearch(e.target.value)}
+  placeholder="search tools"
+  type="text"
+/>
           </div>
           <div className="productAvailablility">
             <span>Availability</span>
@@ -155,7 +175,7 @@ const ProductByCategory = ({ products, categorySlug }: any) => {
               <label htmlFor="">Out of Stock</label>
             </div>
           </div>
-          <div className="productCategory">
+          {/* <div className="productCategory">
             <span>Category</span>
             <div className="checkboxdiv">
               <input type="checkbox" />
@@ -164,7 +184,7 @@ const ProductByCategory = ({ products, categorySlug }: any) => {
             <div className="checkboxdiv">
               <input type="checkbox" /> <label htmlFor="">Carbide Tools</label>
             </div>
-          </div>
+          </div> */}
           <div className="filterByPrice">
             <span>Filter by Price</span>
 
@@ -183,15 +203,25 @@ const ProductByCategory = ({ products, categorySlug }: any) => {
             <span>Brands</span>
             {Brands?.map((brand) => (
               <div className="checkboxdiv" key={brand.id}>
-                <input
-                  type="checkbox"
-                  id={`brand-${brand.id}`}
-                  onChange={() => handleBrandChange(brand.name)}
-                />
+<input
+  type="checkbox"
+  id={`brand-${brand.id}`}
+  checked={selectedBrands.includes(brand.name)}
+  onChange={() => handleBrandChange(brand.name)}
+/>
                 <label htmlFor={`brand-${brand.id}`}>{brand.name}</label>
               </div>
             ))}
           </div>
+          <div className="filterFooter">
+  <button onClick={handleClearFilters} className="clearBtn">
+    Clear
+  </button>
+
+  <button onClick={() => setShowFilters(false)} className="applyBtn">
+    Apply Filters
+  </button>
+</div>
         </div>
       </div>
     </>

@@ -1,82 +1,105 @@
-import { CollectionConfig } from "payload";
+import { CollectionConfig } from 'payload'
 
-export const ProductCategorySection: CollectionConfig = {
-  slug: "feature-sections",
-
+export const FeatureSections: CollectionConfig = {
+  slug: 'feature-sections', // ✅ updated slug
   access: {
     read: () => true,
   },
-  
   fields: [
     {
-      name: "sectionName",
-      label: "Section Name",
+      name: "slug",
       type: "text",
       required: true,
-      admin: {
-        description: "Give a unique name like homeSection1, homeSection2",
-      },
+      unique: true,
     },
- 
+
     {
-      name: "smallTitle",
-      label: "Small Title",
-      type: "text",
-      defaultValue: "Our Product Category",
-    },
-    {
-      name: "heading",
-      label: "Heading",
-      type: "text",
-      defaultValue: "Your Trusted Partner in Industrial Tools",
-    },
-    {
-      name: "highlightWord",
-      label: "Highlight Word",
-      type: "text",
-      defaultValue: "Tools",
-    },
-    {
-      name: "description1",
-      label: "Description1",
-      type: "textarea",
-    },
-    {
-      name: "description2",
-      label: "Description 2",
-      type: "textarea",
-    },
-    {
-      name: "buttonText",
-      label: "Button Text",
-      type: "text",
-      defaultValue: "Explore Products",
-    },
-    {
-      name: "buttonLink",
-      label: "Button Link",
-      type: "text",
-    },
-    {
-      name: "images",
-      label: "Images",
-      type: "group",
+      name: 'sections',
+      type: 'array',
       fields: [
         {
-          name: "topImage",
-          label: "Top Image",
-          type: "upload",
-          relationTo: "media",
+          name: 'sectionKey',
+          label: 'Section Key (e.g. featured, trending, homepage-top)',
+          type: 'text',
           required: true,
         },
         {
-          name: "bottomImage",
-          label: "Bottom Image",
-          type: "upload",
-          relationTo: "media",
-          required: true,
+          name: 'smallTitle',
+          type: 'text',
+          defaultValue: 'Featured Products',
+        },
+        {
+          name: 'heading',
+          type: 'text',
+          defaultValue: 'Explore Our Featured',
+        },
+        {
+          name: 'highlightWord',
+          type: 'text',
+          defaultValue: 'Tools',
+        },
+
+        // ✅ MULTIPLE DESCRIPTIONS
+        {
+          name: 'descriptions',
+          label: 'Descriptions',
+          type: 'array',
+          fields: [
+            {
+              name: 'text',
+              type: 'textarea',
+              required: true,
+            },
+          ],
+        },
+
+        // ✅ IMAGES ARRAY
+      {
+  name: 'images',
+  label: 'Images', // ✅ label for the whole array
+  type: 'array',
+  fields: [
+      {
+      name: 'title',
+      label: 'Image Title',
+      type: 'text',
+    },
+    {
+      name: 'image',
+      label: 'Image File', // ✅ label shown in admin UI
+      type: 'upload',
+      relationTo: 'media',
+      required: true,
+    },
+    // ✅ Add title/name for image
+  
+  ],
+},
+
+        // ✅ BUTTONS ARRAY
+        {
+          name: 'buttons',
+          type: 'array',
+          fields: [
+            {
+              name: 'label',
+              type: 'text',
+              required: true,
+            },
+            {
+              name: 'link',
+              type: 'text',
+            },
+          ],
         },
       ],
     },
+
+    {
+      name: 'viewAllText',
+      type: 'text',
+      defaultValue: 'View All',
+    },
+    
   ],
-}; 
+}

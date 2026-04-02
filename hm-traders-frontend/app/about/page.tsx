@@ -1,6 +1,6 @@
 import HomeBanner from "@/components/common/HomeBanner";
 import About from "@/components/home/AboutPreview";
-import OurProductCategory from "@/components/home/OurProductCategory";
+import AboutHmTraders from "@/components/home/AboutHmTraders";
 import Partners from "@/components/home/Partners";
 import GlobalNetworkSection from "@/components/home/GlobalNetworkSection";
 import StatsSection from "@/components/home/StatsSection";
@@ -21,11 +21,11 @@ export default async function AboutPage() {
   return <>
         <HomeBanner slug={banner} />
           <Container className="mb-8">
-        <OurProductCategory /> 
+        <AboutHmTraders slug={"about"} /> 
         </Container>
         <StatsSection /> 
         <Container className="mb-12">
-        <ToolSection slug={"about"} sectionKey={"producte_expertise"} />
+        <ToolSection slug={"about"} sectionKey={"featured_products"} />
         <ToolsGrid tools={featuredProducts} />  
         </Container>
          <AdvancedInfrastructure />

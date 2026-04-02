@@ -1,16 +1,10 @@
 import Container from "@/components/layout/Container";
-import ProductCategories from "@/components/home/ProductCategories";
-import HeroSection from "@/components/home/HeroSection";
-import WhyChooseUs from "@/components/home/WhyChooseUs";
-import Ecatalogue from "@/components/home/Ecatalogue";
-import OurProductCategory from "@/components/home/OurProductCategory";
-import ProductTools from "@/components/home/ProductTools";
+import AboutHmTraders from "@/components/home/AboutHmTraders";
+import OurProductCategoriesTools from "@/components/home/OurProductCategoriesTools";
 import { getProducts } from "@/lib/getProducts";
-import { getBanner } from "@/lib/getBanner";
-
 import HomeBanner from "@/components/common/HomeBanner";
 import { fetchBannerBySlug } from "@/lib/getBannerData";
-import FeaturedTool from "@/components/home/FeaturedTool";
+import OurCategoriesTool from "@/components/home/FeaturedProductsTool";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import Partners from "@/components/home/Partners";
 import GlobalNetworkSection from "@/components/home/GlobalNetworkSection";
@@ -26,11 +20,11 @@ export default async function Home() {
         {/* <HeroSection/>
       <ProductCategories />
       <Ecatalogue /> */}
-        <OurProductCategory />
+        <AboutHmTraders slug={"home"} />
          </Container>
-        <ProductTools />
-        <FeaturedTool slug={"home"}  />
-        <AdvancedInfrastructure /> 
+        <OurProductCategoriesTools  slug={"home"} />
+        <OurCategoriesTool slug={"home"}  />
+        <AdvancedInfrastructure slug={"home"} /> 
         <Partners/>
       <GlobalNetworkSection/> 
          <TestimonialsSection />

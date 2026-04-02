@@ -5,7 +5,6 @@ import Image from "next/image";
 import Container from "@/components/layout/Container";
 import ProductGallery from "@/components/common/ProductGallery";
 import ProductCounter from "@/components/common/ProductCounter";
-import FeaturedTool from "@/components/home/FeaturedTool";
 import ToolSection from "@/components/common/ToolSection";
 import ToolsGrid from "@/components/common/ToolsGrid";
 import { fetchBannerBySlug } from "@/lib/getBannerData";

@@ -1,19 +1,21 @@
-import Image from "next/image";
 import "./ToolSection.css";
-import { getFeaturedTool } from "@/lib/getFeaturedTool";
-import { getProducts } from "@/lib/getProducts";
+import { getFeatureSections } from "@/lib/getFeatureSections";
 
 export default async function ToolSection({ slug, sectionKey }: any) {
-  const data = await getFeaturedTool(slug);
-  const doc = data?.docs?.[0];
+  const data = await getFeatureSections(slug);
 
-  const section = doc?.sections?.find(
+  console.log("data in ToolSection", data);
+
+  // ✅ FIX: use data directly (NO docs)
+  const section = data?.sections?.find(
     (sec: any) => sec.sectionKey === sectionKey
   );
 
   if (!section) return null;
 
-  // ✅ 👉 ADD HERE
+  console.log("section in ToolSection", section);
+
+  // ✅ style variants
   const variantClassMap: any = {
     our_category: {
       section: "tools-section",
@@ -32,7 +34,6 @@ export default async function ToolSection({ slug, sectionKey }: any) {
   const styles =
     variantClassMap[sectionKey] || variantClassMap.featured_products;
 
-  // ✅ USE BELOW
   return (
     <section className={styles.section}>
       <div className={styles.header}>
@@ -44,8 +45,9 @@ export default async function ToolSection({ slug, sectionKey }: any) {
           </h2>
         </div>
 
+        {/* ✅ FIX: viewAllText from data */}
         <a className={styles.btn}>
-          {doc?.viewAllText} →
+          {data?.viewAllText} →
         </a>
       </div>
     </section>

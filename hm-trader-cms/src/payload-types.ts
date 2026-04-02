@@ -380,21 +380,37 @@ export interface ContactInfo {
  */
 export interface FeatureSection {
   id: string;
-  /**
-   * Give a unique name like homeSection1, homeSection2
-   */
-  sectionName: string;
-  smallTitle?: string | null;
-  heading?: string | null;
-  highlightWord?: string | null;
-  description1?: string | null;
-  description2?: string | null;
-  buttonText?: string | null;
-  buttonLink?: string | null;
-  images: {
-    topImage: string | Media;
-    bottomImage: string | Media;
-  };
+  slug: string;
+  sections?:
+    | {
+        sectionKey: string;
+        smallTitle?: string | null;
+        heading?: string | null;
+        highlightWord?: string | null;
+        descriptions?:
+          | {
+              text: string;
+              id?: string | null;
+            }[]
+          | null;
+        images?:
+          | {
+              title?: string | null;
+              image: string | Media;
+              id?: string | null;
+            }[]
+          | null;
+        buttons?:
+          | {
+              label: string;
+              link?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  viewAllText?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -858,20 +874,37 @@ export interface ContactInfoSelect<T extends boolean = true> {
  * via the `definition` "feature-sections_select".
  */
 export interface FeatureSectionsSelect<T extends boolean = true> {
-  sectionName?: T;
-  smallTitle?: T;
-  heading?: T;
-  highlightWord?: T;
-  description1?: T;
-  description2?: T;
-  buttonText?: T;
-  buttonLink?: T;
-  images?:
+  slug?: T;
+  sections?:
     | T
     | {
-        topImage?: T;
-        bottomImage?: T;
+        sectionKey?: T;
+        smallTitle?: T;
+        heading?: T;
+        highlightWord?: T;
+        descriptions?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        images?:
+          | T
+          | {
+              title?: T;
+              image?: T;
+              id?: T;
+            };
+        buttons?:
+          | T
+          | {
+              label?: T;
+              link?: T;
+              id?: T;
+            };
+        id?: T;
       };
+  viewAllText?: T;
   updatedAt?: T;
   createdAt?: T;
 }
