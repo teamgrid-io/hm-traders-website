@@ -6,7 +6,7 @@ import { constructMediaUrl } from "@/lib/constructMediaUrl";
 
 export default function ProductGallery({ images, name }: any) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const activeImage = constructMediaUrl(images?.[activeIndex]?.url);
+  const activeImage = constructMediaUrl(images?.[activeIndex]);
 
   return (
     <div className="gallery">
@@ -16,8 +16,7 @@ export default function ProductGallery({ images, name }: any) {
         <Image
           src={activeImage}
           alt={name}
-          width={500}
-          height={450}
+          fill
           className="mainImg"
         />
       </div>
@@ -25,7 +24,7 @@ export default function ProductGallery({ images, name }: any) {
       {/* Thumbnails */}
       <div className="thumbnails">
         {images?.map((img: any, i: number) => {
-          const thumbUrl = constructMediaUrl(img.url);
+          const thumbUrl = constructMediaUrl(img);
 
           return (
             <div
@@ -33,7 +32,7 @@ export default function ProductGallery({ images, name }: any) {
               className={`thumb ${i === activeIndex ? "active" : ""}`}
               onClick={() => setActiveIndex(i)}
             >
-              <Image src={thumbUrl} alt={name} width={80} height={80} />
+              <Image src={thumbUrl} alt={name} fill />
             </div>
           );
         })}

@@ -1,4 +1,4 @@
-import { getProductsByCategorySlugPagination } from "@/lib/getProducts";
+import { getProductsByCategorySlug } from "@/lib/getProducts";
 import Container from "@/components/layout/Container";
 import HomeBanner from "@/components/common/HomeBanner";
 import { fetchBannerBySlug } from "@/lib/getBannerData";
@@ -8,19 +8,15 @@ const banner = await fetchBannerBySlug("products");
 
 export default async function CategoryPage({ params, searchParams }: any) {
   const { categorySlug } = await params;
-  const resolvedSearchParams = await searchParams;
 
-  const pageNumber = Number(await resolvedSearchParams?.page) || 1;
-  const data = await getProductsByCategorySlugPagination(
+  const data = await getProductsByCategorySlug(
     categorySlug,
-    pageNumber,
-    8,
   );
-  const products = data.products;
+  const products = data;
 
   return (
     <>
-      <HomeBanner slug={banner} />
+      {/* <HomeBanner slug={banner} /> */}
       <Container>
         <ProductByCategory products={products} categorySlug={categorySlug} />
         <Pagination

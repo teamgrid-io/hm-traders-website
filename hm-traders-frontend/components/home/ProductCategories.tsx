@@ -1,41 +1,22 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getCategories,getCategoriesByPagination } from "@/lib/getCategories";
+import { getCategories } from "@/lib/getCategories";
 import { constructMediaUrl } from "@/lib/constructMediaUrl";
-import Pagination from "@/components/common/Pagination";
 export default async function ProductCategories({ page }: any) {
-  // const categories = await getCategories();
-  const data = await getCategoriesByPagination(page, 10);
-const categories = data?.categories || [];
+  const categories = await getCategories();
 
-  // Calculate grid positioning
-  const totalItems = categories?.length || 0;
-  const itemsInLastRow = totalItems % 3 || 3;
-  const lastRowStartsAt = totalItems - itemsInLastRow;
 
   return (
     <section className="py-4">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {categories?.map((cat: any, index: number) => {
-          const image = cat.images?.[0];
-          const imageUrl = constructMediaUrl(image?.url);
-          
-          // Calculate if this item needs offset for centering last row
-          let offsetClass = '';
-          if (index >= lastRowStartsAt && itemsInLastRow < 3) {
-            // For 1 item in last row: offset by 1 column (starts at col-start-2)
-            // For 2 items in last row: no offset needed as they naturally center in grid
-            if (itemsInLastRow === 1) {
-              offsetClass = 'md:col-start-2';
-            }
-            // For 2 items, they're already centered in a 3-col grid (cols 1-2)
-            // No offset needed
-          }
+          const image = cat.image_url;
+          const imageUrl = constructMediaUrl(image);
 
           return (
             <div
               key={cat.id}
-              className={`relative rounded-lg overflow-hidden group bg-gray-100 ${offsetClass}`}
+              className={`relative rounded-lg overflow-hidden group bg-gray-100 `}
             >
               {/* IMAGE */}
               <div className="relative w-full h-[280px]">
@@ -66,11 +47,7 @@ const categories = data?.categories || [];
           );
         })}
       </div>
-      <Pagination
-  currentPage={data.page}
-  totalPages={data.totalPages}
-  basePath="/products"
-/>
+     
     </section>
   );
 }

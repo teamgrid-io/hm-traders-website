@@ -1,44 +1,44 @@
-import { API_URL } from "@/api/Api";    
-export async function getCategories() {
-  try {
-    const res = await fetch(
-      `${API_URL}/categories?limit=100&populate=images`
-    );
+// import { API_URL } from "@/api/Api";    
+// export async function getCategories() {
+//   try {
+//     const res = await fetch(
+//       `${API_URL}/categories?limit=100&populate=images`
+//     );
 
-    if (!res.ok) {
-      throw new Error("Failed to fetch categories");
-    }
+//     if (!res.ok) {
+//       throw new Error("Failed to fetch categories");
+//     }
 
-    const data = await res.json();
-    return data.docs;
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
-}
-export async function getCategoriesByPagination(page = 1, limit = 10) {
-  try {
-    const res = await fetch(
-      `${API_URL}/categories?page=${page}&limit=${limit}&populate=images`,
-      { cache: "no-store" }
-    );
+//     const data = await res.json();
+//     return data.docs;
+//   } catch (error) {
+//     console.error(error);
+//     return [];
+//   }
+// }
+// export async function getCategoriesByPagination(page = 1, limit = 10) {
+//   try {
+//     const res = await fetch(
+//       `${API_URL}/categories?page=${page}&limit=${limit}&populate=images`,
+//       { cache: "no-store" }
+//     );
 
-    if (!res.ok) {
-      throw new Error("Failed to fetch categories");
-    }
+//     if (!res.ok) {
+//       throw new Error("Failed to fetch categories");
+//     }
 
-    const data = await res.json();
+//     const data = await res.json();
 
-    return {
-      categories: data.docs,
-      totalPages: data.totalPages,
-      page: data.page
-    };
-  } catch (error) {
-    console.error(error);
-    return { categories: [], totalPages: 1, page: 1 };
-  }
-}
+//     return {
+//       categories: data.docs,
+//       totalPages: data.totalPages,
+//       page: data.page
+//     };
+//   } catch (error) {
+//     console.error(error);
+//     return { categories: [], totalPages: 1, page: 1 };
+//   }
+// }
 
 // import data from "@/data/categories.json";
 
@@ -72,3 +72,51 @@ export async function getCategoriesByPagination(page = 1, limit = 10) {
 //     return { categories: [], totalPages: 1, page: 1 };
 //   }
 // }
+const getImageById = async (id: any) => {
+  if (!id) return null;
+
+  const res = await fetch(
+    `https://headlesswp.teamgrid.co.in/wp-json/wp/v2/media/${id}`
+  );
+
+  if (!res.ok) return null;
+
+  const imgData = await res.json();
+  return imgData?.source_url || imgData?.link || null;
+};
+
+export async function getCategories() {
+  try {
+    const res = await fetch(
+      `https://headlesswp.teamgrid.co.in/wp-json/wp/v2/product_category`,
+      { cache: "no-store" }
+    );
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch categories");
+    }
+
+    const data = await res.json();
+    
+    const updatedCategories = await Promise.all(
+      data.map(async (cat: any) => {
+        let imageUrl = null;
+
+        if (cat.acf.image) {
+          imageUrl = await getImageById(cat.acf.image);
+        }
+
+        return {
+          ...cat,
+          image_url: imageUrl,
+        };
+      })
+    );
+
+
+    return updatedCategories;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+}

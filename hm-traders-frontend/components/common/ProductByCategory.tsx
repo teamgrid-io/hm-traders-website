@@ -50,8 +50,8 @@ const ProductByCategory = ({ products, categorySlug }: any) => {
     }));
   };
 
-  const filteredProducts = products
-    .filter((p: any) => p.name.toLowerCase().includes(query))
+  const filteredProducts = products?
+    .filter((p: any) => p.title.rendered.toLowerCase().includes(query))
     .filter((p: any) =>
       selectedBrands.length > 0 ? selectedBrands.includes(p.brand) : true,
     )
@@ -92,18 +92,18 @@ const ProductByCategory = ({ products, categorySlug }: any) => {
           </div>
           <div className="productSorting">
             <span>
-              Showing {filteredProducts.length} of {products.length} results
+              Showing {filteredProducts?.length} of {products?.length} results
             </span>
             {/* Sorting */}
             <SortingProduct onSortChange={setSortOption} />
           </div>
 
           {/* Product Grid */}
-          {filteredProducts.length > 0 ? (
+          {filteredProducts?.length > 0 ? (
             <div className="featureTools-grid py-10">
               {filteredProducts.map((product: any) => {
-                const image = product.images?.[0];
-                const imageUrl = constructMediaUrl(image?.url);
+                const image = product.imgUrl;
+                const imageUrl = constructMediaUrl(image);
 
                 return (
                   <Link
@@ -115,7 +115,7 @@ const ProductByCategory = ({ products, categorySlug }: any) => {
                       {imageUrl && (
                         <Image
                           src={imageUrl}
-                          alt={product.name}
+                          alt={product.title.rendered}
                           fill
                           className="tool-img"
                         />
@@ -123,7 +123,7 @@ const ProductByCategory = ({ products, categorySlug }: any) => {
                     </div>
 
                     <div className="tool-content">
-                      <p className="tool-title">{product.name}</p>
+                      <p className="tool-title">{product.title.rendered}</p>
 
                       <div className="tool-rating">
                         <span className="stars">★★★★★</span>
@@ -133,7 +133,7 @@ const ProductByCategory = ({ products, categorySlug }: any) => {
                         </span>
                       </div>
 
-                      <p className="tool-price">₹{product.price}</p>
+                      <p className="tool-price">₹{product.acf.product_price}</p>
                     </div>
                   </Link>
                 );

@@ -16,15 +16,30 @@ export async function getProducts() {
     return [];
   }
 }
+
+const getImageById = async (id: any) => {
+  if (!id) return null;
+
+  const res = await fetch(
+    `https://headlesswp.teamgrid.co.in/wp-json/wp/v2/media/${id}`
+  );
+
+  if (!res.ok) return null;
+
+  const imgData = await res.json();
+  return imgData?.source_url || imgData?.link || null;
+};
 export async function getCategoryBySlug(slug: string) {
   const res = await fetch(
-    `${API_URL}/categories?where[slug][equals]=${slug}`,
+    `https://headlesswp.teamgrid.co.in/wp-json/wp/v2/product_category?slug=${slug}`,
     { cache: "no-store" }
   );
 
   const data = await res.json();
-  return data.docs[0];
+  
+  return data[0] || null;
 }
+
 
 export async function getProductsByCategorySlug(slug: string) {
   const category = await getCategoryBySlug(slug);
@@ -32,54 +47,45 @@ export async function getProductsByCategorySlug(slug: string) {
   if (!category) return [];
 
   const res = await fetch(
-    `${API_URL}/products?where[category][equals]=${category.id}&depth=1`,
+    `https://headlesswp.teamgrid.co.in/wp-json/wp/v2/products?product_category=${category.id}`,
     { cache: "no-store" }
   );
 
   const data = await res.json();
-  return data.docs;
+  const products = await Promise.all(
+    data.map(async (product: any) => {
+      const imgUrl = await getImageById(product.acf?.product_gallery?.[0]);
+      return { ...product, imgUrl };
+    })
+  );
+  return products;
 }
+
+
 export async function getProductBySlug(slug: string) {
   const res = await fetch(
-    `${API_URL}/products?where[slug][equals]=${slug}&depth=2`,
+    `https://headlesswp.teamgrid.co.in/wp-json/wp/v2/products?slug=${slug}`,
     { cache: "no-store" }
   );
 
-  const data = await res.json();
-  return data.docs[0];
+ const data = await res.json();
+const product = Array.isArray(data) ? data[0] : data;
+
+if (!product) return null;
+
+const gallery = Array.isArray(product.acf?.product_gallery)
+  ? product.acf.product_gallery
+  : [];
+
+const imgUrl = await Promise.all(
+  gallery.map((id: number) => getImageById(id))
+);
+
+return { ...product, imgUrl };
 }
-export async function getProductsByCategorySlugPagination(
-  slug: string,
-  page = 1,
-  limit = 5
-) {
-  try {
-    const category = await getCategoryBySlug(slug);
-    if (!category) {
-      return { products: [], totalPages: 1, page: 1 };
-    }
+ 
 
-    const res = await fetch(
-      `${API_URL}/products?where[category][equals]=${category.id}&page=${page}&limit=${limit}&depth=1`,
-      { cache: "no-store" }
-    );
 
-    if (!res.ok) {
-      throw new Error("Failed to fetch products by category with pagination");
-    }
-
-    const data = await res.json();
-
-    return {
-      products: data.docs,
-      totalPages: data.totalPages,
-      page: data.page,
-    };
-  } catch (error) {
-    console.error(error);
-    return { products: [], totalPages: 1, page: 1 };
-  }
-}
 
 // import productsData from "@/data/products.json";
 
@@ -139,3 +145,4 @@ export async function getProductsByCategorySlugPagination(
 //     return { products: [], totalPages: 1, page: 1 };
 //   }
 // }
+

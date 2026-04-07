@@ -17,7 +17,7 @@ import GlobalNetworkSection from "@/components/home/GlobalNetworkSection";
 import AdvancedInfrastructure from "@/components/home/AdvancedInfrastructure";
 export default async function Home() {
   const posts = await getProducts();
-  const banner = await fetchBannerBySlug("home");
+  const banner = await fetchBannerBySlug(56);
 
   return (
     <div>

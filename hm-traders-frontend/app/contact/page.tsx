@@ -5,7 +5,7 @@ import Container from "@/components/layout/Container";
 import ContactMap from "@/components/contact/ContactMap";
 import HomeBanner from "@/components/common/HomeBanner";
 import { fetchBannerBySlug } from "@/lib/getBannerData";
-const banner = await fetchBannerBySlug("contact");
+const banner = await fetchBannerBySlug(152);
 export default function Page() {
     // return <Contact />;
 

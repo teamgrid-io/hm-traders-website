@@ -10,7 +10,7 @@ import { fetchBannerBySlug } from "@/lib/getBannerData";
  import ToolSection from "@/components/common/ToolSection";
  import ToolsGrid from "@/components/common/ToolsGrid";
  import AdvancedInfrastructure from "@/components/home/AdvancedInfrastructure";
-const banner = await fetchBannerBySlug("about");
+const banner = await fetchBannerBySlug(146);
 import { getProducts } from "@/lib/getProducts";
 export default async function AboutPage() {
   const ProductData = await getProducts();

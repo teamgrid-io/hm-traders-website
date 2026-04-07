@@ -15,8 +15,7 @@ export default async function TestimonialsSection() {
     <section className="testimonials">
       <div className="testimonials__header">
         <p className="testimonials__label">
-          <Image src="/images/star-1.png" alt="star" width={14} height={14} />
-          Testimonial
+         ★ Testimonial
         </p>
         <h2 className="testimonials__heading">
           What Our Customers <span>Say</span>

@@ -4,7 +4,7 @@ import Container from "@/components/layout/Container";
 import { fetchBannerBySlug } from "@/lib/getBannerData";
 
 export default async function Page({ searchParams }: any) {
-  const banner = await fetchBannerBySlug("productsCategory");
+  const banner = await fetchBannerBySlug(150);
   const params = await searchParams;
 
   const pageNumber = Number(params?.page) || 1;

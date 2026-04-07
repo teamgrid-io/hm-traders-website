@@ -52,6 +52,9 @@
   font-weight: 400;
   margin-bottom: 30px;
 }
+.banner-subtitle span {
+  color: #FF9C00;
+}
 
 .banner-buttons {
   display: flex;

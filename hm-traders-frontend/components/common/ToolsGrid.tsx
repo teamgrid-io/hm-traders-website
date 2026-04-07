@@ -11,10 +11,10 @@ export default function ToolsGrid({ tools = [], enableLink = false, basePath = "
         const cardContent = (
           <>
             <div className="tool-image-wrapper">
-              {tool?.images?.[0]?.url && (
+              {tool?.imgUrl && (
                 <Image
-                  src={constructMediaUrl(tool.images[0].url)}
-                  alt={tool.images[0].alt || tool.name}
+                  src={constructMediaUrl(tool.imgUrl)}
+                  alt={tool?.title?.rendered}
                   fill
                   className="tool-img"
                 />
@@ -22,7 +22,7 @@ export default function ToolsGrid({ tools = [], enableLink = false, basePath = "
             </div>
 
             <div className="tool-content">
-              <p className="tool-title">{tool.name}</p>
+              <p className="tool-title">{tool?.title?.rendered}</p>
 
               <div className="tool-rating">
                 <span className="stars">★★★★★</span>
@@ -32,7 +32,7 @@ export default function ToolsGrid({ tools = [], enableLink = false, basePath = "
                 </span>
               </div>
 
-              <p className="tool-price">₹{tool.price}</p>
+              <p className="tool-price">₹{tool?.acf?.product_price}</p>
             </div>
           </>
         );

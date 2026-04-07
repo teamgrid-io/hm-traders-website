@@ -3,7 +3,7 @@ import "./HomeBanner.css";
 import Container from "../layout/Container";
 
 export default function HomeBanner({ slug }: any) {
-  const imageUrl = constructMediaUrl(slug?.heroImage?.url);
+  const imageUrl = constructMediaUrl(slug?.hero_image_url);
 
   return (
     <section
@@ -17,19 +17,24 @@ export default function HomeBanner({ slug }: any) {
       <div
         className="banner-container"
         style={
-          slug?.slug == "home"
+          slug?.hero_slug == "home"
             ? { justifyContent: "space-between" }
             : { justifyContent: "center" }
         }
       >
         <div className="banner-content">
-          <h1 className="banner-title ">{slug?.heroTitle || slug?.title}</h1>
+          <h1 className="banner-title ">{slug?.hero_title || slug?.title}</h1>
 
-          {slug?.heroSubtitle && (
-            <p className="banner-subtitle lato " style={{textAlign: slug?.slug !== "home" ? "center":undefined}}>{slug?.heroSubtitle}</p>
+          {slug?.hero_subtitle && (
+            <p
+              className="banner-subtitle lato"
+              style={{
+                textAlign: slug?.hero_slug !== "home" ? "center" : undefined,
+              }}
+              dangerouslySetInnerHTML={{ __html: slug.hero_subtitle }}
+            />
           )}
-
-          {slug?.buttons?.length > 0 && (
+          {/* {slug?.buttons?.length > 0 && (
             <div className="banner-buttons">
               {slug.buttons.map((btn, idx) => (
                 <a
@@ -41,7 +46,21 @@ export default function HomeBanner({ slug }: any) {
                 </a>
               ))}
             </div>
-          )}
+          )} */}
+
+          <div className="banner-buttons">
+            {slug?.hero_button_1?.url && slug?.hero_button_1?.title && (
+              <a href={slug.hero_button_1.url} className="banner-btn">
+                {slug.hero_button_1.title}
+              </a>
+            )}
+
+            {slug?.hero_button_2?.url && slug?.hero_button_2?.title && (
+              <a href={slug.hero_button_2.url} className="btn-outline">
+                {slug.hero_button_2.title}
+              </a>
+            )}
+          </div>
         </div>
         {slug?.heroFeatures?.length > 0 && (
           <div className="banner-features">
