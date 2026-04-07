@@ -1,6 +1,6 @@
 import HomeBanner from "@/components/common/HomeBanner";
 import About from "@/components/home/AboutPreview";
-import OurProductCategory from "@/components/home/OurProductCategory";
+import AboutHmTraders from "@/components/home/AboutHmTraders";
 import Partners from "@/components/home/Partners";
 import GlobalNetworkSection from "@/components/home/GlobalNetworkSection";
 import StatsSection from "@/components/home/StatsSection";
@@ -10,28 +10,29 @@ import { fetchBannerBySlug } from "@/lib/getBannerData";
  import ToolSection from "@/components/common/ToolSection";
  import ToolsGrid from "@/components/common/ToolsGrid";
  import AdvancedInfrastructure from "@/components/home/AdvancedInfrastructure";
+import { getPageById } from "@/lib/api";
 const banner = await fetchBannerBySlug(146);
 import { getProducts } from "@/lib/getProducts";
 export default async function AboutPage() {
   const ProductData = await getProducts();
-  
+   const sections = await getPageById(146);
     const featuredProducts = ProductData.filter(
       (product: any) => product.isFeatureTool === true
     );
   return <>
         <HomeBanner slug={banner} />
           <Container className="mb-8">
-        <OurProductCategory /> 
+          <AboutHmTraders sections={sections} />
         </Container>
-        <StatsSection /> 
+        <StatsSection sections={sections} /> 
         <Container className="mb-12">
-        <ToolSection slug={"about"} sectionKey={"producte_expertise"} />
+        <ToolSection slug={"about"} sectionKey={"product_expertise"} sections={sections}/>
         <ToolsGrid tools={featuredProducts} />  
         </Container>
-         <AdvancedInfrastructure />
-        <Partners/> 
-      <GlobalNetworkSection/> 
-      <CTASection /> 
+         <AdvancedInfrastructure sections={sections} />
+        <Partners sections={sections}/> 
+      <GlobalNetworkSection sections={sections}/> 
+      <CTASection sections={sections} /> 
   {/* <About /> */}
   </>;
 }  

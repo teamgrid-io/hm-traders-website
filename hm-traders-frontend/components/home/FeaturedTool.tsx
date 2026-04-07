@@ -16,7 +16,7 @@ export default async function FeaturedTool({ slug }: any) {
   );
 
   return (
-    <Container className="mb-12">
+    <Container >
       <ToolSection slug="home" sectionKey="featured_products" />
 
       {/* ✅ Reusable Component */}

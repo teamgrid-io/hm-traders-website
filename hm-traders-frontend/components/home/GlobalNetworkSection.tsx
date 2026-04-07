@@ -1,72 +1,120 @@
-import { getGlobalNetwork } from "@/lib/getGlobalNetworkSection";
 import "./GlobalNetworkSection.css";
+import Container from "../layout/Container";
+import {  getMedia } from "@/lib/api";
 
-export default async function GlobalNetworkSection() {
-  const data = await getGlobalNetwork();
-  const section = data?.docs?.[0];
+export default async function GlobalNetworkSection({sections}: any) {
+  // ✅ get all sections
+
+  // ✅ find global section
+  const wpSection = sections.find(
+    (item) =>
+      item.acf_fc_layout === "global_section" &&
+      item.sectionkey === "global_Import"
+  );
+console.log("Fetched WP Section for Global Network:", wpSection); // Debug log
+  // ❌ safety check
+  if (!wpSection) return null;
+
+  // ✅ FETCH MAP IMAGE
+  const mapImage = wpSection?.mapimage
+    ? await getMedia(wpSection.mapimage)
+    : null;
+    console.log("Global Network Map Image:", mapImage);
+
+  // ✅ FETCH FEATURE ICONS
+  const featuresWithImages = await Promise.all(
+    (wpSection?.features || []).map(async (item: any) => {
+      if (!item?.icon) return { ...item, iconData: null };
+
+      const iconData = await getMedia(item.icon);
+
+      return {
+        ...item,
+        iconData,
+      };
+    })
+  );
 
   return (
     <section className="global-network">
+      <Container>
 
-      <div className="global-network__header">
-        <p className="global-network__tag">{section?.tag}</p>
+        {/* HEADER */}
+        <div className="global-network__header">
 
-        <h2 className="global-network__title">
-          {section?.title} <span className="global-network__highlight">{section?.highlight}</span>
-        </h2>
-      </div>
+          {/* tagline */}
+          <p className="global-network__tag">
+           ★ {wpSection?.tagline}
+          </p>
 
-      <div className="global-network__map">
-
-        {section?.mapImage?.url && (
-          <img
-            src={`http://localhost:3000${section.mapImage.url}`}
-            className="global-network__map-image"
-            alt="World Map"
-          />
-        )}
-
-        {section?.locations?.map((loc: any) => (
-          <div
-            key={loc.id}
-            className="global-network__pin"
-            style={{
-              top: `${loc.top}%`,
-              left: `${loc.left}%`,
+          {/* title (HTML from WP) */}
+          <h2
+            className="global-network__title"
+            dangerouslySetInnerHTML={{
+              __html: wpSection?.title || "",
             }}
-          >
-            <span className="global-network__pin-label">{loc.country}</span>
+          />
 
+        </div>
+
+        {/* MAP */}
+        <div className="global-network__map">
+
+          {mapImage?.source_url && (
             <img
-              src="/images/vector.svg"
-              className="global-network__pin-icon"
-              alt="location"
+              src={mapImage.source_url}
+              className="global-network__map-image"
+              alt="World Map"
             />
-          </div>
-        ))}
+          )}
 
-      </div>
+          {wpSection?.locations?.map((loc: any, index: number) => (
+            <div
+              key={index}
+              className="global-network__pin"
+              style={{
+                top: `${loc.top}%`,
+                left: `${loc.left}%`,
+              }}
+            >
+              <span className="global-network__pin-label">
+                {loc.country}
+              </span>
 
-      <div className="global-network__features">
-
-        {section?.features?.map((item: any) => (
-          <div key={item.id} className="global-network__card">
-
-            {item?.icon?.url && (
               <img
-                src={`http://localhost:3000${item.icon.url}`}
-                className="global-network__card-icon"
-                alt={item.title}
+                src="/images/vector.svg"
+                className="global-network__pin-icon"
+                alt="location"
               />
-            )}
+            </div>
+          ))}
 
-            <p className="global-network__card-text">{item.title}</p>
+        </div>
 
-          </div>
-        ))}
+        {/* FEATURES */}
+        <div className="global-network__features">
 
-      </div>
+          {featuresWithImages.map((item: any, index: number) => (
+            <div key={index} className="global-network__card">
 
+              {item?.iconData?.source_url && (
+                <img
+                  src={item.iconData.source_url}
+                  className="global-network__card-icon"
+                  alt={item.title}
+                />
+              )}
+
+              <p className="global-network__card-text">
+                {item.title}
+              </p>
+
+            </div>
+          ))}
+
+        </div>
+
+      </Container>
     </section>
   );
 }

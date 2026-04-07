@@ -1,14 +1,13 @@
 import Image from "next/image";
 import "./ToolSection.css";
-import { getFeaturedTool } from "@/lib/getFeaturedTool";
-import { getProducts } from "@/lib/getProducts";
 
-export default async function ToolSection({ slug, sectionKey }: any) {
-  const data = await getFeaturedTool(slug);
-  const doc = data?.docs?.[0];
+export default async function ToolSection({ sectionKey, sections }: any) {
 
-  const section = doc?.sections?.find(
-    (sec: any) => sec.sectionKey === sectionKey
+  // ✅ USE PASSED DATA (NO API CALL)
+  const section = sections?.find(
+    (sec: any) =>
+      sec.acf_fc_layout === "toolsection" &&
+      sec.sectionkey === sectionKey
   );
 
   if (!section) return null;
@@ -31,21 +30,26 @@ export default async function ToolSection({ slug, sectionKey }: any) {
   const styles =
     variantClassMap[sectionKey] || variantClassMap.featured_products;
 
-  // ✅ USE BELOW
   return (
     <section className={styles.section}>
       <div className={styles.header}>
         <div>
-          <p className={styles.tag}>★ {section?.smallTitle}</p>
 
-          <h2>
-            {section?.heading} <span>{section?.highlightWord}</span>
-          </h2>
+          <p className={styles.tag}>★ {section?.tagline}</p>
+
+          <h2
+            dangerouslySetInnerHTML={{ __html: section?.title }}
+          />
+
         </div>
 
-        <a className={styles.btn}>
-          {doc?.viewAllText} →
+        <a
+          href={section?.buttontool?.[0]?.button?.url}
+          className={styles.btn}
+        >
+          {section?.buttontool?.[0]?.button?.title} →
         </a>
+
       </div>
     </section>
   );

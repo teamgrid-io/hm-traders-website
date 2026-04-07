@@ -1,37 +1,53 @@
-import { getPartners } from "@/lib/getPartners";
+import {  getMedia } from "@/lib/api";
 import "./Partners.css";
 
+export default async function Partners({sections}: any) {
 
-export default async function Partners() {
-  const partner = await getPartners();
-  const section = partner?.docs?.[0]; 
+  // ✅ find correct section
+  const section = sections.find(
+    (item) =>
+      item.acf_fc_layout === "toolsection" &&
+      item.sectionkey === "our_partners"
+  );
+
+  if (!section) return null;
+
+  // ✅ fetch all images
+  const images = await Promise.all(
+    (section.imagetool || []).map(async (item) => {
+      if (!item.image) return null;
+      return await getMedia(item.image);
+    })
+  );
 
   return (
-   <section className="partners-section">
-  <div className="partners-container">
+    <section className="partners-section">
+      <div className="partners-container">
 
-    <p className="partners-tag">{section?.tag}</p>
+        {/* ✅ tagline */}
+        <p className="partners-tag">★{section?.tagline}</p>
 
-    <h2 className="partners-title">
-      {section?.title} <span>{section?.highlight}</span>
-    </h2>
+        {/* ✅ title */}
+        <h2
+          className="partners-title"
+          dangerouslySetInnerHTML={{ __html: section?.title }}
+        />
 
-    <div className="partners-logos">
-      {section?.partners?.map((item: any) => (
-        <div key={item.id} className="partner-card">
-
-          {item?.logo?.url && (
-            <img
-              src={`http://localhost:3000${item.logo.url}`}
-              alt={item.name}
-            />
+        {/* ✅ logos */}
+        <div className="partners-logos">
+          {images.map((img, i) =>
+            img?.source_url ? (
+              <div key={i} className="partner-card">
+                <img
+                  src={img.source_url}
+                  alt={img.alt_text || "partner"}
+                />
+              </div>
+            ) : null
           )}
-
         </div>
-      ))}
-    </div>
 
-  </div>
-</section>
+      </div>
+    </section>
   );
-} 
+}
