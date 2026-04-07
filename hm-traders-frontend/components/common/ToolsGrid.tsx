@@ -6,7 +6,7 @@ export default function ToolsGrid({ tools = [], enableLink = false, basePath = "
   if (!tools.length) return null;
 
   return (
-    <div className="tools-grid">
+    <div className="tools-grid" style={{ marginTop:  "40px" }}>
       {tools.slice(0, 4).map((tool: any) => {
         const cardContent = (
           <>

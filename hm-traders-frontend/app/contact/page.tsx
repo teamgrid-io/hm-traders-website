@@ -5,7 +5,10 @@ import Container from "@/components/layout/Container";
 import ContactMap from "@/components/contact/ContactMap";
 import HomeBanner from "@/components/common/HomeBanner";
 import { fetchBannerBySlug } from "@/lib/getBannerData";
+import { getPageById } from "@/lib/api";
+
 const banner = await fetchBannerBySlug("contact");
+  const sections = await getPageById(152);
 export default function Page() {
     // return <Contact />;
 
@@ -13,7 +16,7 @@ export default function Page() {
     <>
   <HomeBanner slug={banner} />
   <Container>
-    <ContactSection />
+    <ContactSection sections={sections} />
   </Container>
   <ContactMap />
   </>

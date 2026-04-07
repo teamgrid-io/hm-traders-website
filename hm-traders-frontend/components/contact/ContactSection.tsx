@@ -1,49 +1,50 @@
-import { getContactInfo } from "@/lib/getContactInfo";
 import ContactForm from "./ContactForm";
 import "./Contact.css";
-import { constructMediaUrl } from "@/lib/constructMediaUrl";
 import Image from "next/image";
-import { getEnquiryForm } from "@/lib/contact";
-export default async function ContactSection() {
-  const contact = await getContactInfo();
-  const enquiryForm = await getEnquiryForm();
-  const contactItems = [
-    {
-      icon: contact?.addressIcon?.url,
-      label: contact?.addressLabel,
-      value: contact?.address,
-    },
-    {
-      icon: contact?.phoneIcon?.url,
-      label: contact?.phoneLabel,
-      value: contact?.phone,
-    },
-    {
-      icon: contact?.emailIcon?.url,
-      label: contact?.emailLabel,
-      value: contact?.email,
-    },
-  ];
+import { getMedia } from "@/lib/api"; // 👈 use this
+
+export default async function ContactSection({ sections }: any) {
+
+  const section = sections?.find(
+    (item: any) => item.acf_fc_layout === "contact_section"
+  );
+
+  if (!section) return null;
+
+  // ✅ fetch all icons
+  const contactItemsWithIcons = await Promise.all(
+    section.contact_items.map(async (item: any) => {
+      const media = item.icon ? await getMedia(item.icon) : null;
+
+      return {
+        ...item,
+        iconUrl: media?.source_url || "",
+        iconAlt: media?.alt_text || "icon",
+      };
+    })
+  );
 
   return (
     <section className="contactSection">
-      {/* LEFT SIDE FORM */}
+
+      {/* LEFT FORM */}
       <div className="formBox">
-        <ContactForm title={enquiryForm?.formTitle} />
+        <ContactForm section={section} />
       </div>
 
-      {/* RIGHT SIDE INFO */}
+      {/* RIGHT INFO */}
       <div className="infoBox">
-        <h2 className="contactTitle">{contact?.formTitle}</h2>
+        <h2 className="contactTitle">{section?.form_title}</h2>
 
         <div className="contactDivider"></div>
 
-        {contactItems.map((item, index) => (
+        {contactItemsWithIcons.map((item: any, index: number) => (
           <div className="infoItem" key={index}>
-            {item?.icon && (
+
+            {item?.iconUrl && (
               <Image
-                src={constructMediaUrl(item.icon)}
-                alt="contact icon"
+                src={item.iconUrl}
+                alt={item.iconAlt}
                 width={24}
                 height={24}
               />
@@ -51,6 +52,7 @@ export default async function ContactSection() {
 
             <div>
               <strong className="contactLabel">{item?.label}</strong>
+
               <p className="contactText lato">
                 {item?.value?.split(",").map((line: string, i: number) => (
                   <span key={i}>
@@ -60,8 +62,10 @@ export default async function ContactSection() {
                 ))}
               </p>
             </div>
+
           </div>
         ))}
+
       </div>
     </section>
   );

@@ -1,37 +1,60 @@
-import {fetchCtaData} from "../../lib/getCta";
 import styles from "./CTASection.module.css";
 import Link from "next/link";
 
+export default function CTASection({ sections }: any) {
 
-export default async function CTASection() {
-  const cta = await fetchCtaData();
+  // ✅ find CTA section
+  const section = sections?.find(
+    (item: any) =>
+      item.acf_fc_layout === "toolsection" &&
+      item.sectionkey === "cta_section"
+  );
 
-  return ( 
-<section className={styles['cta-section']}>
-  <div className={styles['cta-container']}>
+  if (!section) return null;
 
-    <h2 className={styles['cta-title']}>
-      {cta?.docs?.[0]?.title} 
-      <span> {cta?.docs?.[0]?.highlightWord}</span>
-    </h2>
-    
-    <p className={styles['cta-desc']}>
-      {cta?.docs?.[0]?.description}
-    </p>
+  const buttons = section?.buttontool || [];
 
-    <div className={styles['cta-buttons']}>
+  return (
+    <section className={styles["cta-section"]}>
+      <div className={styles["cta-container"]}>
 
-      <Link href="#" className={styles['btn-primary']}>
-        {cta?.docs?.[0]?.primaryButtonText}
-      </Link>
+        {/* ✅ Title (HTML from WP) */}
+        <h2
+          className={styles["cta-title"]}
+          dangerouslySetInnerHTML={{ __html: section?.title }}
+        />
 
-      <Link href="#" className={styles['btn-secondary']}>
-        {cta?.docs?.[0]?.secondaryButtonText}
-      </Link>
+        {/* ✅ Subtitle */}
+        <p className={styles["cta-desc"]}>
+          {section?.subtitle}
+        </p>
 
-    </div>
+        {/* ✅ Buttons */}
+        <div className={styles["cta-buttons"]}>
 
-  </div>
-</section>
+          {buttons[0]?.button && (
+            <Link
+              href={buttons[0].button.url || "#"}
+              className={styles["btn-primary"]}
+              target={buttons[0].button.target || "_self"}
+            >
+              {buttons[0].button.title}
+            </Link>
+          )}
+
+          {buttons[1]?.button && (
+            <Link
+              href={buttons[1].button.url || "#"}
+              className={styles["btn-secondary"]}
+              target={buttons[1].button.target || "_self"}
+            >
+              {buttons[1].button.title}
+            </Link>
+          )}
+
+        </div>
+
+      </div>
+    </section>
   );
 }

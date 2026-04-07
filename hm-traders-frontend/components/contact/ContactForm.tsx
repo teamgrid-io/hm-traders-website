@@ -4,7 +4,7 @@ import { useState } from "react";
 import { submitContactForm } from "@/lib/contact";
 import "./Contact.css";
 
-export default function ContactForm({ title }: { title?: string }) {
+export default function ContactForm({section }: any) {
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -30,15 +30,18 @@ export default function ContactForm({ title }: { title?: string }) {
   //   }
   // };
 
-  return (
+ return (
     <>
-      <div className="formTitle">{title || "Any Questions?"}</div>
+      {/* ✅ ACF: contact_form */}
+      <div className="formTitle">
+        {section?.contact_form || "Any Questions?"}
+      </div>
 
-      <form  className="contactForm">
+      <form className="contactForm">
 
         <div className="row">
           <input
-            placeholder="Name"
+            placeholder={section?.name_placeholder || "Name"}
             value={form.name}
             onChange={(e) =>
               setForm({ ...form, name: e.target.value })
@@ -46,7 +49,7 @@ export default function ContactForm({ title }: { title?: string }) {
           />
 
           <input
-            placeholder="Email Address"
+            placeholder={section?.email_placeholder || "Email Address"}
             value={form.email}
             onChange={(e) =>
               setForm({ ...form, email: e.target.value })
@@ -55,7 +58,7 @@ export default function ContactForm({ title }: { title?: string }) {
         </div>
 
         <input
-          placeholder="Phone Number"
+          placeholder={section?.phone_placeholder || "Phone Number"}
           value={form.phone}
           onChange={(e) =>
             setForm({ ...form, phone: e.target.value })
@@ -63,16 +66,19 @@ export default function ContactForm({ title }: { title?: string }) {
         />
 
         <textarea
-          placeholder="Message"
+          placeholder={section?.message_placeholder || "Message"}
           value={form.message}
           onChange={(e) =>
             setForm({ ...form, message: e.target.value })
           }
         />
 
-        <button type="submit">Send Now</button>
+        <button type="submit">
+          {section?.button_text || "Send Now"}
+        </button>
 
       </form>
     </>
   );
+
 }

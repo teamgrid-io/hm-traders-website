@@ -13,7 +13,7 @@
   align-items: center;
   gap: 20px; /* ✅ better spacing */
   flex-wrap: wrap; /* ✅ allows wrapping */
-  margin-top: 40px;
+  margin: 40px 0px; /* ✅ add vertical spacing */
 }
 
 .featureTools-tag {
