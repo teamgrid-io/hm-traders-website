@@ -4,7 +4,7 @@ import ToolSection from "../common/ToolSection";
 import Container from "../layout/Container";
 import ToolsGrid from "../common/ToolsGrid";
 
-export default async function FeaturedTool({ slug }: any) {
+export default async function FeaturedTool({ slug ,sections}: any) {
 
   const data = await getFeaturedTool(slug);
   const section = data?.docs?.[0];
@@ -17,7 +17,7 @@ export default async function FeaturedTool({ slug }: any) {
 
   return (
     <Container >
-      <ToolSection slug="home" sectionKey="featured_products" />
+      <ToolSection slug="home" sectionKey="featured_products" sections={sections}/>
 
       {/* ✅ Reusable Component */}
       <ToolsGrid tools={featuredProducts} enableLink={true} basePath = {`/products/${featuredProducts?.category?.slug}`}/>

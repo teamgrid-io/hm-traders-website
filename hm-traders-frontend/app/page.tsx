@@ -29,7 +29,7 @@ export default async function Home() {
         </div>
       </Container>
       <OurProductCategory sections={sections}/>
-      <FeaturedTool slug={"home"} />
+      <FeaturedTool slug={"home"} sections={sections}/>
       <AdvancedInfrastructure sections={sections}/>
       <Partners sections={sections}/>
       <GlobalNetworkSection sections={sections}/>
