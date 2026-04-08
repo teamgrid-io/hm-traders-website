@@ -1,4 +1,4 @@
-import { getProductBySlug, getProductsByCategorySlug } from "@/lib/getProducts";
+import { getProductBySlug, getRelatedProductsByCategorySlug } from "@/lib/getProducts";
 import { constructMediaUrl } from "@/lib/constructMediaUrl";
 import Link from "next/link";
 import Image from "next/image";
@@ -10,12 +10,16 @@ import ToolsGrid from "@/components/common/ToolsGrid";
 import ProductTabs from "@/components/common/ProductTabs";
 import { fetchBannerBySlug } from "@/lib/getBannerData";
 import HomeBanner from "@/components/common/HomeBanner";
+import { getPageById } from "@/lib/api";
 
 export default async function ProductPage({ params }: any) {
   const { productSlug } = await params;
   const banner = await fetchBannerBySlug(314);
   const product = await getProductBySlug(productSlug);
-  const products = await getProductsByCategorySlug(product?.product_category[0]);
+
+  const products = await getRelatedProductsByCategorySlug(product?.product_category[0]);
+  console.log("ProductPage productssssssssss:", product);
+  const sections = await getPageById(56)
 
   return (
     <>
@@ -53,7 +57,7 @@ export default async function ProductPage({ params }: any) {
         specifications={product?.acf?.technical_specifications}
         features={product?.acf?.product_features}
       />
-      <ToolSection slug={"product details"} sectionKey={"Related Products"} />
+      <ToolSection slug={"product details"} sections={sections} sectionKey={"featured_products"} />
       <ToolsGrid
         tools={products?.filter((p: any) => p.id !== product.id)}
         enableLink={true}

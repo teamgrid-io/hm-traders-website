@@ -60,6 +60,31 @@ export async function getProductsByCategorySlug(slug: string) {
   );
   return products;
 }
+export async function getRelatedProductsByCategorySlug(id: any) {
+
+  const cat = await fetch(
+    `https://headlesswp.teamgrid.co.in/wp-json/wp/v2/product_category/${id}`,
+    { cache: "no-store" }
+  );
+  const slug = await cat.json();
+  const category = await getCategoryBySlug(slug.slug);
+
+  if (!category) return [];
+
+  const res = await fetch(
+    `https://headlesswp.teamgrid.co.in/wp-json/wp/v2/products?product_category=${category.id}`,
+    { cache: "no-store" }
+  );
+
+  const data = await res.json();
+  const products = await Promise.all(
+    data.map(async (product: any) => {
+      const imgUrl = await getImageById(product.acf?.product_gallery?.[0]);
+      return { ...product, imgUrl };
+    })
+  );
+  return products;
+}
 
 
 export async function getProductBySlug(slug: string) {

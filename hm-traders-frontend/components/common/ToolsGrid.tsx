@@ -4,6 +4,7 @@ import { constructMediaUrl } from "@/lib/constructMediaUrl";
 
 export default function ToolsGrid({ tools = [], enableLink = false, basePath = "" }: any) {
   if (!tools.length) return null;
+  console.log("ToolsGrid tools:", tools);
 
   return (
     <div className="tools-grid" style={{ marginTop:  "40px" }}>

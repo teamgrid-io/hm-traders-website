@@ -35,17 +35,14 @@ export default async function CataloguePage() {
         {/* E-CATALOGUES SECTION */}
         {ecatalogues && ecatalogues.length > 0 && (
           <div className="mb-16">
-            <h2 className="text-3xl font-bold mb-8 text-gray-900">
-              E-Catalogues
-            </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {ecatalogues?.map((eCat: any) => {
-                const coverImage = eCat.coverImage;
+                const coverImage = eCat.imageUrl;
 
-                const imageUrl = constructMediaUrl(coverImage?.url);
+                const imageUrl = constructMediaUrl(coverImage);
 
                 const catalogueFileUrl = constructMediaUrl(
-                  eCat.catalogueFile?.url,
+                  eCat.catalogueUrl,
                 );
 
                 return (
@@ -104,7 +101,7 @@ export default async function CataloguePage() {
         )}
 
         {/* BRAND CATALOGUES SECTION */}
-        {brands &&
+        {/* {brands &&
           brands.length > 0 &&
           Object.keys(cataloguePdfMap).length > 0 && (
             <div>
@@ -122,7 +119,7 @@ export default async function CataloguePage() {
                       key={brand.id}
                       className="rounded-lg overflow-hidden bg-white shadow-lg hover:shadow-xl transition-shadow flex flex-col"
                     >
-                      {/* LOGO */}
+     
                       <div className="relative w-full h-[250px] bg-gray-100">
                         {logoUrl ? (
                           <Image
@@ -141,7 +138,7 @@ export default async function CataloguePage() {
                         )}
                       </div>
 
-                      {/* CONTENT */}
+                 
                       <div className="p-6 flex flex-col flex-grow">
                         <h3 className="font-bold text-xl text-gray-900 mb-2">
                           {brand.name}
@@ -152,7 +149,7 @@ export default async function CataloguePage() {
                           </p>
                         )}
 
-                        {/* BUTTON */}
+                 
                         <a
                           href={cataloguePdfMap[brand.name]}
                           target="_blank"
@@ -167,7 +164,7 @@ export default async function CataloguePage() {
                 })}
               </div>
             </div>
-          )}
+          )} */}
 
         {/* NO CATALOGUES MESSAGE */}
         {(!ecatalogues || ecatalogues.length === 0) &&

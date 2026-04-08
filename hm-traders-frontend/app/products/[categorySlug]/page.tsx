@@ -8,6 +8,7 @@ const banner = await fetchBannerBySlug("products");
 
 export default async function CategoryPage({ params, searchParams }: any) {
   const { categorySlug } = await params;
+   
 
   const data = await getProductsByCategorySlug(
     categorySlug,
