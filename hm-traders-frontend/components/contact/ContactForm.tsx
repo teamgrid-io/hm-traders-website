@@ -29,7 +29,25 @@ export default function ContactForm({section }: any) {
   //     alert("Something went wrong");
   //   }
   // };
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
+  try {
+    await submitContactForm(form);
+
+    alert("Message sent!");
+
+    setForm({
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+    });
+
+  } catch (err) {
+    alert("Something went wrong");
+  }
+};
  return (
     <>
       {/* ✅ ACF: contact_form */}
@@ -37,7 +55,7 @@ export default function ContactForm({section }: any) {
         {section?.contact_form || "Any Questions?"}
       </div>
 
-      <form className="contactForm">
+   <form className="contactForm" onSubmit={handleSubmit}>
 
         <div className="row">
           <input
