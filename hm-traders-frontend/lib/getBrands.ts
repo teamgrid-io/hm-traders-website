@@ -1,8 +1,8 @@
 import { API_URL } from "../api/Api";    
 export async function getBrands() {
   try {
-    const url = `${API_URL}/brands`;
-    const res = await fetch(url, {
+
+    const res = await fetch(`https://headlesswp.teamgrid.co.in/wp-json/wp/v2/brand`, {
       cache: "no-store",
     });
     
@@ -15,8 +15,8 @@ export async function getBrands() {
     }
 
     const data = await res.json();
-
-    return data.docs || []; // Payload returns docs array
+    console.log("Fetched brands:", data);
+    return data|| []; // Payload returns docs array
   } catch (error) {
     console.error("Error fetching brands:", error);
     return [];
