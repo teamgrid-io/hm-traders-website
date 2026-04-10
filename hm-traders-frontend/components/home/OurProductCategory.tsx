@@ -3,10 +3,10 @@ import "./OurProductCategory.css";
 import Container from "../layout/Container";
 import ToolsSection from "../common/ToolSection";
 import { getMedia } from "@/lib/api";
+import { getCategories } from "@/lib/getCategories";
 export default async function OurProductCategory({sections}: any) {
-
-  // ✅ get WP sections
-
+const categories = await getCategories();   
+console.log("Fetched categories:", categories); // Debug log
   // ✅ find "our_category"
   const wpSection = sections.find(
     (item) =>
@@ -30,33 +30,30 @@ console.log("Fetched images:", images); // Debug log
     <section className="category-section">
       <Container>
         <ToolsSection slug={"home"} sectionKey="our_category" sections={sections} />
+<div className="tools-grid">
+  {categories?.slice(0,4).map((cat: any) => (
+    <a
+      key={cat.id}
+      href={cat.link}
+      className="tools-cards"
+    >
+      <Image
+        src={cat.image_url}
+        alt={cat.name}
+        fill
+        className="tools-img"
+      />
 
-    <div className="tools-grid">
-
-  {images?.map((img, index) => (
-    img?.source_url && (
-      <div key={index} className="tools-cards">
-
-        <Image
-          src={img.source_url}
-          alt={img.alt_text || img.title?.rendered || "tool"}
-          fill
-          className="tools-img"
+      {/* Overlay */}
+      <div className="tool-overlay">
+        <p
+          dangerouslySetInnerHTML={{
+            __html: cat.name,
+          }}
         />
-
-        {/* ✅ SAME OVERLAY LIKE CATEGORY */}
-        <div className="tool-overlay">
-          <p
-            dangerouslySetInnerHTML={{
-              __html: img?.title?.rendered || "Tool",
-            }}
-          />
-        </div>
-
       </div>
-    )
+    </a>
   ))}
-
 </div>
       </Container>
     </section>

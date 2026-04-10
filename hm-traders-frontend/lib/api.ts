@@ -85,3 +85,7 @@ export async function getMedia(id) {
   const data = await fetchAPI(`/media/${id}`);
   return data || null;
 }
+export async function getBrands() {
+  const data = await fetchAPI("/brand");
+  return data || [];
+}
