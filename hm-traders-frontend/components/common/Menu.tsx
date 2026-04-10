@@ -14,12 +14,18 @@ interface NavbarProps {
 
 export default function Menu({ menu }: NavbarProps) {
   const pathname = usePathname();
-
+console.log("Current pathname:", pathname); // Debug log
+console.log("Menu items:", menu); // Debug log
+ 
   return (
     <nav className="navbar desktopNav">
       {menu.map((item) => {
-        const isActive = pathname === item.link;
-        return (    
+        const isActive =
+          item.link === "/"
+            ? pathname === "/"
+            : pathname.startsWith(item.link);
+
+        return (
           <Link
             key={item.id}
             href={item.link}

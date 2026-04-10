@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ENDPOINTS } from "@/api/Api";
 import { API_URL } from "@/api/Api";
 import styles from "./Footer.module.css";
-
+import { submitContactForm } from "@/lib/contact";
 interface SocialLink {
   platform:
     | "facebook"
@@ -85,34 +85,32 @@ export default function Footer({ data }: { data: FooterData }) {
   ];
 
   const handleSubscribe = async () => {
-    if (!email || !email.includes("@")) {
-      setStatus("error");
-      setMessage("Please enter a valid email.");
-      return;
-    }
+  if (!email || !email.includes("@")) {
+    setStatus("error");
+    setMessage("Please enter a valid email.");
+    return;
+  }
 
-    setStatus("loading");
+  setStatus("loading");
 
-    try {
-      const res = await fetch(`${API_URL}/enquiries`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          formTitle: "Newsletter Subscription",
-          email: email,
-        }),
-      });
+  try {
+    await submitContactForm({
+      name: "Newsletter Subscriber",
+      email: email,
+      phone: "N/A",
+      message: `Newsletter subscription from ${email}`,
+    });
 
-      if (!res.ok) throw new Error("Failed");
-
-      setStatus("done");
-      setMessage(data.newsletter?.successMessage || "Thanks for subscribing!");
-      setEmail("");
-    } catch {
-      setStatus("error");
-      setMessage("Something went wrong. Please try again.");
-    }
-  };
+    setStatus("done");
+    setMessage(
+      data.newsletter?.successMessage || "Thanks for subscribing!"
+    );
+    setEmail("");
+  } catch {
+    setStatus("error");
+    setMessage("Something went wrong. Please try again.");
+  }
+};
   const copyright = (data.copyright ?? "").replace(
     "{{year}}",
     new Date().getFullYear().toString(),

@@ -5,27 +5,41 @@ export async function POST(req) {
   try {
     const { name, email, phone, message } = await req.json();
 
+    // ✅ detect type (newsletter or contact)
+    const isNewsletter = message?.includes("Newsletter");
+
     // ✅ create transporter
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
         user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS, // app password
+        pass: process.env.EMAIL_PASS,
       },
     });
 
     // ✅ send mail
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER, // where you receive
-      subject: "New Contact Form Submission",
-      html: `
-        <h2>New Contact Request</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-        <p><strong>Message:</strong> ${message}</p>
-      `,
+      to: process.env.EMAIL_USER,
+
+      // 🔥 dynamic subject
+      subject: isNewsletter
+        ? "Newsletter Subscription"
+        : "New Contact Form Submission",
+
+      // 🔥 dynamic HTML
+      html: isNewsletter
+        ? `
+          <h2>New Newsletter Subscriber</h2>
+          <p><strong>Email:</strong> ${email}</p>
+        `
+        : `
+          <h2>New Contact Request</h2>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Phone:</strong> ${phone}</p>
+          <p><strong>Message:</strong> ${message}</p>
+        `,
     });
 
     return NextResponse.json({ success: true });

@@ -16,7 +16,7 @@ export default async function ProductCategories({ page }: any) {
           return (
             <div
               key={cat.id}
-              className={`relative rounded-lg overflow-hidden group bg-gray-100 `}
+              className={`relative rounded-lg overflow-hidden group bg-gray-100`}
             >
               {/* IMAGE */}
               <div className="relative w-full h-[280px]">

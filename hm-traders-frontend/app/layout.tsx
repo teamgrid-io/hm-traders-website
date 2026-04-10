@@ -36,18 +36,48 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  let footerData;
-  try {
-    footerData = await getFooterData();
-  } catch (error) {
-    console.error("Failed to fetch footer data:", error);
-    footerData = {
-      brand: { companyName: "Company Name" },
-      navColumns: [],
-      newsletter: { enabled: false },
-    };
-  }
+  const footerData = {
+    brand: {
+      companyName: "H.M Traders",
+      description:
+        "Established in 1998, H. M. Traders has built a strong reputation in retail and trading of industrial tools.",
+      socialLinks: [],
+    },
 
+    navColumns: [
+      {
+        heading: "Quick Links",
+        links: [
+          { label: "Home", url: "/" },
+          { label: "About Us", url: "/about" },
+          { label: "Products", url: "/products" },
+          { label: "E-catalogue", url: "/catalogue" },
+          { label: "Contact Us", url: "/contact" },
+        ],
+      },
+      {
+        heading: "Products",
+        links: [
+          { label: "Cutting Tools", url: "/products" },
+          { label: "Carbide Tools", url: "/products" },
+          { label: "Tool Storage", url: "/products" },
+          { label: "Lifting Equipment", url: "/products" },
+        ],
+      },
+    ],
+
+    newsletter: {
+      enabled: true,
+      tagline:
+        "We specialize in HSS cutting tools, carbide tools, tool storage systems and lifting equipment.",
+      placeholder: "Enter your email",
+      buttonLabel: "Subscribe",
+      successMessage: "Thanks for subscribing!",
+    },
+
+    copyright: "© {{year}} H.M Traders. All Rights Reserved",
+  };
+console.log("footerData", footerData); // Debug log
   return (
     <html lang="en">
   <body className={`${poppins.variable} ${lato.variable} layoutBody`}>
