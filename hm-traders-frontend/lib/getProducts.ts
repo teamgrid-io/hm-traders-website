@@ -11,32 +11,69 @@ const getImageById = async (id: any) => {
   const imgData = await res.json();
   return imgData?.source_url || imgData?.link || null;
 };
+// export async function getProducts() {
+//   try {
+//     const res = await fetch(`https://headlesswp.teamgrid.co.in/wp-json/wp/v2/products`, {
+//       cache: "no-store",
+//     });
+
+//     if (!res.ok) {
+//       throw new Error("Failed to fetch products");
+//     }
+
+//     const data = await res.json();
+//     const productsWithImages = await Promise.all(
+//       data.map(async (product: any) => {
+//         const imgUrl = await getImageById(product.acf?.product_gallery?.[0]);
+//         return { ...product, imgUrl };
+//       }
+//     ));
+//     console.log("Fetched products with images:", productsWithImages);
+//     return productsWithImages || [];
+//   } catch (error) {
+//     console.error(error);
+//     return [];
+//   }
+// }
+
 export async function getProducts() {
   try {
-    const res = await fetch(`https://headlesswp.teamgrid.co.in/wp-json/wp/v2/products`, {
-      cache: "no-store",
-    });
+    const res = await fetch(
+      `https://headlesswp.teamgrid.co.in/wp-json/wp/v2/products`,
+      { cache: "no-store" }
+    );
 
-    if (!res.ok) {
-      throw new Error("Failed to fetch products");
-    }
+    if (!res.ok) throw new Error("Failed to fetch products");
 
     const data = await res.json();
-    const productsWithImages = await Promise.all(
+
+    const products = await Promise.all(
       data.map(async (product: any) => {
-        const imgUrl = await getImageById(product.acf?.product_gallery?.[0]);
-        return { ...product, imgUrl };
-      }
-    ));
-    console.log("Fetched products with images:", productsWithImages);
-    return productsWithImages || [];
+        const catId = product.product_category?.[0];
+
+        let categorySlug = "";
+
+        if (catId) {
+          const catRes = await fetch(
+            `https://headlesswp.teamgrid.co.in/wp-json/wp/v2/product_category/${catId}`
+          );
+          const catData = await catRes.json();
+          categorySlug = catData?.slug || "";
+        }
+
+        return {
+          ...product,
+          categorySlug, // ✅ ADD THIS
+        };
+      })
+    );
+
+    return products;
   } catch (error) {
     console.error(error);
     return [];
   }
 }
-
-
 export async function getCategoryBySlug(slug: string) {
   const res = await fetch(
     `https://headlesswp.teamgrid.co.in/wp-json/wp/v2/product_category?slug=${slug}`,
@@ -118,7 +155,46 @@ return { ...product, imgUrl };
 }
  
 
+export async function getProductsBySearch(query: string) {
+  try {
+    if (!query) return [];
 
+    const res = await fetch(
+      `https://headlesswp.teamgrid.co.in/wp-json/wp/v2/products?search=${query}`,
+      { cache: "no-store" }
+    );
+
+    if (!res.ok) throw new Error("Search failed");
+
+    const data = await res.json();
+
+    const products = await Promise.all(
+      data.map(async (product: any) => {
+        const catId = product.product_category?.[0];
+
+        let categorySlug = "";
+
+        if (catId) {
+          const catRes = await fetch(
+            `https://headlesswp.teamgrid.co.in/wp-json/wp/v2/product_category/${catId}`
+          );
+          const catData = await catRes.json();
+          categorySlug = catData?.slug || "";
+        }
+
+        return {
+          ...product,
+          categorySlug, // ✅ ADD THIS
+        };
+      })
+    );
+
+    return products;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+}
 
 // import productsData from "@/data/products.json";
 

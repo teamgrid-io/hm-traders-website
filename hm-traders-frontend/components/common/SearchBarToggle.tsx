@@ -14,6 +14,7 @@ export default function SearchBarToggle() {
   useEffect(() => {
     async function fetchProducts() {
       const data = await getProducts();
+      console.log("Fetched products for search:", data); // Debug log
       setAllProducts(data);
     }
     fetchProducts();
@@ -22,7 +23,9 @@ export default function SearchBarToggle() {
   const handleChange = (value: any) => setQuery(value.toLowerCase());
 
   const searchedData = query
-    ? allProducts.filter((p: any) => p.title.rendered.toLowerCase().includes(query))
+    ? allProducts.filter((p: any) =>
+        p?.title?.rendered?.toLowerCase().includes(query)
+      )
     : [];
 
   // Check if mobile
@@ -58,11 +61,12 @@ export default function SearchBarToggle() {
                 setOpen(false);
                 setQuery("");
               }}
-              href={`/products/${data.category.slug}/${data.slug}`}
+              href={`/products/${data?.categorySlug}/${data?.slug}`}
               key={i}
               className="dropdownItem"
             >
-              {data.name}
+              {data?.title?.rendered}
+
             </Link>
           ))
         )}

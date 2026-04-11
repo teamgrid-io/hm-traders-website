@@ -2,14 +2,28 @@ import Link from "next/link";
 import Image from "next/image";
 import { getCategories } from "@/lib/getCategories";
 import { constructMediaUrl } from "@/lib/constructMediaUrl";
-export default async function ProductCategories({ page }: any) {
+import Pagination from "../common/Pagination";
+export default async function ProductCategories({ page=1 }: any) {
   const categories = await getCategories();
+  // ✅ ITEMS PER PAGE
+  const ITEMS_PER_PAGE = 10;
+
+  // ✅ TOTAL PAGES
+  const totalPages = Math.ceil(categories.length / ITEMS_PER_PAGE);
+
+  // ✅ SLICE DATA
+  const startIndex = (page - 1) * ITEMS_PER_PAGE;
+  const paginatedCategories = categories.slice(
+    startIndex,
+    startIndex + ITEMS_PER_PAGE
+  );
+
 
 
   return (
     <section className="py-4">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {categories?.map((cat: any, index: number) => {
+        {paginatedCategories?.map((cat: any, index: number) => {
           const image = cat.image_url;
           const imageUrl = constructMediaUrl(image);
 
@@ -47,7 +61,13 @@ export default async function ProductCategories({ page }: any) {
           );
         })}
       </div>
-     
+                 <Pagination
+        currentPage={page}
+        totalPages={totalPages}
+        basePath="/products"
+      />
+
+
     </section>
   );
 }
