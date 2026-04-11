@@ -1,4 +1,4 @@
-import { getProductBySlug, getRelatedProductsByCategorySlug } from "@/lib/getProducts";
+import { getProductBySlug, getProductsByCategorySlug } from "@/lib/getProducts";
 import { constructMediaUrl } from "@/lib/constructMediaUrl";
 import Link from "next/link";
 import Image from "next/image";
@@ -16,17 +16,23 @@ export default async function ProductPage({ params }: any) {
   const { productSlug } = await params;
   const banner = await fetchBannerBySlug(314);
   const product = await getProductBySlug(productSlug);
-
-  const products = await getRelatedProductsByCategorySlug(product?.product_category[0]);
-  console.log("ProductPage productssssssssss:", product);
-  const sections = await getPageById(56)
+  console.log("ProductPage product:", product);
+  const products = await getProductsByCategorySlug(
+    product?.product_category?.slug,
+  );
+  const relatedProducts = products.filter((p: any) => p.id !== product.id);
+  const sections = await getPageById(56);
+  const catalogueFileUrl = constructMediaUrl(product?.catalogueUrl);
 
   return (
     <>
       <HomeBanner slug={banner} />
       <Container>
         <div className="productContainer">
-          <ProductGallery images={product?.imgUrl} name={product?.title?.rendered} />
+          <ProductGallery
+            images={product?.imgUrl}
+            name={product?.title?.rendered}
+          />
 
           <div className="productDetails">
             <h1>{product?.title?.rendered}</h1>
@@ -35,35 +41,55 @@ export default async function ProductPage({ params }: any) {
               <span>★★★★★</span>({product?.reviewCount} customer review)
             </div>
 
-          <div className="productDescription lato">
-                <p dangerouslySetInnerHTML={{ __html: product?.content?.rendered }} />
-          </div>
-          <div className="productBuyOption">
-            <button className="button">Download Catelogue</button>
-            <button className="button">Enquire Now</button>
-          </div>
+            <div className="productDescription lato">
+              <p
+                dangerouslySetInnerHTML={{ __html: product?.content?.rendered }}
+              />
+            </div>
+            <div className="productBuyOption">
+              {catalogueFileUrl &&
+                catalogueFileUrl.toLowerCase().endsWith(".pdf") && (
+                  <a
+                    href={catalogueFileUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="button"
+                  >
+                   Download Catelogue
+                  </a>
+                )}
+              <Link href="/contact" className="button">
+                Enquire Now
+              </Link>
+            </div>
 
-          <div className="productExtraInfo">
-            <p>
-              Categories: <span>{product?.category?.name}</span>
-            </p>
-            <p>
-              Brands: <span>{product?.brand}</span>
-            </p>
+            <div className="productExtraInfo">
+              <p>
+                Categories: <span>{product?.product_category?.name}</span>
+              </p>
+              <p>
+                Brands: <span>{product?.brand?.name}</span>
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-      <ProductTabs
-        specifications={product?.acf?.technical_specifications}
-        features={product?.acf?.product_features}
-      />
-      <ToolSection slug={"product details"} sections={sections} sectionKey={"featured_products"} />
-      <ToolsGrid
-        tools={products?.filter((p: any) => p.id !== product.id)}
-        enableLink={true}
-        basePath={`/products/${product?.category?.slug}`}
-      />
-    </Container>
+        <ProductTabs
+          specifications={product?.acf?.technical_specifications}
+          features={product?.acf?.product_features}
+        />
+        <ToolSection
+          slug={"product details"}
+          sections={sections}
+          sectionKey={"featured_products"}
+        />
+        {relatedProducts.length > 0 && (
+          <ToolsGrid
+            tools={relatedProducts}
+            enableLink={true}
+            basePath={`/products/${product?.product_category?.slug}`}
+          />
+        )}
+      </Container>
     </>
   );
 }
