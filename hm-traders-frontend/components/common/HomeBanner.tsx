@@ -1,8 +1,8 @@
 import { constructMediaUrl } from "@/lib/constructMediaUrl";
 import "./HomeBanner.css";
 import Container from "../layout/Container";
-
-export default function HomeBanner({ slug }: any) {
+import Image from 'next/image'
+export default function HomeBanner({ slug, heroFeatures }: any) {
   const imageUrl = constructMediaUrl(slug?.hero_image_url);
 
   return (
@@ -62,23 +62,27 @@ export default function HomeBanner({ slug }: any) {
             )}
           </div>
         </div>
-        {slug?.heroFeatures?.length > 0 && (
+        {heroFeatures?.column_items?.length > 0 && (
           <div className="banner-features">
-            {slug.heroFeatures.map((feature, idx) => (
+            {heroFeatures.column_items.map((feature, idx) => (
               <div
                 key={idx}
-                style={idx == 1 ? { background: "#04316D", color: "#fff" } : {}}
+                style={
+                  idx === 1 ? { background: "#04316D", color: "#fff" } : {}
+                }
                 className="feature-card"
               >
-                {feature.icon?.url && (
-                  <img
-                    src={constructMediaUrl(feature.icon.url)}
-                    alt={feature.title}
+                {feature?.column_items_icon_url && (
+                  <Image
+                    src={constructMediaUrl(feature.column_items_icon_url)}
+                    alt={feature.column_items_content}
                     className="feature-icon"
+                    width={50}
+                    height={50}
                   />
                 )}
-                <h3>{feature.title}</h3>
-                {feature.description && <p>{feature.description}</p>}
+
+                <h3>{feature?.column_items_content}</h3>
               </div>
             ))}
           </div>

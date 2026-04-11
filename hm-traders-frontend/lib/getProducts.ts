@@ -60,10 +60,12 @@ export async function getProducts() {
           const catData = await catRes.json();
           categorySlug = catData?.slug || "";
         }
+        const imgUrl = await getImageById(product.acf?.product_gallery?.[0]);
 
         return {
           ...product,
-          categorySlug, // ✅ ADD THIS
+          categorySlug,
+          imgUrl,
         };
       })
     );

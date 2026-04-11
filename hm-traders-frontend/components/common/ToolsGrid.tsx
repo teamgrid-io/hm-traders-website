@@ -41,7 +41,7 @@ export default function ToolsGrid({ tools = [], enableLink = false, basePath = "
         return enableLink ? (
           <Link
             key={tool.id}
-            href={`${basePath}/${tool.slug}`}
+            href={`${basePath}/${tool.categorySlug}/${tool.slug}`}
             className="tool-card"
           >
             {cardContent}

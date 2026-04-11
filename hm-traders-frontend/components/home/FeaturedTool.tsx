@@ -11,13 +11,13 @@ export default async function FeaturedTool({ slug ,sections}: any) {
   const featuredProducts = ProductData.filter(
     (product: any) => product.acf.is_featured === true
   );
-  console.log("FeaturedTool featuredProducts:", featuredProducts);
+
 
   return (
     <Container >
       <ToolSection slug="home" sectionKey="featured_products" sections={sections}/>
 
-      <ToolsGrid tools={featuredProducts} enableLink={true} basePath = {`/products/${featuredProducts?.category?.slug}`}/>
+      <ToolsGrid tools={featuredProducts} enableLink={true} basePath = {`/products`}/>
     </Container>
   );
 }

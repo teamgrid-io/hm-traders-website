@@ -15,14 +15,16 @@ import Partners from "@/components/home/Partners";
 import GlobalNetworkSection from "@/components/home/GlobalNetworkSection";
 import AdvancedInfrastructure from "@/components/home/AdvancedInfrastructure";
 import { getPageById } from "@/lib/api";
+import { fetchThreeBannerCards } from "@/lib/getThreeBannerCards";
 
 export default async function Home() {
   const posts = await getProducts();
   const banner = await fetchBannerBySlug(56);
   const sections = await getPageById(56)
+  const threeBannerCards = await fetchThreeBannerCards(56);
   return (
     <div>
-      <HomeBanner slug={banner} />
+      <HomeBanner slug={banner} heroFeatures={threeBannerCards} />
       <Container>
         <div className="home-product-spacing">
           <AboutHmTraders sections={sections} />

@@ -3,10 +3,13 @@ import Image from "next/image";
 import { getEcatalogues } from "@/lib/getEcatalogue";
 import { getBrands } from "@/lib/getBrands";
 import { constructMediaUrl } from "@/lib/constructMediaUrl";
+import HomeBanner from "@/components/common/HomeBanner";
+import { fetchBannerBySlug } from "@/lib/getBannerData";
 
 export default async function CataloguePage() {
   const ecatalogues = await getEcatalogues();
   const brands = await getBrands();
+  const banner = await fetchBannerBySlug(329);
 
   // Create a map of catalogue PDFs from brands
   const cataloguePdfMap = brands.reduce((acc: any, brand: any) => {
@@ -22,6 +25,8 @@ export default async function CataloguePage() {
   }, {});
 
   return (
+    <>
+    <HomeBanner slug={banner} />
     <Container>
       <div className="py-16">
         <h1 className="text-4xl font-bold text-center mb-4 text-gray-900">
@@ -177,5 +182,7 @@ export default async function CataloguePage() {
           )}
       </div>
     </Container>
+    </>
+    
   );
 }
