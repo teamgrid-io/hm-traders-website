@@ -25,13 +25,13 @@ export default function ToolsGrid({ tools = [], enableLink = false, basePath = "
             <div className="tool-content">
               <p className="tool-title">{tool?.title?.rendered}</p>
 
-              <div className="tool-rating">
+              {/* <div className="tool-rating">
                 <span className="stars">★★★★★</span>
                 <span className="rating">({tool.rating || 0})</span>
                 <span className="reviews">
                   • {tool.reviewCount || 0} Reviews
                 </span>
-              </div>
+              </div> */}
 
               <p className="tool-price">₹{tool?.acf?.product_price}</p>
             </div>
