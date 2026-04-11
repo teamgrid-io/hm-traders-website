@@ -1,22 +1,4 @@
 import { API_URL } from "../api/Api";    
-export async function getProducts() {
-  try {
-    const res = await fetch(`${API_URL}/products`, {
-      cache: "no-store",
-    });
-
-    if (!res.ok) {
-      throw new Error("Failed to fetch products");
-    }
-
-    const data = await res.json();
-    return data.docs;
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
-}
-
 const getImageById = async (id: any) => {
   if (!id) return null;
 
@@ -29,6 +11,32 @@ const getImageById = async (id: any) => {
   const imgData = await res.json();
   return imgData?.source_url || imgData?.link || null;
 };
+export async function getProducts() {
+  try {
+    const res = await fetch(`https://headlesswp.teamgrid.co.in/wp-json/wp/v2/products`, {
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch products");
+    }
+
+    const data = await res.json();
+    const productsWithImages = await Promise.all(
+      data.map(async (product: any) => {
+        const imgUrl = await getImageById(product.acf?.product_gallery?.[0]);
+        return { ...product, imgUrl };
+      }
+    ));
+    console.log("Fetched products with images:", productsWithImages);
+    return productsWithImages || [];
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+}
+
+
 export async function getCategoryBySlug(slug: string) {
   const res = await fetch(
     `https://headlesswp.teamgrid.co.in/wp-json/wp/v2/product_category?slug=${slug}`,

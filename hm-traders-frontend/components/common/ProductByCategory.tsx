@@ -29,18 +29,19 @@ const ProductByCategory = ({ products, categorySlug }: any) => {
     fetchBrands();
   }, []);
 
+
   const handleChange = (range: any) => {
     setPriceRange(range);
   };
   const handleSearch = (value: any) => {
     setQuery(value.toLowerCase());
   };
-  const handleBrandChange = (name: string) => {
+  const handleBrandChange = (id: any) => {
     setSelectedBrands(
       (prev) =>
-        prev.includes(name)
-          ? prev.filter((b) => b !== name) // uncheck
-          : [...prev, name], // check
+        prev.includes(id)
+          ? prev.filter((b) => b !== id) // uncheck
+          : [...prev, id], // check
     );
   };
   const handleAvailabilityChange = (type) => {
@@ -49,12 +50,15 @@ const ProductByCategory = ({ products, categorySlug }: any) => {
       [type]: !prev[type],
     }));
   };
+  console.log("ProductByCategory products:", products);
 
   const filteredProducts = products?
     .filter((p: any) => p.title.rendered.toLowerCase().includes(query))
     .filter((p: any) =>
-      selectedBrands.length > 0 ? selectedBrands.includes(p.brand) : true,
-    )
+  selectedBrands.length > 0
+    ? p.brand?.some((b: number) => selectedBrands.includes(b))
+    : true
+)
     .filter((p: any) => {
       if (availability.inStock && availability.outOfStock) return true;
       if (availability.inStock) return p.numberOfStock > 0;
@@ -62,14 +66,14 @@ const ProductByCategory = ({ products, categorySlug }: any) => {
       return true;
     })
     .filter((p: any) => {
-      if (p.price === undefined || p.price === null) return true;
-      return p.price <= price;
+      if (p.acf.product_price === undefined || p.acf.product_price === null) return true;
+      return p.acf.product_price <= price;
     })
     .sort((a: any, b: any) => {
       if (sortOption === "asc") {
-        return a.price - b.price;
+        return a.acf.product_price - b.acf.product_price;
       } else {
-        return b.price - a.price;
+        return b.acf.product_price - a.acf.product_price;
       }
     });
   const handleClearFilters = () => {
@@ -206,8 +210,8 @@ const ProductByCategory = ({ products, categorySlug }: any) => {
                 <input
                   type="checkbox"
                   id={`brand-${brand.id}`}
-                  checked={selectedBrands.includes(brand.name)}
-                  onChange={() => handleBrandChange(brand.name)}
+                  checked={selectedBrands.includes(brand.id)}
+                  onChange={() => handleBrandChange(brand.id)}
                 />
                 <label htmlFor={`brand-${brand.id}`}>{brand.name}</label>
               </div>

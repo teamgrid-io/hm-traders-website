@@ -22,7 +22,7 @@ export default function SearchBarToggle() {
   const handleChange = (value: any) => setQuery(value.toLowerCase());
 
   const searchedData = query
-    ? allProducts.filter((p: any) => p.name.toLowerCase().includes(query))
+    ? allProducts.filter((p: any) => p.title.rendered.toLowerCase().includes(query))
     : [];
 
   // Check if mobile
