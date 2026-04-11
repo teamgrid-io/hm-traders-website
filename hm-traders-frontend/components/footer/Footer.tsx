@@ -118,8 +118,7 @@ export default function Footer({ data }: { data: FooterData }) {
 
   // Debug logging
   if (typeof window !== "undefined") {
-    console.log("Raw copyright:", data.copyright);
-    console.log("Processed copyright:", copyright);
+   
   }
 
   return (

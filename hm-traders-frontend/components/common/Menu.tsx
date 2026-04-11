@@ -14,9 +14,7 @@ interface NavbarProps {
 
 export default function Menu({ menu }: NavbarProps) {
   const pathname = usePathname();
-console.log("Current pathname:", pathname); // Debug log
-console.log("Menu items:", menu); // Debug log
- 
+
   return (
     <nav className="navbar desktopNav">
       {menu.map((item) => {

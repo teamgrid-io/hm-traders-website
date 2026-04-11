@@ -53,7 +53,6 @@ const page = Number(searchParams.get("page")) || 1;
       [type]: !prev[type],
     }));
   };
-  console.log("ProductByCategory products:", products);
 
   const filteredProducts = products?
     .filter((p: any) => p.title.rendered.toLowerCase().includes(query))

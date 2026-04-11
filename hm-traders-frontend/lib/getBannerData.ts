@@ -40,7 +40,6 @@
     if (!res.ok) return null;
 
     const imgData = await res.json();
-    console.log("Fetched image data:", imgData);
     return imgData.link;
   };
 
@@ -58,7 +57,6 @@ export const fetchBannerBySlug = async (id: any) => {
         bannerData.hero_image
       );
     }
-    console.log("Banner data:", bannerData);
     return bannerData || null;
   } catch (error) { 
     console.error("Banner fetch error:", error);

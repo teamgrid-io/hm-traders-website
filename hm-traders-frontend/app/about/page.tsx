@@ -16,9 +16,10 @@ import { getProducts } from "@/lib/getProducts";
 export default async function AboutPage() {
   const ProductData = await getProducts();
    const sections = await getPageById(146);
+  
     const featuredProducts = ProductData.filter(
-      (product: any) => product.isFeatureTool === true
-    );
+    (product: any) => product.acf.is_featured === true
+  );
   return <>
         <HomeBanner slug={banner} />
           <Container className="mb-8">

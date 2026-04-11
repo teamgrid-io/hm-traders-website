@@ -8,7 +8,6 @@ const getImageById = async (id: any) => {
   if (!res.ok) return null;
 
   const imgData = await res.json();
-  console.log("Fetched image data:", imgData);
   return imgData.link;
 };
 

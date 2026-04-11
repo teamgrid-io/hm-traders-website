@@ -6,7 +6,6 @@ import { getMedia } from "@/lib/api";
 import { getCategories } from "@/lib/getCategories";
 export default async function OurProductCategory({sections}: any) {
 const categories = await getCategories();   
-console.log("Fetched categories:", categories); // Debug log
   // ✅ find "our_category"
   const wpSection = sections.find(
     (item) =>
@@ -24,8 +23,6 @@ console.log("Fetched categories:", categories); // Debug log
       return await getMedia(img.image);
     })
   );
-console.log("Fetched images:", images); // Debug log  
-
   return (
     <section className="category-section">
       <Container>

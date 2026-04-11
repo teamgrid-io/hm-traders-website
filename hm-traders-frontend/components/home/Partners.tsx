@@ -20,7 +20,6 @@ export default async function Partners({sections}: any) {
     })
   );
 const brands = await getBrands();
-console.log("brands", brands);
 const brandImages = await Promise.all(
   brands.map(async (brand: any) => {
     if (!brand?.acf?.brand_image) {
@@ -35,7 +34,6 @@ const brandImages = await Promise.all(
     };
   })
 );
-console.log("Fetched brands with logos:", brandImages); // Debug log  
   return (
     <section className="partners-section">
       <div className="partners-container">

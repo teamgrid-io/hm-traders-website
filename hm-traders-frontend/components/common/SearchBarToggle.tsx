@@ -14,7 +14,6 @@ export default function SearchBarToggle() {
   useEffect(() => {
     async function fetchProducts() {
       const data = await getProducts();
-      console.log("Fetched products for search:", data); // Debug log
       setAllProducts(data);
     }
     fetchProducts();

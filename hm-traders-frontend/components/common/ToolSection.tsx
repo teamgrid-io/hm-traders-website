@@ -11,7 +11,6 @@ export default async function ToolSection({ sectionKey, sections }: any) {
   );
 
   if (!section) return null;
-console.log("ToolSection data:", section);
   const variantClassMap: any = {
     our_category: {
       section: "tools-section",

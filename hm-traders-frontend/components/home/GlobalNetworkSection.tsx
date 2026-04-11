@@ -11,7 +11,6 @@ export default async function GlobalNetworkSection({sections}: any) {
       item.acf_fc_layout === "global_section" &&
       item.sectionkey === "global_Import"
   );
-console.log("Fetched WP Section for Global Network:", wpSection); // Debug log
   // ❌ safety check
   if (!wpSection) return null;
 
@@ -19,7 +18,6 @@ console.log("Fetched WP Section for Global Network:", wpSection); // Debug log
   const mapImage = wpSection?.mapimage
     ? await getMedia(wpSection.mapimage)
     : null;
-    console.log("Global Network Map Image:", mapImage);
 
   // ✅ FETCH FEATURE ICONS
   const featuresWithImages = await Promise.all(

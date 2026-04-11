@@ -16,7 +16,6 @@ export default async function ProductPage({ params }: any) {
   const { productSlug } = await params;
   const banner = await fetchBannerBySlug(314);
   const product = await getProductBySlug(productSlug);
-  console.log("ProductPage product:", product);
   const products = await getProductsByCategorySlug(
     product?.product_category?.slug,
   );

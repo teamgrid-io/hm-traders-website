@@ -25,7 +25,6 @@ export async function getEcatalogues() {
 
     const data = await res.json();
     const ecataloguesProduct = await data.filter((product: any) => product.acf?.product_catalogue);
-    console.log("Products with eCatalogues:", ecataloguesProduct);
     const ecatalogues = await Promise.all(
       ecataloguesProduct.map(async (product: any) => {
         const catalogueId = product.acf?.product_catalogue;
@@ -39,7 +38,6 @@ export async function getEcatalogues() {
         }
       })
     );
-    console.log("Fetched eCatalogues:", ecatalogues);
     return ecatalogues || [];
   } catch (error) {
     console.error("Error fetching eCatalogues:", error);

@@ -21,7 +21,6 @@ import { API_URL } from "@/api/Api"
 // }
 export async function submitContactForm(data) {
 
-   console.log("Sending:", data);
   const res = await fetch("/api/contact", {
     method: "POST",
     headers: {

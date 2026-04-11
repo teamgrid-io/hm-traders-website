@@ -3,7 +3,6 @@ import "./AboutHmTraders.css";
 import {  getMedia } from "@/lib/api";
 
 export default async function AboutHmTraders({sections}: any  ) {
-
   // ✅ Get all sections
   // ✅ Filter here directly (no separate function needed)
   const section = sections.find(
@@ -11,7 +10,6 @@ export default async function AboutHmTraders({sections}: any  ) {
       item.acf_fc_layout === "toolsection" &&
       item.sectionkey === "about_hm_traders"
   );
-console.log("Fetched section:", section); // Debug log
   // ✅ Get image IDs
   const topImageId = section?.imagetool?.[0]?.image;
   const bottomImageId = section?.imagetool?.[1]?.image;
@@ -20,8 +18,12 @@ console.log("Fetched section:", section); // Debug log
   const topImage = topImageId ? await getMedia(topImageId) : null;
   const bottomImage = bottomImageId ? await getMedia(bottomImageId) : null;
 
+const heroSection = sections.find(
+  (item: any) => item.acf_fc_layout === "hero"
+);
+const isHome = heroSection?.hero_slug === "home";
   return (
-    <section className="product-section">
+    <section className="product-section" style={{paddingTop: isHome ? "120px" : "80px"}}>
       <div className="product-container">
 
         {/* LEFT IMAGES */}

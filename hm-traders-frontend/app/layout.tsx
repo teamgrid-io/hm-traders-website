@@ -77,7 +77,6 @@ export default async function RootLayout({
 
     copyright: "© {{year}} H.M Traders. All Rights Reserved",
   };
-console.log("footerData", footerData); // Debug log
   return (
     <html lang="en">
   <body className={`${poppins.variable} ${lato.variable} layoutBody`}>

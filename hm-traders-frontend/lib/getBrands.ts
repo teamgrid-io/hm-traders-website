@@ -15,7 +15,6 @@ export async function getBrands() {
     }
 
     const data = await res.json();
-    console.log("Fetched brands:", data);
     return data|| []; // Payload returns docs array
   } catch (error) {
     console.error("Error fetching brands:", error);
