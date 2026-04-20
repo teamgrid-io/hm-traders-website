@@ -3,7 +3,7 @@ import { API_URL } from "@/api/Api";
 export async function getCategorySection() {
   const url = `${API_URL}/feature-sections`;
   const res = await fetch(url, {
-    cache: "no-store",
+cache: "force-cache"
   });
 
     if (!res.ok) {

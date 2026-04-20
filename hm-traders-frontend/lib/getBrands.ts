@@ -2,8 +2,8 @@ import { API_URL } from "../api/Api";
 export async function getBrands() {
   try {
 
-    const res = await fetch(`https://headlesswp.teamgrid.co.in/wp-json/wp/v2/brand`, {
-      cache: "no-store",
+    const res = await fetch(`${API_URL}/brand`, {
+     cache: "force-cache",
     });
     
 

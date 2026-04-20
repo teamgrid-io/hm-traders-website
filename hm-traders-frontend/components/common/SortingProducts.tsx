@@ -1,16 +1,21 @@
 'use client';
 import { useState } from "react";
 
-const SortingProducts = ({ onSortChange }: any) => {
-  const [sortOption, setSortOption] = useState("asc");
 
-  const handleChange = (value: string) => {
+interface SortingProductsProps {
+  onSortChange: (value: 'asc' | 'desc') => void;
+}
+
+const SortingProducts = ({ onSortChange }: SortingProductsProps) => {
+  const [sortOption, setSortOption] = useState<'asc' | 'desc'>("asc");
+
+  const handleChange = (value: 'asc' | 'desc') => {
     setSortOption(value);
     onSortChange(value);
   };
 
   return (
-    <select value={sortOption} onChange={(e) => handleChange(e.target.value)}>
+    <select value={sortOption} onChange={(e) => handleChange(e.target.value as 'asc' | 'desc')}>
       <option value="asc">Price: Low to High</option>
       <option value="desc">Price: High to Low</option>
     </select>

@@ -1,4 +1,4 @@
-// import { API_URL } from "@/api/Api";    
+import { API_URL } from "@/api/Api";    
 // export async function getCategories() {
 //   try {
 //     const res = await fetch(
@@ -72,11 +72,12 @@
 //     return { categories: [], totalPages: 1, page: 1 };
 //   }
 // }
+
 const getImageById = async (id: any) => {
   if (!id) return null;
 
   const res = await fetch(
-    `https://headlesswp.teamgrid.co.in/wp-json/wp/v2/media/${id}`
+    `${API_URL}/media/${id}`
   );
 
   if (!res.ok) return null;
@@ -88,8 +89,8 @@ const getImageById = async (id: any) => {
 export async function getCategories() {
   try {
     const res = await fetch(
-      `https://headlesswp.teamgrid.co.in/wp-json/wp/v2/product_category`,
-      { cache: "no-store" }
+      `${API_URL}/product_category`,
+      { cache: "force-cache" }
     );
 
     if (!res.ok) {

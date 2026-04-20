@@ -1,10 +1,35 @@
 import Image from "next/image";
 import "./AboutHmTraders.css";
-import {  getMedia } from "@/lib/api";
+import { getMedia } from "@/lib/api";
 
-export default async function AboutHmTraders({sections}: any  ) {
+interface Media {
+  source_url: string;
+  alt_text?: string;
+}
+
+interface ButtonTool {
+  button: {
+    title: string;
+    url: string;
+  };
+}
+
+interface Section {
+  acf_fc_layout: string;
+  sectionkey: string;
+  tagline?: string;
+  title?: string;
+  subtitle?: string;
+  buttontool?: ButtonTool[];
+  imagetool?: { image: number }[];
+}
+
+interface AboutHmTradersProps {
+  sections: Section[];
+}
+
+export default async function AboutHmTraders({ sections }: AboutHmTradersProps) {
   // ✅ Get all sections
-  // ✅ Filter here directly (no separate function needed)
   const section = sections.find(
     (item) =>
       item.acf_fc_layout === "toolsection" &&
@@ -15,13 +40,13 @@ export default async function AboutHmTraders({sections}: any  ) {
   const bottomImageId = section?.imagetool?.[1]?.image;
 
   // ✅ Fetch media (WordPress image)
-  const topImage = topImageId ? await getMedia(topImageId) : null;
-  const bottomImage = bottomImageId ? await getMedia(bottomImageId) : null;
+  const topImage: Media | null = topImageId ? await getMedia(topImageId) : null;
+  const bottomImage: Media | null = bottomImageId ? await getMedia(bottomImageId) : null;
 
-const heroSection = sections.find(
-  (item: any) => item.acf_fc_layout === "hero"
-);
-const isHome = heroSection?.hero_slug === "home";
+  const heroSection = sections.find(
+    (item) => item.acf_fc_layout === "hero"
+  );
+  const isHome = (heroSection as any)?.hero_slug === "home";
   return (
     <section className="product-section" style={{paddingTop: isHome ? "120px" : "80px"}}>
       <div className="product-container">
@@ -60,13 +85,13 @@ const isHome = heroSection?.hero_slug === "home";
 
           {/* Title with span */}
           <h2
-            dangerouslySetInnerHTML={{ __html: section?.title }}
+            dangerouslySetInnerHTML={{ __html: section?.title || "" }}
           />
 
           {/* Subtitle with <br> */}
           <p
             className="desc lato"
-            dangerouslySetInnerHTML={{ __html: section?.subtitle }}
+            dangerouslySetInnerHTML={{ __html: section?.subtitle || ""}}
           />
 
           <button className="explore-btn">

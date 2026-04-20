@@ -1,17 +1,31 @@
+import { getCategories } from "@/lib/getCategories";
 import { getProductBySlug, getProductsByCategorySlug } from "@/lib/getProducts";
 import { constructMediaUrl } from "@/lib/constructMediaUrl";
 import Link from "next/link";
 import Image from "next/image";
 import Container from "@/components/layout/Container";
 import ProductGallery from "@/components/common/ProductGallery";
-import FeaturedTool from "@/components/home/FeaturedTool";
 import ToolSection from "@/components/common/ToolSection";
 import ToolsGrid from "@/components/common/ToolsGrid";
 import ProductTabs from "@/components/common/ProductTabs";
 import { fetchBannerBySlug } from "@/lib/getBannerData";
 import HomeBanner from "@/components/common/HomeBanner";
 import { getPageById } from "@/lib/api";
-
+// Required for Next.js static export (output: export)
+export async function generateStaticParams() {
+  const categories = await getCategories();
+  const allParams: { categorySlug: string; productSlug: string }[] = [];
+  for (const category of categories) {
+    if (!category.slug) continue;
+    const products = await getProductsByCategorySlug(category.slug);
+    for (const product of products) {
+      if (product?.slug) {
+        allParams.push({ categorySlug: category.slug, productSlug: product.slug });
+      }
+    }
+  }
+  return allParams;
+}
 export default async function ProductPage({ params }: any) {
   const { productSlug } = await params;
   const banner = await fetchBannerBySlug(314);
@@ -77,7 +91,6 @@ export default async function ProductPage({ params }: any) {
           features={product?.acf?.product_features}
         />
         <ToolSection
-          slug={"product details"}
           sections={sections}
           sectionKey={"featured_products"}
         />

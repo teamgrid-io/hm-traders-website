@@ -3,7 +3,7 @@ import { API_URL } from "@/api/Api";
 export async function getFeaturedTool(slug:string) {
   const url = `${API_URL}/tool-section?where[slug][equals]=${slug}`;
   const res = await fetch(url, {
-    cache: "no-store",
+   cache: "force-cache",
   });
     if (!res.ok) {
     console.error('[frontend] product tools section fetch failed', res.status, await res.text().catch(()=>'<no body>'))

@@ -3,21 +3,40 @@ import ToolSection from "../common/ToolSection";
 import Container from "../layout/Container";
 import ToolsGrid from "../common/ToolsGrid";
 
-export default async function FeaturedTool({ slug ,sections}: any) {
+interface FeaturedToolProps {
+  slug: string;
+  sections: any[];
+}
 
+interface Product {
+  acf: {
+    is_featured?: boolean;
+    [key: string]: any;
+  };
+  [key: string]: any;
+}
 
-  const ProductData = await getProducts();
+export default async function FeaturedTool({ slug, sections }: FeaturedToolProps) {
+  const ProductData: Product[] = await getProducts();
 
+  // Map ProductData to Tool[] for ToolsGrid
   const featuredProducts = ProductData.filter(
-    (product: any) => product.acf.is_featured === true
-  );
-
+    (product) => product.acf.is_featured === true
+  ).map((product) => ({
+    id: product.id,
+    slug: product.slug,
+    title: product.title,
+    imgUrl: product.imgUrl,
+    acf: product.acf,
+    categorySlug: product.categorySlug,
+    rating: product.rating,
+    reviewCount: product.reviewCount,
+  }));
 
   return (
-    <Container >
-      <ToolSection slug="home" sectionKey="featured_products" sections={sections}/>
-
-      <ToolsGrid tools={featuredProducts} enableLink={true} basePath = {`/products`}/>
+    <Container>
+      <ToolSection sectionKey="featured_products" sections={sections} />
+      <ToolsGrid tools={featuredProducts} enableLink={true} basePath={`/products`} />
     </Container>
   );
 }

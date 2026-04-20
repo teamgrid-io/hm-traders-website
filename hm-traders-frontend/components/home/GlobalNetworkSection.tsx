@@ -1,31 +1,58 @@
+
 import "./GlobalNetworkSection.css";
 import Container from "../layout/Container";
-import {  getMedia } from "@/lib/api";
+import { getMedia } from "@/lib/api";
 
-export default async function GlobalNetworkSection({sections}: any) {
-  // ✅ get all sections
+interface Media {
+  source_url: string;
+  alt_text?: string;
+}
 
+interface Feature {
+  title: string;
+  icon?: number;
+  iconData?: Media | null;
+}
+
+interface Location {
+  top: number;
+  left: number;
+  country: string;
+}
+
+interface Section {
+  acf_fc_layout: string;
+  sectionkey: string;
+  tagline?: string;
+  title?: string;
+  mapimage?: number;
+  features?: Feature[];
+  locations?: Location[];
+}
+
+interface GlobalNetworkSectionProps {
+  sections: Section[];
+}
+
+export default async function GlobalNetworkSection({ sections }: GlobalNetworkSectionProps) {
   // ✅ find global section
   const wpSection = sections.find(
     (item) =>
       item.acf_fc_layout === "global_section" &&
       item.sectionkey === "global_Import"
   );
-  // ❌ safety check
   if (!wpSection) return null;
 
   // ✅ FETCH MAP IMAGE
-  const mapImage = wpSection?.mapimage
+  const mapImage: Media | null = wpSection?.mapimage
     ? await getMedia(wpSection.mapimage)
     : null;
 
   // ✅ FETCH FEATURE ICONS
-  const featuresWithImages = await Promise.all(
-    (wpSection?.features || []).map(async (item: any) => {
+  const featuresWithImages: Feature[] = await Promise.all(
+    (wpSection?.features || []).map(async (item) => {
       if (!item?.icon) return { ...item, iconData: null };
-
       const iconData = await getMedia(item.icon);
-
       return {
         ...item,
         iconData,
@@ -66,7 +93,7 @@ export default async function GlobalNetworkSection({sections}: any) {
             />
           )}
 
-          {wpSection?.locations?.map((loc: any, index: number) => (
+          {wpSection?.locations?.map((loc, index) => (
             <div
               key={index}
               className="global-network__pin"
@@ -92,7 +119,7 @@ export default async function GlobalNetworkSection({sections}: any) {
         {/* FEATURES */}
         <div className="global-network__features">
 
-          {featuresWithImages.map((item: any, index: number) => (
+          {featuresWithImages.map((item, index) => (
             <div key={index} className="global-network__card">
 
               {item?.iconData?.source_url && (

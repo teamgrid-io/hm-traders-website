@@ -1,25 +1,6 @@
 import { API_URL } from "@/api/Api"
-// export async function submitContactForm(form: {
-//   name: string
-//   email: string
-//   phone: string
-//   message: string
-// }) {
-//   const res = await fetch(`${API_URL}/enquiries`, {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(form),
-//   });
 
-//   if (!res.ok) {
-//     throw new Error("Failed to send message");
-//   }
-
-//   return res.json();
-// }
-export async function submitContactForm(data) {
+export async function submitContactForm(data:any) {
 
   const res = await fetch("/api/contact", {
     method: "POST",
@@ -35,7 +16,7 @@ export async function submitContactForm(data) {
 }
 export async function getEnquiryForm() {
   const res = await fetch(`${API_URL}/enquiries`, {
-    cache: "no-store",
+    cache: "force-cache",
   });
 
   const data = await res.json();

@@ -4,27 +4,32 @@ import { useState } from "react";
 import Image from "next/image";
 import { constructMediaUrl } from "@/lib/constructMediaUrl";
 
-export default function ProductGallery({ images, name }: any) {
+// ✅ 👉 PUT TYPE HERE
+type ProductGalleryProps = {
+  images: (string | null)[];
+  name: string;
+};
+
+export default function ProductGallery({
+  images = [],
+  name,
+}: ProductGalleryProps) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const activeImage = constructMediaUrl(images?.[activeIndex]);
+
+  const activeImage =
+    constructMediaUrl(images?.[activeIndex]) || "/fallback.png";
 
   return (
     <div className="gallery">
-
       {/* Main Image */}
       <div className="mainImage">
-        <Image
-          src={activeImage}
-          alt={name}
-          fill
-          className="mainImg"
-        />
+        <Image src={activeImage} alt={name} fill className="mainImg" />
       </div>
 
       {/* Thumbnails */}
       <div className="thumbnails">
-        {images?.map((img: any, i: number) => {
-          const thumbUrl = constructMediaUrl(img);
+        {images.map((img, i) => {
+          const thumbUrl = constructMediaUrl(img) || "/fallback.png";
 
           return (
             <div

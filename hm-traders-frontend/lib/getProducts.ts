@@ -3,7 +3,7 @@ const getImageById = async (id: any) => {
   if (!id) return null;
 
   const res = await fetch(
-    `https://headlesswp.teamgrid.co.in/wp-json/wp/v2/media/${id}`
+    `${API_URL}/media/${id}`
   );
 
   if (!res.ok) return null;
@@ -39,8 +39,8 @@ const getImageById = async (id: any) => {
 export async function getProducts() {
   try {
     const res = await fetch(
-      `https://headlesswp.teamgrid.co.in/wp-json/wp/v2/products`,
-      { cache: "no-store" }
+      `${API_URL}/products`,
+      { cache: "force-cache" }
     );
 
     if (!res.ok) throw new Error("Failed to fetch products");
@@ -55,7 +55,7 @@ export async function getProducts() {
 
         if (catId) {
           const catRes = await fetch(
-            `https://headlesswp.teamgrid.co.in/wp-json/wp/v2/product_category/${catId}`
+            `${API_URL}/product_category/${catId}`
           );
           const catData = await catRes.json();
           categorySlug = catData?.slug || "";
@@ -78,8 +78,8 @@ export async function getProducts() {
 }
 export async function getCategoryBySlug(slug: string) {
   const res = await fetch(
-    `https://headlesswp.teamgrid.co.in/wp-json/wp/v2/product_category?slug=${slug}`,
-    { cache: "no-store" }
+    `${API_URL}/product_category?slug=${slug}`,
+    {cache: "force-cache" }
   );
 
   const data = await res.json();
@@ -94,8 +94,8 @@ export async function getProductsByCategorySlug(slug: string) {
   if (!category) return [];
 
   const res = await fetch(
-    `https://headlesswp.teamgrid.co.in/wp-json/wp/v2/products?product_category=${category.id}`,
-    { cache: "no-store" }
+    `${API_URL}/products?product_category=${category.id}`,
+    { cache: "force-cache" }
   );
 
   const data = await res.json();
@@ -113,8 +113,8 @@ export async function getProductsByCategorySlug(slug: string) {
 export async function getProductBySlug(slug: string) {
   try {
     const res = await fetch(
-      `https://headlesswp.teamgrid.co.in/wp-json/wp/v2/products?slug=${slug}`,
-      { cache: "no-store" }
+      `${API_URL}/products?slug=${slug}`,
+      { cache: "force-cache" }
     );
 
     if (!res.ok) {
@@ -132,15 +132,15 @@ export async function getProductBySlug(slug: string) {
     // Fetch brand & category in parallel
     const [brandData, categoryData] = await Promise.all([
       brandId
-        ? fetch(`https://headlesswp.teamgrid.co.in/wp-json/wp/v2/brand/${brandId}`, {
-            cache: "no-store",
+        ? fetch(`${API_URL}/brand/${brandId}`, {
+            cache: "force-cache",
           }).then((res) => (res.ok ? res.json() : null))
         : Promise.resolve(null),
 
       categoryId
         ? fetch(
-            `https://headlesswp.teamgrid.co.in/wp-json/wp/v2/product_category/${categoryId}`,
-            { cache: "no-store" }
+            `${API_URL}/product_category/${categoryId}`,
+            { cache: "force-cache" }
           ).then((res) => (res.ok ? res.json() : null))
         : Promise.resolve(null),
     ]);
@@ -182,7 +182,7 @@ export async function getProductsBySearch(query: string) {
 
     const res = await fetch(
       `https://headlesswp.teamgrid.co.in/wp-json/wp/v2/products?search=${query}`,
-      { cache: "no-store" }
+      { cache: "force-cache" }
     );
 
     if (!res.ok) throw new Error("Search failed");
@@ -197,7 +197,7 @@ export async function getProductsBySearch(query: string) {
 
         if (catId) {
           const catRes = await fetch(
-            `https://headlesswp.teamgrid.co.in/wp-json/wp/v2/product_category/${catId}`
+            `${API_URL}/product_category/${catId}`
           );
           const catData = await catRes.json();
           categorySlug = catData?.slug || "";

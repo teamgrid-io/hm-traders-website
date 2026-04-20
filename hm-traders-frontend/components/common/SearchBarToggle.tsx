@@ -6,10 +6,20 @@ import "./SearchBarToggle.css";
 import { getProducts } from "@/lib/getProducts";
 import Link from "next/link";
 
+
+interface Product {
+  id: string;
+  slug: string;
+  title: {
+    rendered: string;
+  };
+  categorySlug?: string;
+}
+
 export default function SearchBarToggle() {
-  const [open, setOpen] = useState(false);
-  const [allProducts, setAllProducts] = useState([]);
-  const [query, setQuery] = useState("");
+  const [open, setOpen] = useState<boolean>(false);
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
+  const [query, setQuery] = useState<string>("");
 
   useEffect(() => {
     async function fetchProducts() {
@@ -19,10 +29,10 @@ export default function SearchBarToggle() {
     fetchProducts();
   }, []);
 
-  const handleChange = (value: any) => setQuery(value.toLowerCase());
+  const handleChange = (value: string) => setQuery(value.toLowerCase());
 
-  const searchedData = query
-    ? allProducts.filter((p: any) =>
+  const searchedData: Product[] = query
+    ? allProducts.filter((p) =>
         p?.title?.rendered?.toLowerCase().includes(query)
       )
     : [];
@@ -54,18 +64,17 @@ export default function SearchBarToggle() {
         {searchedData.length === 0 ? (
           <div className="noResult">No results found</div>
         ) : (
-          searchedData.map((data: any, i: number) => (
+          searchedData.map((data, i) => (
             <Link
               onClick={() => {
                 setOpen(false);
                 setQuery("");
               }}
               href={`/products/${data?.categorySlug}/${data?.slug}`}
-              key={i}
+              key={data.id}
               className="dropdownItem"
             >
               {data?.title?.rendered}
-
             </Link>
           ))
         )}

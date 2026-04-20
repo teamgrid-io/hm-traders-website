@@ -29,12 +29,13 @@
 // };
 
 //
+import { API_URL } from '../api/Api';
 
   const getImageById = async (id: any) => {
     if (!id) return null;
 
     const res = await fetch(
-      `https://headlesswp.teamgrid.co.in/wp-json/wp/v2/media/${id}`
+      `${API_URL}/media/${id}`
     );
 
     if (!res.ok) return null;
@@ -46,8 +47,8 @@
 export const fetchBannerBySlug = async (id: any) => {
   try {
     const res = await fetch(
-      `https://headlesswp.teamgrid.co.in/wp-json/wp/v2/pages/${id}`,
-      { cache: "no-store" }
+      `${API_URL}/pages/${id}`,
+      {cache: "force-cache" }
     );
 
     const data = await res.json();

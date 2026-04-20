@@ -3,7 +3,7 @@ const getImageById = async (id: any) => {
   if (!id) return null;
 
   const res = await fetch(
-    `https://headlesswp.teamgrid.co.in/wp-json/wp/v2/media/${id}`
+    `${API_URL}/media/${id}`
   );
 
   if (!res.ok) return null;
@@ -13,8 +13,8 @@ const getImageById = async (id: any) => {
 };
 export async function getEcatalogues() {
   try {
-    const res = await fetch(`https://headlesswp.teamgrid.co.in/wp-json/wp/v2/products`, {
-      cache: "no-store",
+    const res = await fetch(`${API_URL}/products`, {
+     cache: "force-cache",
     });
 
     if (!res.ok) {

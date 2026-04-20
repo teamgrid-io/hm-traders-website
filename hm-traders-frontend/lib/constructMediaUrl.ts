@@ -14,7 +14,7 @@
 
 export function constructMediaUrl(url?: string | null): string | null {
   if (!url) return null
-
+console.log("Original URL:", url);
   // If it's already a full URL starting with http, return as is
   if (url.startsWith("http")) {
     return url;
@@ -22,7 +22,7 @@ export function constructMediaUrl(url?: string | null): string | null {
 
   // Get the base CMS URL (without /api suffix)
   const cmsBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
-
+console.log("CMS Base URL:", cmsBase);
   // For relative URLs from CMS, prepend the CMS base URL
   // This ensures media requests go to the CMS, not the frontend
   if (url.startsWith("/api/media")) {

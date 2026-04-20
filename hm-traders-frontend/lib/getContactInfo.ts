@@ -3,7 +3,7 @@ import { API_URL } from "@/api/Api";
 export async function getContactInfo() {
   const res = await fetch(
     `${API_URL}/contact-info`,
-    { cache: "no-store" }
+    { cache: "force-cache" }
   );
   const data = await res.json();
 

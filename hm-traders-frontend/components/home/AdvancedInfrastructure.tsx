@@ -1,9 +1,36 @@
+
 import Image from "next/image";
 import "./AdvancedInfrastructure.css";
 import Container from "../layout/Container";
-import {  getMedia } from "@/lib/api";
+import { getMedia } from "@/lib/api";
 
-export default async function AdvancedInfrastructure({sections}: any) {
+interface Media {
+  source_url: string;
+  alt_text?: string;
+}
+
+interface ButtonTool {
+  button: {
+    title: string;
+    url: string;
+  };
+}
+
+interface Section {
+  acf_fc_layout: string;
+  sectionkey: string;
+  tagline?: string;
+  title?: string;
+  subtitle?: string;
+  buttontool?: ButtonTool[];
+  imagetool?: { image: number }[];
+}
+
+interface AdvancedInfrastructureProps {
+  sections: Section[];
+}
+
+export default async function AdvancedInfrastructure({ sections }: AdvancedInfrastructureProps) {
 
   // ✅ Get all sections
 
@@ -13,7 +40,6 @@ export default async function AdvancedInfrastructure({sections}: any) {
       item.acf_fc_layout === "toolsection" &&
       item.sectionkey === "advanced_Infrastructure"
   );
-
   if (!section2) return null;
 
   // ✅ Get image IDs
@@ -21,8 +47,8 @@ export default async function AdvancedInfrastructure({sections}: any) {
   const bottomImageId = section2?.imagetool?.[1]?.image;
 
   // ✅ Fetch images
-  const topImage = topImageId ? await getMedia(topImageId) : null;
-  const bottomImage = bottomImageId ? await getMedia(bottomImageId) : null;
+  const topImage: Media | null = topImageId ? await getMedia(topImageId) : null;
+  const bottomImage: Media | null = bottomImageId ? await getMedia(bottomImageId) : null;
 
   return (
     <section className="infra-section">
@@ -39,13 +65,13 @@ export default async function AdvancedInfrastructure({sections}: any) {
             {/* was: heading + highlightWord */}
             <h2
               className="infra-title"
-              dangerouslySetInnerHTML={{ __html: section2?.title }}
+              dangerouslySetInnerHTML={{ __html: section2?.title || "" }}
             />
 
             {/* was: description1 + description2 */}
             <p
               className="infra-desc lato"
-              dangerouslySetInnerHTML={{ __html: section2?.subtitle }}
+              dangerouslySetInnerHTML={{ __html: section2?.subtitle || "" }}
             />
 
             <button className="button">

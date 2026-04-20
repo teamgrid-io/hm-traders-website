@@ -14,7 +14,7 @@ export default function Pagination({
   basePath,
 }: PaginationProps) {
   return (
-    <div className="flex justify-center items-center gap-2 mt-10 flex-wrap">
+    <div className="flex justify-center items-center gap-2 my-10 flex-wrap">
 
       {/* Prev */}
       <Link

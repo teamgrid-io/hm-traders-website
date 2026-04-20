@@ -3,8 +3,21 @@ import Image from "next/image";
 import { getCategories } from "@/lib/getCategories";
 import { constructMediaUrl } from "@/lib/constructMediaUrl";
 import Pagination from "../common/Pagination";
-export default async function ProductCategories({ page=1 }: any) {
-  const categories = await getCategories();
+
+interface Category {
+  id: string;
+  name: string;
+  slug: string;
+  image_url: string;
+  link: string;
+}
+
+interface ProductCategoriesProps {
+  page?: number;
+}
+
+export default async function ProductCategories({ page = 1 }: ProductCategoriesProps) {
+  const categories: Category[] = await getCategories();
   // ✅ ITEMS PER PAGE
   const ITEMS_PER_PAGE = 10;
 
@@ -18,12 +31,10 @@ export default async function ProductCategories({ page=1 }: any) {
     startIndex + ITEMS_PER_PAGE
   );
 
-
-
   return (
     <section className="py-4">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {paginatedCategories?.map((cat: any, index: number) => {
+        {paginatedCategories?.map((cat, index) => {
           const image = cat.image_url;
           const imageUrl = constructMediaUrl(image);
 
@@ -37,7 +48,7 @@ export default async function ProductCategories({ page=1 }: any) {
                 {imageUrl ? (
                   <Image
                     src={imageUrl}
-                    alt={image.alt || cat.name}
+                    alt={cat.name}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
@@ -61,13 +72,11 @@ export default async function ProductCategories({ page=1 }: any) {
           );
         })}
       </div>
-                 <Pagination
+      <Pagination
         currentPage={page}
         totalPages={totalPages}
         basePath="/products"
       />
-
-
     </section>
   );
 }

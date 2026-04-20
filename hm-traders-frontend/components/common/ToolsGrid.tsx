@@ -1,24 +1,48 @@
+
 import Link from "next/link";
 import Image from "next/image";
 import { constructMediaUrl } from "@/lib/constructMediaUrl";
 
-export default function ToolsGrid({ tools = [], enableLink = false, basePath = "" }: any) {
+interface Tool {
+  id: string;
+  slug: string;
+  title: {
+    rendered: string;
+  };
+  imgUrl?: string;
+  acf?: {
+    product_price?: number;
+    [key: string]: string | number | undefined;
+  };
+  categorySlug?: string;
+}
+
+interface ToolsGridProps {
+  tools?: Tool[];
+  enableLink?: boolean;
+  basePath?: string;
+}
+
+export default function ToolsGrid({ tools = [], enableLink = false, basePath = "" }: ToolsGridProps) {
   if (!tools.length) return null;
 
   return (
-    <div className="tools-grid" style={{ marginTop:  "40px" }}>
-      {tools.slice(0, 4).map((tool: any) => {
+    <div className="tools-grid" style={{ margin:  "40px 0px" }}>
+      {tools.slice(0, 4).map((tool) => {
         const cardContent = (
           <>
             <div className="tool-image-wrapper">
-              {tool?.imgUrl && (
-                <Image
-                  src={constructMediaUrl(tool.imgUrl)}
-                  alt={tool?.title?.rendered}
-                  fill
-                  className="tool-img"
-                />
-              )}
+              {(() => {
+                const src = constructMediaUrl(tool.imgUrl) || "";
+                return src !== "" ? (
+                  <Image
+                    src={src}
+                    alt={tool?.title?.rendered}
+                    fill
+                    className="tool-img"
+                  />
+                ) : null;
+              })()}
             </div>
 
             <div className="tool-content">

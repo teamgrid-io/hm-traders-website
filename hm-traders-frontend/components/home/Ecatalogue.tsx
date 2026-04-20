@@ -1,15 +1,31 @@
+
 import Link from "next/link";
 import Image from "next/image";
 import { getEcatalogues } from "@/lib/getEcatalogue";
 import { getBrands } from "@/lib/getBrands";
 import { constructMediaUrl } from "@/lib/constructMediaUrl";
 
+interface Ecatalogue {
+  id: string;
+  title: string;
+  description?: string;
+  coverImage?: { url?: string };
+  catalogueFile?: { url?: string };
+}
+
+interface Brand {
+  name: string;
+  catalogPdf?: { url?: string };
+}
+
+type CataloguePdfMap = Record<string, string>;
+
 export default async function Ecatalogue() {
-  const ecatalogues = await getEcatalogues();
-  const brands = await getBrands();
+  const ecatalogues: Ecatalogue[] = await getEcatalogues();
+  const brands: Brand[] = await getBrands();
 
   // Create a map of catalogue PDFs from brands
-  const cataloguePdfMap = brands.reduce((acc: any, brand: any) => {
+  const cataloguePdfMap: CataloguePdfMap = brands.reduce((acc, brand) => {
     if (brand.catalogPdf?.url) {
       // Check if the URL has PDF extension
       const url = constructMediaUrl(brand.catalogPdf.url);
@@ -19,7 +35,7 @@ export default async function Ecatalogue() {
       }
     }
     return acc;
-  }, {});
+  }, {} as CataloguePdfMap);
 
   if (!ecatalogues || ecatalogues.length === 0) {
     return null;
@@ -36,7 +52,7 @@ export default async function Ecatalogue() {
         </p>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {ecatalogues?.map((eCat: any) => {
+          {ecatalogues?.map((eCat) => {
             const coverImage = eCat.coverImage;
 
             // Construct proper media URLs

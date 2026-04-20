@@ -1,5 +1,4 @@
 import HomeBanner from "@/components/common/HomeBanner";
-import About from "@/components/home/AboutPreview";
 import AboutHmTraders from "@/components/home/AboutHmTraders";
 import Partners from "@/components/home/Partners";
 import GlobalNetworkSection from "@/components/home/GlobalNetworkSection";
@@ -27,13 +26,12 @@ export default async function AboutPage() {
         </Container>
         <StatsSection sections={sections} /> 
         <Container className="mb-12">
-        <ToolSection slug={"about"} sectionKey={"product_expertise"} sections={sections}/>
+        <ToolSection sectionKey={"product_expertise"} sections={sections}/>
         <ToolsGrid tools={featuredProducts} />  
         </Container>
          <AdvancedInfrastructure sections={sections} />
         <Partners sections={sections}/> 
       <GlobalNetworkSection sections={sections}/> 
       <CTASection sections={sections} /> 
-  {/* <About /> */}
   </>;
 }  

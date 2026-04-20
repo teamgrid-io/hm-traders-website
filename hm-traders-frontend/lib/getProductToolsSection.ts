@@ -3,7 +3,7 @@ import { API_URL } from "@/api/Api";
 export async function getProductToolsSection() {
   const url = `${API_URL}/product-tools-section`;
   const res = await fetch(url, {
-    cache: "no-store",
+    cache: "force-cache",
   });
     if (!res.ok) {
     console.error('[frontend] product tools section fetch failed', res.status, await res.text().catch(()=>'<no body>'))

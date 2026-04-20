@@ -4,8 +4,29 @@ import { useState } from "react";
 import { submitContactForm } from "@/lib/contact";
 import "./Contact.css";
 
-export default function ContactForm({section }: any) {
-  const [form, setForm] = useState({
+
+interface ContactFormSection {
+  contact_form?: string;
+  name_placeholder?: string;
+  email_placeholder?: string;
+  phone_placeholder?: string;
+  message_placeholder?: string;
+  button_text?: string;
+}
+
+interface ContactFormProps {
+  section?: ContactFormSection;
+}
+
+interface ContactFormState {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+}
+
+export default function ContactForm({ section }: ContactFormProps) {
+  const [form, setForm] = useState<ContactFormState>({
     name: "",
     email: "",
     phone: "",
@@ -29,25 +50,22 @@ export default function ContactForm({section }: any) {
   //     alert("Something went wrong");
   //   }
   // };
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-  try {
-    await submitContactForm(form);
-
-    alert("Message sent!");
-
-    setForm({
-      name: "",
-      email: "",
-      phone: "",
-      message: "",
-    });
-
-  } catch (err) {
-    alert("Something went wrong");
-  }
-};
+    try {
+      await submitContactForm(form);
+      alert("Message sent!");
+      setForm({
+        name: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
+    } catch (err) {
+      alert("Something went wrong");
+    }
+  };
  return (
     <>
       {/* ✅ ACF: contact_form */}
