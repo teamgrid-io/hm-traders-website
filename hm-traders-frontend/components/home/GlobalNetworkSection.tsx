@@ -18,6 +18,8 @@ interface Location {
   top: number;
   left: number;
   country: string;
+   icon?: number; 
+  iconData?: Media | null;
 }
 
 interface Section {
@@ -42,7 +44,7 @@ export default async function GlobalNetworkSection({ sections }: GlobalNetworkSe
       item.sectionkey === "global_Import"
   );
   if (!wpSection) return null;
-
+  console.log("Global Network Section Data:", wpSection); // Debugging log
   // ✅ FETCH MAP IMAGE
   const mapImage: Media | null = wpSection?.mapimage
     ? await getMedia(wpSection.mapimage)
@@ -59,7 +61,18 @@ export default async function GlobalNetworkSection({ sections }: GlobalNetworkSe
       };
     })
   );
+const locationsWithImages: Location[] = await Promise.all(
+  (wpSection?.locations || []).map(async (loc) => {
+    if (!loc?.icon) return { ...loc, iconData: null };
 
+    const iconData = await getMedia(loc.icon);
+
+    return {
+      ...loc,
+      iconData,
+    };
+  })
+);
   return (
     <section className="global-network">
       <Container>
@@ -93,7 +106,7 @@ export default async function GlobalNetworkSection({ sections }: GlobalNetworkSe
             />
           )}
 
-          {wpSection?.locations?.map((loc, index) => (
+          {locationsWithImages.map((loc, index) => (
             <div
               key={index}
               className="global-network__pin"
@@ -106,11 +119,11 @@ export default async function GlobalNetworkSection({ sections }: GlobalNetworkSe
                 {loc.country}
               </span>
 
-              <img
-                src="/images/vector.svg"
-                className="global-network__pin-icon"
-                alt="location"
-              />
+             <img
+  src={loc?.iconData?.source_url}
+  className="global-network__pin-icon"
+  alt={loc.country}
+/>
             </div>
           ))}
 

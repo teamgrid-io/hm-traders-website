@@ -84,7 +84,7 @@
 }
 
 .global-network__pin-icon {
-  width: clamp(10px, 1.5vw, 14px);
+  width: clamp(14px, 4vw, 25px);
   display: block;
   margin: 0 auto;
 }
