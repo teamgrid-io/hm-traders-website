@@ -25,7 +25,6 @@ interface ToolsGridProps {
 
 export default function ToolsGrid({ tools = [], enableLink = false, basePath = "" }: ToolsGridProps) {
   if (!tools.length) return null;
-
   return (
     <div className="tools-grid" style={{ margin:  "40px 0px" }}>
       {tools.slice(0, 4).map((tool) => {
@@ -64,7 +63,7 @@ export default function ToolsGrid({ tools = [], enableLink = false, basePath = "
         return enableLink ? (
           <Link
             key={tool.id}
-            href={`${basePath}/${tool.categorySlug}/${tool.slug}`}
+            href={`${basePath}/${tool.slug}`}
             className="tool-card"
           >
             {cardContent}

@@ -11,30 +11,6 @@ const getImageById = async (id: any) => {
   const imgData = await res.json();
   return imgData?.source_url || imgData?.link || null;
 };
-// export async function getProducts() {
-//   try {
-//     const res = await fetch(`https://headlesswp.teamgrid.co.in/wp-json/wp/v2/products`, {
-//       cache: "no-store",
-//     });
-
-//     if (!res.ok) {
-//       throw new Error("Failed to fetch products");
-//     }
-
-//     const data = await res.json();
-//     const productsWithImages = await Promise.all(
-//       data.map(async (product: any) => {
-//         const imgUrl = await getImageById(product.acf?.product_gallery?.[0]);
-//         return { ...product, imgUrl };
-//       }
-//     ));
-//     console.log("Fetched products with images:", productsWithImages);
-//     return productsWithImages || [];
-//   } catch (error) {
-//     console.error(error);
-//     return [];
-//   }
-// }
 
 export async function getProducts() {
   try {
@@ -90,7 +66,6 @@ export async function getCategoryBySlug(slug: string) {
 
 export async function getProductsByCategorySlug(slug: string) {
   const category = await getCategoryBySlug(slug);
-
   if (!category) return [];
 
   const res = await fetch(

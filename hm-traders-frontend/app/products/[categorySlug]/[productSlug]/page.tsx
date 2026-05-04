@@ -20,7 +20,10 @@ export async function generateStaticParams() {
     const products = await getProductsByCategorySlug(category.slug);
     for (const product of products) {
       if (product?.slug) {
-        allParams.push({ categorySlug: category.slug, productSlug: product.slug });
+        allParams.push({
+          categorySlug: category.slug,
+          productSlug: product.slug,
+        });
       }
     }
   }
@@ -34,9 +37,9 @@ export default async function ProductPage({ params }: any) {
     product?.product_category?.slug,
   );
   const relatedProducts = products.filter((p: any) => p.id !== product.id);
-  const sections = await getPageById(56);
+  const sections = await getPageById(314);
   const catalogueFileUrl = constructMediaUrl(product?.catalogueUrl);
-
+  console.log("Product Data:", product);
   return (
     <>
       <HomeBanner slug={banner} />
@@ -50,9 +53,9 @@ export default async function ProductPage({ params }: any) {
           <div className="productDetails">
             <h1>{product?.title?.rendered}</h1>
             <span className="price">₹{product?.acf?.product_price}</span>
-            <div className="reviewCount">
+            {/* <div className="reviewCount">
               <span>★★★★★</span>({product?.reviewCount} customer review)
-            </div>
+            </div> */}
 
             <div className="productDescription lato">
               <p
@@ -68,7 +71,7 @@ export default async function ProductPage({ params }: any) {
                     rel="noopener noreferrer"
                     className="button"
                   >
-                   Download Catelogue
+                    Download Catelogue
                   </a>
                 )}
               <Link href="/contact" className="button">
@@ -80,9 +83,12 @@ export default async function ProductPage({ params }: any) {
               <p>
                 Categories: <span>{product?.product_category?.name}</span>
               </p>
-              <p>
-                Brands: <span>{product?.brand?.name}</span>
-              </p>
+
+              {product?.brand?.name && product.brand.name !== "Unknown" && (
+                <p>
+                  Brands: <span>{product.brand.name}</span>
+                </p>
+              )}
             </div>
           </div>
         </div>
@@ -90,16 +96,16 @@ export default async function ProductPage({ params }: any) {
           specifications={product?.acf?.technical_specifications}
           features={product?.acf?.product_features}
         />
-        <ToolSection
-          sections={sections}
-          sectionKey={"featured_products"}
-        />
         {relatedProducts.length > 0 && (
-          <ToolsGrid
-            tools={relatedProducts}
-            enableLink={true}
-            basePath={`/products/${product?.product_category?.slug}`}
-          />
+          <>
+            <ToolSection sections={sections} sectionKey={"related_products"} />
+
+            <ToolsGrid
+              tools={relatedProducts}
+              enableLink={true}
+              basePath={`/products/${product?.product_category?.slug}`}
+            />
+          </>
         )}
       </Container>
     </>

@@ -46,7 +46,6 @@ type HomeBannerProps = {
 
 export default function HomeBanner({ slug, heroFeatures }: HomeBannerProps) {
   const imageUrl = constructMediaUrl(slug?.hero_image_url);
-
   return (
     <section
       className="banner"

@@ -97,7 +97,9 @@
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: clamp(20px, 4vw, 60px);
 }
-
+.global-network__title span {
+  color: #f59e0b;
+}
 .global-network__card {
   display: flex;
   flex-direction: column;

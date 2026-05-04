@@ -18,7 +18,6 @@ export default async function CategoryPage({ params, searchParams }: any) {
   const page =await Number(searchParams?.page) || 1;
 
   const products = await getProductsByCategorySlug(categorySlug);
-
   return (
     <>
       <HomeBanner slug={banner} />

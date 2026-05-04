@@ -37,20 +37,18 @@ interface GlobalNetworkSectionProps {
 }
 
 export default async function GlobalNetworkSection({ sections }: GlobalNetworkSectionProps) {
-  // ✅ find global section
+  //  find global section
   const wpSection = sections.find(
     (item) =>
       item.acf_fc_layout === "global_section" &&
       item.sectionkey === "global_Import"
   );
   if (!wpSection) return null;
-  console.log("Global Network Section Data:", wpSection); // Debugging log
-  // ✅ FETCH MAP IMAGE
+  //  FETCH MAP IMAGE
   const mapImage: Media | null = wpSection?.mapimage
     ? await getMedia(wpSection.mapimage)
     : null;
 
-  // ✅ FETCH FEATURE ICONS
   const featuresWithImages: Feature[] = await Promise.all(
     (wpSection?.features || []).map(async (item) => {
       if (!item?.icon) return { ...item, iconData: null };

@@ -37,7 +37,6 @@ const variantClassMap = {
 };
 
 export default async function ToolSection({ sectionKey, sections }: ToolSectionProps) {
-  // ✅ USE PASSED DATA (NO API CALL)
   const section = sections?.find(
     (sec) =>
       sec.acf_fc_layout === "toolsection" &&
