@@ -39,7 +39,6 @@ export default async function ProductPage({ params }: any) {
   const relatedProducts = products.filter((p: any) => p.id !== product.id);
   const sections = await getPageById(314);
   const catalogueFileUrl = constructMediaUrl(product?.catalogueUrl);
-  console.log("Product Data:", product);
   return (
     <>
       <HomeBanner slug={banner} />

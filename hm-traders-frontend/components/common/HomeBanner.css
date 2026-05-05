@@ -71,7 +71,8 @@
   border-top-left-radius: 5px;
   border-bottom-right-radius: 5px;
   transition: 0.3s;
-
+  align-items: center;
+  display: flex;
 }
 
 .btn-outline {
@@ -80,6 +81,8 @@
   background: transparent;
   text-decoration: none;
   border: 2px solid #fff;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
   transition: 0.3s;
 }
 

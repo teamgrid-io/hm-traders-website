@@ -13,7 +13,7 @@ const ProductByCategory = ({ products, categorySlug }: any) => {
   const [query, setQuery] = useState("");
   const [Brands, setBrands] = useState<any[]>([]);
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
-  const [price, setPrice] = useState(100000);
+  const [price, setPrice] = useState(10000);
   const [showFilters, setShowFilters] = useState(false);
 
   const [availability, setAvailability] = useState({
@@ -120,13 +120,13 @@ const ProductByCategory = ({ products, categorySlug }: any) => {
                     <div className="tool-content">
                       <p className="tool-title">{product.title.rendered}</p>
 
-                      <div className="tool-rating">
+                      {/* <div className="tool-rating">
                         <span className="stars">★★★★★</span>
                         <span className="rating">({product.rating})</span>
                         <span className="reviews">
                           • {product.reviewCount} Reviews
                         </span>
-                      </div>
+                      </div> */}
 
                       <p className="tool-price">₹{product.acf.product_price}</p>
                     </div>
@@ -158,7 +158,7 @@ const ProductByCategory = ({ products, categorySlug }: any) => {
             <input
               type="range"
               min="0"
-              max="100000"
+              max="10000"
               step="10"
               value={price}
               onChange={(e) => setPrice(Number(e.target.value))}

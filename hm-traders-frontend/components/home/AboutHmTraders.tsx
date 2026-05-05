@@ -1,7 +1,7 @@
 import Image from "next/image";
 import "./AboutHmTraders.css";
 import { getMedia } from "@/lib/api";
-
+import Link from "next/link";
 interface Media {
   source_url: string;
   alt_text?: string;
@@ -94,9 +94,12 @@ export default async function AboutHmTraders({ sections }: AboutHmTradersProps) 
             dangerouslySetInnerHTML={{ __html: section?.subtitle || ""}}
           />
 
-          <button className="explore-btn">
-            {section?.buttontool?.[0]?.button?.title}
-          </button>
+         <Link
+  href={section?.buttontool?.[0]?.button?.url || "#"}
+  className="explore-btn"
+>
+  {section?.buttontool?.[0]?.button?.title}
+</Link>
 
         </div>
 

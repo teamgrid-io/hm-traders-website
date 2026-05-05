@@ -100,6 +100,7 @@
 
 /* BUTTON */
 .explore-btn {
+  display: inline-block;
   margin-top: 20px;
   padding: 12px 26px;
   background: #ff9c00;
