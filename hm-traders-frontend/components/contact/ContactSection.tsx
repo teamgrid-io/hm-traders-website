@@ -4,9 +4,8 @@ import Image from "next/image";
 import { getMedia } from "@/lib/api"; // 👈 use this
 
 export default async function ContactSection({ sections }: any) {
-
   const section = sections?.find(
-    (item: any) => item.acf_fc_layout === "contact_section"
+    (item: any) => item.acf_fc_layout === "contact_section",
   );
 
   if (!section) return null;
@@ -21,12 +20,11 @@ export default async function ContactSection({ sections }: any) {
         iconUrl: media?.source_url || "",
         iconAlt: media?.alt_text || "icon",
       };
-    })
+    }),
   );
 
   return (
     <section className="contactSection">
-
       {/* LEFT FORM */}
       <div className="formBox">
         <ContactForm section={section} />
@@ -40,7 +38,6 @@ export default async function ContactSection({ sections }: any) {
 
         {contactItemsWithIcons.map((item: any, index: number) => (
           <div className="infoItem" key={index}>
-
             {item?.iconUrl && (
               <Image
                 src={item.iconUrl}
@@ -54,18 +51,40 @@ export default async function ContactSection({ sections }: any) {
               <strong className="contactLabel">{item?.label}</strong>
 
               <p className="contactText lato">
-                {item?.value?.split(",").map((line: string, i: number) => (
-                  <span key={i}>
-                    {line}
-                    <br />
-                  </span>
-                ))}
+                {(() => {
+                  if (!item?.value) return null;
+
+                
+                  if (item.label?.toLowerCase().includes("email")) {
+                    return item.value
+                      .split(",")
+                      .map((email: string, i: number) => (
+                        <span key={i}>
+                          {email.trim()}
+                          <br />
+                        </span>
+                      ));
+                  }
+
+                  
+                  if (item.label?.toLowerCase().includes("contact")) {
+                    return item.value
+                      .split(",")
+                      .map((phone: string, i: number) => (
+                        <span key={i}>
+                          {phone.trim()}
+                          <br />
+                        </span>
+                      ));
+                  }
+
+                
+                  return item.value.replace(/,/g, ",\n");
+                })()}
               </p>
             </div>
-
           </div>
         ))}
-
       </div>
     </section>
   );

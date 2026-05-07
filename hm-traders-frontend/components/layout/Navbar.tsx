@@ -28,9 +28,9 @@ export default async function Header() {
         <div className="headerContainer">
 
           {/* LOGO */}
-          <div className="logo">
-            <Image src={HmLogo} alt="HM Traders Logo" width={98} height={36} />
-          </div>
+          <Link href="/" className="logo">
+            <Image src={HmLogo} alt="HM Traders Logo" width={105} height={40} />
+          </Link>
 
           {/* DESKTOP NAV */}
           <Menu menu={menu} />

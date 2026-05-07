@@ -45,23 +45,41 @@ export default function ProductTabs({
         {activeTab === "specs" && (
           <table className="specTable">
             <tbody>
-              {specifications?.map((spec, i) => (
-                <tr key={i}>
-                  <td className="specLabel lato">{spec.title}</td>
-                  <td className="specValue lato">{spec.value}</td>
-                </tr>
-              ))}
-            </tbody>
+  {
+    specifications?.length > 0 ? (
+      specifications.map((spec, i) => (
+        <tr key={i}>
+          <td className="specLabel lato">{spec.title}</td>
+          <td className="specValue lato">{spec.value}</td>
+        </tr>
+      ))
+    ) : (
+      <tr>
+        <p  className="noSpecs ">
+          No specifications available.
+        </p>
+      </tr>
+    )
+  }
+</tbody>
           </table>
         )}
 
         {activeTab === "features" && (
           <ul className="featureList lato">
-            {features?.map((item, i) => (
+           {
+            features?.length > 0 ? (
+               features?.map((item, i) => (
               <li className="featureValue" key={i}>
                  <span className="point">✔</span> {item.feature}
               </li>
-            ))}
+            ))
+            ) : (
+              <p  className=" ">
+                No features available.
+              </p>
+            )
+           }
           </ul>
         )}
       </div>

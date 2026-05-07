@@ -13,7 +13,7 @@ const ProductByCategory = ({ products, categorySlug }: any) => {
   const [query, setQuery] = useState("");
   const [Brands, setBrands] = useState<any[]>([]);
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
-  const [price, setPrice] = useState(10000);
+  const [price, setPrice] = useState(200000);
   const [showFilters, setShowFilters] = useState(false);
 
   const [availability, setAvailability] = useState({
@@ -158,7 +158,7 @@ const ProductByCategory = ({ products, categorySlug }: any) => {
             <input
               type="range"
               min="0"
-              max="10000"
+              max="200000"
               step="10"
               value={price}
               onChange={(e) => setPrice(Number(e.target.value))}

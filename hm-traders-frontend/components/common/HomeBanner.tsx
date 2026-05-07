@@ -57,20 +57,19 @@ export default function HomeBanner({ slug, heroFeatures }: HomeBannerProps) {
       <div className="banner-overlay"></div>
       <div
         className="banner-container"
-        style={
-          slug?.hero_slug == "home"
-            ? { justifyContent: "space-between" }
-            : { justifyContent: "center" }
-        }
+        style={{
+            justifyContent: slug?.hero_slug == "home" ? "space-between" : "center",
+        }}
       >
         <div className="banner-content">
-          <h1 className="banner-title ">{slug?.hero_title || slug?.title}</h1>
+          <h1 className="banner-title " style={{ marginBottom: slug?.hero_slug == "home"? "20px" : "0px"}}>{slug?.hero_title || slug?.title}</h1>
 
           {slug?.hero_subtitle && (
             <p
               className="banner-subtitle lato"
               style={{
                 textAlign: slug?.hero_slug !== "home" ? "center" : undefined,
+                marginBottom: slug?.hero_slug === "home" ? "30px" : "0px",
               }}
               dangerouslySetInnerHTML={{ __html: slug.hero_subtitle }}
             />

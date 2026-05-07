@@ -72,6 +72,11 @@
   margin-right: 15px;
   font-weight: bold;
 }
+.noSpecs{
+  text-align: center;
+  font-size: 14px;
+  color: #888;
+}
 @media (max-width:480px) {
   .tableArea {
     padding: 0px;
