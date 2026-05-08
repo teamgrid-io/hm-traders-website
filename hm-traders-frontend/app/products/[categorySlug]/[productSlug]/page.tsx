@@ -101,8 +101,6 @@ export default async function ProductPage({ params }: any) {
 
             <ToolsGrid
               tools={relatedProducts}
-              enableLink={true}
-              basePath={`/products/${product?.product_category?.slug}`}
             />
           </>
         )}

@@ -41,17 +41,17 @@ interface OurProductCategoryProps {
 
 export default async function OurProductCategory({ sections }: OurProductCategoryProps) {
   const categories: Category[] = await getCategories();
-  // ✅ find "our_category"
+
   const wpSection = sections.find(
     (item) =>
       item.acf_fc_layout === "toolsection" &&
       item.sectionkey === "our_category"
   );
 
-  // ✅ get image IDs from ACF
+
   const imageIds = wpSection?.imagetool || [];
 
-  // ✅ fetch all images
+
   const images: (Media | null)[] = await Promise.all(
     imageIds.map(async (img) => {
       if (!img?.image) return null;
@@ -66,7 +66,7 @@ export default async function OurProductCategory({ sections }: OurProductCategor
           {categories?.slice(0, 4).map((cat) => (
             <a
               key={cat.id}
-              href={cat.link}
+              href={`/products/${cat.slug}`}
               className="tools-cards"
             >
               <Image

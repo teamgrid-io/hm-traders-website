@@ -23,7 +23,7 @@ interface ToolsGridProps {
   basePath?: string;
 }
 
-export default function ToolsGrid({ tools = [], enableLink = false, basePath = "" }: ToolsGridProps) {
+export default function ToolsGrid({ tools = [] }: ToolsGridProps) {
   if (!tools.length) return null;
   return (
     <div className="tools-grid" style={{ margin:  "40px 0px" }}>
@@ -60,19 +60,15 @@ export default function ToolsGrid({ tools = [], enableLink = false, basePath = "
           </>
         );
 
-        return enableLink ? (
+        return  (
           <Link
             key={tool.id}
-            href={`${basePath}/${tool.slug}`}
+            href={`/products/${tool.categorySlug}/${tool.slug}`}
             className="tool-card"
           >
             {cardContent}
           </Link>
-        ) : (
-          <div key={tool.id} className="tool-card">
-            {cardContent}
-          </div>
-        );
+        ) 
       })}
     </div>
   );

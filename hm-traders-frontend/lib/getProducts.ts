@@ -77,7 +77,7 @@ export async function getProductsByCategorySlug(slug: string) {
   const products = await Promise.all(
     data.map(async (product: any) => {
       const imgUrl = await getImageById(product.acf?.product_gallery?.[0]);
-      return { ...product, imgUrl };
+      return { ...product, imgUrl, categorySlug: slug };
     })
   );
   return products;
