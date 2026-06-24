@@ -50,7 +50,7 @@
 .banner-subtitle {
   font-size: 20px;
   font-weight: 400;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
 }
 .banner-subtitle span {
   color: #FF9C00;
@@ -90,7 +90,9 @@
   scale: 1.05;
 }
 
-
+.btn-outline:hover {
+  scale: 1.05;
+}
 
 .banner-features {
   position: absolute;      

@@ -9,8 +9,8 @@ import MobileMenu from "../common/MobileMenu";
 import Menu from "../common/Menu";
 
 export default async function Header() {
-  // const menu = await getMenu(); 
-   const menu = [
+  // const menu = await getMenu();
+  const menu = [
     { id: 1, title: "Home", link: "/" },
     { id: 2, title: "About Us", link: "/about" },
     { id: 3, title: "Products", link: "/products" },
@@ -18,19 +18,23 @@ export default async function Header() {
     { id: 5, title: "Contact Us", link: "/contact" },
   ];
 
-
-
   return (
     <>
       <NavbarScrollEffect />
 
       <div className="topHeader">
         <div className="headerContainer">
-
           {/* LOGO */}
-          <div className="logo">
-            <Image src={HmLogo} alt="HM Traders Logo" width={98} height={36} />
-          </div>
+          <Link href="/">
+            <div className="logo">
+              <Image
+                src={HmLogo}
+                alt="HM Traders Logo"
+                width={107}
+                height={44}
+              />
+            </div>
+          </Link>
 
           {/* DESKTOP NAV */}
           <Menu menu={menu} />
@@ -39,7 +43,7 @@ export default async function Header() {
           <div className="headerIcons">
             <div className="desktopOnly">
               <SearchBarToggle />
-              <Link href='/contact'>
+              <Link href="/contact">
                 <button className="button">Request a Quote</button>
               </Link>
             </div>
@@ -47,7 +51,6 @@ export default async function Header() {
             {/* MOBILE MENU */}
             <MobileMenu menu={menu} />
           </div>
-
         </div>
       </div>
     </>

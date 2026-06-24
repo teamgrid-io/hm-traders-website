@@ -28,18 +28,18 @@ export default async function CataloguePage() {
     <>
     <HomeBanner slug={banner} />
     <Container>
-      <div className="py-16">
-        <h1 className="text-4xl font-bold text-center mb-4 text-gray-900">
+      <div className="py-8">
+        {/* <h1 className="text-4xl font-bold text-center mb-4 text-gray-900">
           Catalogues
         </h1>
         <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
           Download and explore our comprehensive e-catalogues and brand
           catalogues
-        </p>
+        </p> */}
 
         {/* E-CATALOGUES SECTION */}
         {ecatalogues && ecatalogues.length > 0 && (
-          <div className="mb-16">
+          <div className="">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {ecatalogues?.map((eCat: any) => {
                 const coverImage = eCat.imageUrl;

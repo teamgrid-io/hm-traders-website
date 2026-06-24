@@ -27,7 +27,7 @@ export default async function AboutPage() {
         <StatsSection sections={sections} /> 
         <Container className="mb-12">
         <ToolSection sectionKey={"product_expertise"} sections={sections}/>
-        <ToolsGrid tools={featuredProducts} />  
+       <ToolsGrid tools={featuredProducts} />  
         </Container>
          <AdvancedInfrastructure sections={sections} />
         <Partners sections={sections}/> 

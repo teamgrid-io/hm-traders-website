@@ -1,8 +1,7 @@
 import { API_URL } from "@/api/Api"
 
-export async function submitContactForm(data:any) {
-
-  const res = await fetch("/api/contact", {
+export async function submitContactForm(data: any) {
+  const res = await fetch("https://hmtraderskol.com/contact-handler.php", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -10,9 +9,13 @@ export async function submitContactForm(data:any) {
     body: JSON.stringify(data),
   });
 
-  if (!res.ok) throw new Error("Failed");
+  const result = await res.json();
 
-  return res.json();
+  if (!res.ok) {
+    throw result; // 👈 send real errors to frontend
+  }
+
+  return result;
 }
 export async function getEnquiryForm() {
   const res = await fetch(`${API_URL}/enquiries`, {

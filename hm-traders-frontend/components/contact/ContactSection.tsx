@@ -54,12 +54,43 @@ export default async function ContactSection({ sections }: any) {
               <strong className="contactLabel">{item?.label}</strong>
 
               <p className="contactText lato">
-                {item?.value?.split(",").map((line: string, i: number) => (
-                  <span key={i}>
-                    {line}
-                    <br />
-                  </span>
-                ))}
+                {(() => {
+                  if (!item?.value) return null;
+ 
+               
+                 {/* Email */}
+if (item.label?.toLowerCase().includes("email")) {
+  return item.value
+    .split(",")
+    .map((email: string, i: number) => (
+      <span key={i}>
+        <a
+          href={`https://mail.google.com/mail/?view=cm&fs=1&to=${email.trim()}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ color: "inherit", textDecoration: "none" }}
+        >
+          {email.trim()}
+        </a>
+        <br />
+      </span>
+    ));
+}
+                 
+                  if (item.label?.toLowerCase().includes("contact")) {
+                    return item.value
+                      .split(",")
+                      .map((phone: string, i: number) => (
+                        <span key={i}>
+                          {phone.trim()}
+                          <br />
+                        </span>
+                      ));
+                  }
+ 
+               
+                  return item.value.replace(/,/g, ",\n");
+                })()}
               </p>
             </div>
 

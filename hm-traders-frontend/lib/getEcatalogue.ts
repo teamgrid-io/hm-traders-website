@@ -13,7 +13,7 @@ const getImageById = async (id: any) => {
 };
 export async function getEcatalogues() {
   try {
-    const res = await fetch(`${API_URL}/products`, {
+    const res = await fetch(`${API_URL}/products?per_page=100`, {
      cache: "force-cache",
     });
 

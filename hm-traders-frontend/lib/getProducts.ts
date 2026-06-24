@@ -15,7 +15,7 @@ const getImageById = async (id: any) => {
 export async function getProducts() {
   try {
     const res = await fetch(
-      `${API_URL}/products`,
+      `${API_URL}/products?per_page=100`,
       { cache: "force-cache" }
     );
 
@@ -77,7 +77,7 @@ export async function getProductsByCategorySlug(slug: string) {
   const products = await Promise.all(
     data.map(async (product: any) => {
       const imgUrl = await getImageById(product.acf?.product_gallery?.[0]);
-      return { ...product, imgUrl };
+      return { ...product, imgUrl, categorySlug: slug };
     })
   );
   return products;

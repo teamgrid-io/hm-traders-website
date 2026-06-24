@@ -1,10 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "export", // ✅ REQUIRED for static export
+  output: "export", //  REQUIRED for static export
   trailingSlash: true,
   images: {
-    unoptimized: true, // ✅ MUST be true for static export
+    unoptimized: true, // MUST be true for static export
     dangerouslyAllowLocalIP: true,
     remotePatterns: [
       {

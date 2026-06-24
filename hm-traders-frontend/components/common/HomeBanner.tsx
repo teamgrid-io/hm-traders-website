@@ -2,13 +2,13 @@ import { constructMediaUrl } from "@/lib/constructMediaUrl";
 import "./HomeBanner.css";
 // import Container from "../layout/Container";
 import Image from 'next/image'
-
+ 
 interface BannerButton {
   label: string;
   link: string;
   id?: string | null;
 }
-
+ 
 export interface BannerFeature {
   title: string;
   description?: string | null;
@@ -18,7 +18,7 @@ export interface BannerFeature {
   column_items_icon_url?: string | null;
   column_items_content?: string;
 }
-
+ 
 interface Banner {
   id: string;
   title: string;
@@ -34,16 +34,16 @@ interface Banner {
   updatedAt?: string;
   createdAt?: string;
 }
-
+ 
 interface ThreeBannerCards {
   column_items: BannerFeature[];
 }
-
+ 
 type HomeBannerProps = {
   slug: Banner;
   heroFeatures?: ThreeBannerCards;
 };
-
+ 
 export default function HomeBanner({ slug, heroFeatures }: HomeBannerProps) {
   const imageUrl = constructMediaUrl(slug?.hero_image_url);
   return (
@@ -57,45 +57,32 @@ export default function HomeBanner({ slug, heroFeatures }: HomeBannerProps) {
       <div className="banner-overlay"></div>
       <div
         className="banner-container"
-        style={
-          slug?.hero_slug == "home"
-            ? { justifyContent: "space-between" }
-            : { justifyContent: "center" }
-        }
+        style={{
+            justifyContent: slug?.hero_slug == "home" ? "space-between" : "center",
+        }}
       >
         <div className="banner-content">
-          <h1 className="banner-title ">{slug?.hero_title || slug?.title}</h1>
-
+          <h1 className="banner-title " style={{ marginBottom: slug?.hero_slug == "home"? "20px" : "0px"}}>{slug?.hero_title || slug?.title}</h1>
+ 
           {slug?.hero_subtitle && (
             <p
               className="banner-subtitle lato"
               style={{
                 textAlign: slug?.hero_slug !== "home" ? "center" : undefined,
+                marginBottom: slug?.hero_slug === "home" ? "30px" : "0px",
               }}
               dangerouslySetInnerHTML={{ __html: slug.hero_subtitle }}
             />
           )}
-          {/* {slug?.buttons?.length > 0 && (
-            <div className="banner-buttons">
-              {slug.buttons.map((btn, idx) => (
-                <a
-                  key={idx}
-                  href={btn.link}
-                  className={`banner-btn ${idx === 1 ? "btn-outline" : ""}`}
-                >
-                  {btn.label}
-                </a>
-              ))}
-            </div>
-          )} */}
-
+          
+ 
           <div className="banner-buttons">
             {slug?.hero_button_1?.url && slug?.hero_button_1?.title && (
               <a href={slug.hero_button_1.url} className="banner-btn">
                 {slug.hero_button_1.title}
               </a>
             )}
-
+ 
             {slug?.hero_button_2?.url && slug?.hero_button_2?.title && (
               <a href={slug.hero_button_2.url} className="btn-outline">
                 {slug.hero_button_2.title}
@@ -134,3 +121,4 @@ export default function HomeBanner({ slug, heroFeatures }: HomeBannerProps) {
     </section>
   );
 }
+ 

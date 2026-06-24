@@ -11,6 +11,7 @@ import ProductTabs from "@/components/common/ProductTabs";
 import { fetchBannerBySlug } from "@/lib/getBannerData";
 import HomeBanner from "@/components/common/HomeBanner";
 import { getPageById } from "@/lib/api";
+import Pagination from "@/components/common/Pagination";
 // Required for Next.js static export (output: export)
 export async function generateStaticParams() {
   const categories = await getCategories();
@@ -101,8 +102,6 @@ export default async function ProductPage({ params }: any) {
 
             <ToolsGrid
               tools={relatedProducts}
-              enableLink={true}
-              basePath={`/products/${product?.product_category?.slug}`}
             />
           </>
         )}

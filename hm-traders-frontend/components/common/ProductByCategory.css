@@ -31,6 +31,7 @@
 /* Search Box */
 .productSearch{
     border: 1px solid #1A1A1A66;
+    border-radius: 4px;
     display: flex;
     align-items:center;
     justify-content: center;
