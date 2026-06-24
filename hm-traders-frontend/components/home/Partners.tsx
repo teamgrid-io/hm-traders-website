@@ -37,7 +37,7 @@ interface PartnersProps {
 }
 
 export default async function Partners({ sections }: PartnersProps) {
-  // ✅ find correct section
+  //  find correct section
   const section = sections.find(
     (item) =>
       item.acf_fc_layout === "toolsection" &&
@@ -45,7 +45,7 @@ export default async function Partners({ sections }: PartnersProps) {
   );
   if (!section) return null;
 
-  // ✅ fetch all images
+  // fetch all images
   const images: (Media | null)[] = await Promise.all(
     (section.imagetool || []).map(async (item) => {
       if (!item.image) return null;
@@ -68,23 +68,23 @@ export default async function Partners({ sections }: PartnersProps) {
   return (
     <section className="partners-section">
       <div className="partners-container">
-        {/* ✅ tagline */}
+        {/*  tagline */}
         <p className="partners-tag">★{section?.tagline}</p>
-        {/* ✅ title */}
+        {/*  title */}
         <h2
           className="partners-title"
           dangerouslySetInnerHTML={{ __html: section?.title || "" }}
         />
-        {/* ✅ logos */}
+        {/*  logos */}
         <div className="partners-logos">
           {brandImages.map((brand) => (
-            <a key={brand.id} href={brand.link} className="partner-card">
+            <div key={brand.id}  className="partner-card">
               {brand.logo ? (
                 <img src={brand.logo} alt={brand.name} />
               ) : (
                 <span>{brand.name}</span>
               )}
-            </a>
+            </div>
           ))}
         </div>
       </div>

@@ -66,7 +66,7 @@ export default async function OurProductCategory({ sections }: OurProductCategor
           {categories?.slice(0, 4).map((cat) => (
             <a
               key={cat.id}
-              href={`/products/${cat.slug}`}
+               href={`/products/${cat.slug}`}
               className="tools-cards"
             >
               <Image

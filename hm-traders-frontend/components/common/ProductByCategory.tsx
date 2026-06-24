@@ -6,7 +6,9 @@ import Image from "next/image";
 import SortingProduct from "./SortingProducts";
 import { constructMediaUrl } from "@/lib/constructMediaUrl";
 import { getBrands } from "@/lib/getBrands";
-
+import Pagination from "./Pagination";
+import { useSearchParams } from "next/navigation";
+import Loader from "./Loader";
 const ProductByCategory = ({ products, categorySlug }: any) => {
   const [sortOption, setSortOption] = useState("asc");
   const [priceRange, setPriceRange] = useState([200, 800]);
@@ -15,19 +17,31 @@ const ProductByCategory = ({ products, categorySlug }: any) => {
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [price, setPrice] = useState(200000);
   const [showFilters, setShowFilters] = useState(false);
+  const [loading, setLoading] = useState(true);
+const searchParams = useSearchParams();
 
+const currentPage = Number(searchParams.get("page")) || 1;
   const [availability, setAvailability] = useState({
     inStock: false,
     outOfStock: false,
   });
+ useEffect(() => {
+  async function fetchBrands() {
+    try {
+      setLoading(true);
 
-  useEffect(() => {
-    async function fetchBrands() {
       const data = await getBrands();
+
       setBrands(data || []);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
     }
-    fetchBrands();
-  }, []);
+  }
+
+  fetchBrands();
+}, []);
 
 
   const handleChange = (range: any) => {
@@ -76,6 +90,21 @@ const ProductByCategory = ({ products, categorySlug }: any) => {
       outOfStock: false,
     });
   };
+  const ITEMS_PER_PAGE = 9;
+
+const totalPages = Math.ceil(
+  filteredProducts.length / ITEMS_PER_PAGE
+);
+
+const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+
+const paginatedProducts = filteredProducts.slice(
+  startIndex,
+  startIndex + ITEMS_PER_PAGE
+);
+if (loading) {
+  return <Loader />;
+}
   return (
     <>
       <div className="Productbycategories">
@@ -87,16 +116,16 @@ const ProductByCategory = ({ products, categorySlug }: any) => {
           </div>
           <div className="productSorting">
             <span>
-              Showing {filteredProducts?.length} of {products?.length} results
+              Showing {paginatedProducts?.length} of {products?.length} results
             </span>
             {/* Sorting */}
             <SortingProduct onSortChange={setSortOption} />
           </div>
 
           {/* Product Grid */}
-          {filteredProducts?.length > 0 ? (
+          {paginatedProducts?.length > 0 ? (
             <div className="featureTools-grid py-10">
-              {filteredProducts.map((product: any) => {
+             {paginatedProducts.map((product: any) => {
                 const image = product.imgUrl;
                 const imageUrl = constructMediaUrl(image);
 
@@ -191,6 +220,12 @@ const ProductByCategory = ({ products, categorySlug }: any) => {
           </div>
         </div>
       </div>
+          <Pagination
+  currentPage={currentPage}
+  totalPages={totalPages}
+  basePath={`/products/${categorySlug}`}
+/>
+
     </>
   );
 };

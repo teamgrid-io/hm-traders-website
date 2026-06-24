@@ -10,7 +10,7 @@
   background: #fff;
   padding: 40px;
   border-radius: 22px;
-  height: 480px;
+  height: auto;
   border: 1px solid #1a1a1a99;
 }
  
@@ -20,7 +20,7 @@
   padding: 40px;
   border-radius: 22px;
   border: 1px solid #1a1a1a99;
-  height: 480px;
+  height: auto;
   background: #fff;
 }
  
@@ -35,9 +35,9 @@
 .contactForm textarea {
   width: 100%;
   padding: 12px;
-  border: 1px solid #ccc;
+  border: 1px solid #1A1A1A99;
   margin-bottom: 15px;
-  border-radius: 6px;
+  border-radius: 5px;
   font-size: 14px;
 }
  
@@ -53,7 +53,7 @@
   border: none;
   padding: 12px 24px;
   cursor: pointer;
-  border-radius: 6px;
+  border-radius: 5px;
   font-weight: 600;
 }
  
@@ -112,13 +112,30 @@
   width: 253px;
   height: 58px;
 }
- 
+ .error {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.success {
+  color: green;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
 /* ─── MAP ─────────────────────────────────────────── */
 .mapContainer iframe {
   display: block;
   width: 100%;
 }
- 
+ .errorMsg {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
 /* ─── TABLET  (≤ 1024px) ──────────────────────────── */
 @media (max-width: 1024px) {
   .contactSection {
@@ -148,7 +165,35 @@
     height: auto;
   }
 }
- 
+ .fieldGroup {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.errorSpace {
+  min-height: 18px;
+}
+
+.fieldError {
+  color: #dc2626;
+  font-size: 12px;
+  margin-top: -10px;
+  margin-bottom: 8px;
+}
+
+.inputError {
+  border: 1px solid #dc2626 !important;
+}
+
+.successMsg {
+  background: #dcfce7;
+  color: #166534;
+  padding: 12px;
+  border-radius: 5px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
 /* ─── MOBILE  (≤ 768px) ───────────────────────────── */
 @media (max-width: 768px) {
   .contactSection {

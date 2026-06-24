@@ -90,7 +90,9 @@
   scale: 1.05;
 }
 
-
+.btn-outline:hover {
+  scale: 1.05;
+}
 
 .banner-features {
   position: absolute;      

@@ -53,20 +53,27 @@ export default async function ContactSection({ sections }: any) {
               <p className="contactText lato">
                 {(() => {
                   if (!item?.value) return null;
-
-                
-                  if (item.label?.toLowerCase().includes("email")) {
-                    return item.value
-                      .split(",")
-                      .map((email: string, i: number) => (
-                        <span key={i}>
-                          {email.trim()}
-                          <br />
-                        </span>
-                      ));
-                  }
-
-                  
+ 
+               
+                 {/* Email */}
+if (item.label?.toLowerCase().includes("email")) {
+  return item.value
+    .split(",")
+    .map((email: string, i: number) => (
+      <span key={i}>
+        <a
+          href={`https://mail.google.com/mail/?view=cm&fs=1&to=${email.trim()}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ color: "inherit", textDecoration: "none" }}
+        >
+          {email.trim()}
+        </a>
+        <br />
+      </span>
+    ));
+}
+                 
                   if (item.label?.toLowerCase().includes("contact")) {
                     return item.value
                       .split(",")
@@ -77,8 +84,8 @@ export default async function ContactSection({ sections }: any) {
                         </span>
                       ));
                   }
-
-                
+ 
+               
                   return item.value.replace(/,/g, ",\n");
                 })()}
               </p>

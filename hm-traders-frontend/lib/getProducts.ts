@@ -15,7 +15,7 @@ const getImageById = async (id: any) => {
 export async function getProducts() {
   try {
     const res = await fetch(
-      `${API_URL}/products`,
+      `${API_URL}/products?per_page=100`,
       { cache: "force-cache" }
     );
 

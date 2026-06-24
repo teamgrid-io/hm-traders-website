@@ -36,7 +36,7 @@ export default async function FeaturedTool({ slug, sections }: FeaturedToolProps
   return (
     <Container>
       <ToolSection sectionKey="featured_products" sections={sections} />
-      <ToolsGrid tools={featuredProducts} />
+      <ToolsGrid tools={featuredProducts}  />
     </Container>
   );
 }

@@ -140,7 +140,7 @@ body {
   position: relative;
   left: 50%;
   transform: translateX(-50%); /* ← use this instead of margin trick */
-  margin-top: 30px;
+  /* margin-top: 30px; */
   overflow: hidden;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
   align-self: stretch; /* ← break out of the centered flex alignment */

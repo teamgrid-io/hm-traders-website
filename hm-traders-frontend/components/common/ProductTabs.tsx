@@ -1,26 +1,26 @@
 "use client";
-
+ 
 import { useState } from "react";
 import "./ProductTabs.css";
-
+ 
 type Spec = {
   title: string;
   value: string;
 };
-
+ 
 type Feature = {
   feature: string;
 };
-
+ 
 export default function ProductTabs({
-  specifications,
-  features,
+  specifications=[],
+  features=[],
 }: {
   specifications?: Spec[];
   features?: Feature[];
 }) {
   const [activeTab, setActiveTab] = useState<"specs" | "features">("specs");
-
+ 
   return (
     <div className="productSpecs">
       {/* Tabs */}
@@ -31,7 +31,7 @@ export default function ProductTabs({
         >
           Technical Specifications
         </button>
-
+ 
         <button
           className={activeTab === "features" ? "activeTab" : ""}
           onClick={() => setActiveTab("features")}
@@ -39,7 +39,7 @@ export default function ProductTabs({
           Product Features
         </button>
       </div>
-
+ 
       <div className="tableArea">
         {/* Content */}
         {activeTab === "specs" && (
@@ -47,7 +47,7 @@ export default function ProductTabs({
             <tbody>
   {
     specifications?.length > 0 ? (
-      specifications.map((spec, i) => (
+      specifications?.map((spec, i) => (
         <tr key={i}>
           <td className="specLabel lato">{spec.title}</td>
           <td className="specValue lato">{spec.value}</td>
@@ -64,7 +64,7 @@ export default function ProductTabs({
 </tbody>
           </table>
         )}
-
+ 
         {activeTab === "features" && (
           <ul className="featureList lato">
            {

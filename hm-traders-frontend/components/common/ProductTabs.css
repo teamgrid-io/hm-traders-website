@@ -20,6 +20,11 @@
   border-bottom: 2.5px solid #fcae1b;
   color: #000;
 }
+.noSpecs{
+  text-align: center;
+  font-size: 14px;
+  color: #888;
+}
 .tableArea {
   background-color: #ffffff;
   width: 100%;
