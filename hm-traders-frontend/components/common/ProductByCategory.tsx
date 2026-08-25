@@ -84,7 +84,7 @@ const currentPage = Number(searchParams.get("page")) || 1;
   const handleClearFilters = () => {
     setQuery("");
     setSelectedBrands([]);
-    setPrice(1000);
+    setPrice(200000);
     setAvailability({
       inStock: false,
       outOfStock: false,
@@ -147,7 +147,7 @@ if (loading) {
                     </div>
 
                     <div className="tool-content">
-                      <p className="tool-title">{product.title.rendered}</p>
+                      <p className="tool-title" dangerouslySetInnerHTML = {{__html: product.title.rendered}}/>
 
                       {/* <div className="tool-rating">
                         <span className="stars">★★★★★</span>
@@ -157,7 +157,9 @@ if (loading) {
                         </span>
                       </div> */}
 
-                      <p className="tool-price">₹{product.acf.product_price}</p>
+                      {product?.acf?.product_price && (
+                          <p className="tool-price">₹{product.acf.product_price}</p>
+                        )}
                     </div>
                   </Link>
                 );

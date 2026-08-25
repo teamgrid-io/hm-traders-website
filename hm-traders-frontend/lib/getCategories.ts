@@ -20,7 +20,7 @@ import { API_URL } from "@/api/Api";
 //   try {
 //     const res = await fetch(
 //       `${API_URL}/categories?page=${page}&limit=${limit}&populate=images`,
-//       { cache: "no-store" }
+//       { cache: "force-cache" }
 //     );
 
 //     if (!res.ok) {

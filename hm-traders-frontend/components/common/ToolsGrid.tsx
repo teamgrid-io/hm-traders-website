@@ -46,7 +46,9 @@ export default function ToolsGrid({ tools = [] }: ToolsGridProps) {
             <div className="tool-content">
               <p className="tool-title">{tool?.title?.rendered}</p>
 
-              <p className="tool-price">₹{tool?.acf?.product_price}</p>
+              {tool?.acf?.product_price && (
+                  <p className="tool-price">₹{tool.acf.product_price}</p>
+                )}
             </div>
           </>
         );

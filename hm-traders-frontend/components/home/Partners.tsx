@@ -12,6 +12,7 @@ interface Brand {
   link: string;
   acf?: {
     brand_image?: number;
+    istrusted?: boolean; 
   };
   logo?: string | null;
 }
@@ -53,8 +54,9 @@ export default async function Partners({ sections }: PartnersProps) {
     })
   );
   const brands: Brand[] = await getBrands();
-  const brandImages: Brand[] = await Promise.all(
-    brands.map(async (brand) => {
+  const filteredBrands = brands.filter((brand) => brand.acf?.istrusted === true);
+  const brandImages = await Promise.all(
+    filteredBrands.map(async (brand) => {
       if (!brand?.acf?.brand_image) {
         return { ...brand, logo: null };
       }

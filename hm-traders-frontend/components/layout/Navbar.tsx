@@ -30,7 +30,7 @@ export default async function Header() {
               <Image
                 src={HmLogo}
                 alt="HM Traders Logo"
-                width={107}
+                width={130}
                 height={44}
               />
             </div>

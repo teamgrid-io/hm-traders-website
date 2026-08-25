@@ -32,6 +32,16 @@ export default function ProductCategories() {
         setLoading(true);
 
         const data = await getCategories();
+        // 🎯 PIN "Magnetic Drill Machines" TO THE SECOND POSITION (Index 1)
+        const targetSlug = "magnetic-drill-machines";
+        const targetIndex = data.findIndex((cat) => cat.slug === targetSlug);
+
+        if (targetIndex !== -1) {
+          // Remove the category from its original position
+          const [pinnedCategory] = data.splice(targetIndex, 1);
+          // Insert it back at index 1 (the 2nd position)
+          data.splice(1, 0, pinnedCategory);
+        }
 
         setCategories(data);
       } catch (error) {

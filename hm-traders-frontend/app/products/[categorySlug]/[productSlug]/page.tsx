@@ -51,8 +51,10 @@ export default async function ProductPage({ params }: any) {
           />
 
           <div className="productDetails">
-            <h1>{product?.title?.rendered}</h1>
-            <span className="price">₹{product?.acf?.product_price}</span>
+            <h1 dangerouslySetInnerHTML={{ __html: product?.title?.rendered }} />
+            {product?.acf?.product_price && (
+                          <span className="price">₹{product.acf.product_price}</span>
+                        )}
             {/* <div className="reviewCount">
               <span>★★★★★</span>({product?.reviewCount} customer review)
             </div> */}
