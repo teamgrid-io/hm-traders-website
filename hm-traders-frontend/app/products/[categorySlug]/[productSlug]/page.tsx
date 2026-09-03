@@ -1,5 +1,7 @@
-import { getCategories } from "@/lib/getCategories";
-import { getProductBySlug, getProductsByCategorySlug } from "@/lib/getProducts";
+import {
+  getProductBySlug,
+  getProducts,
+} from "@/lib/getProducts";
 import { constructMediaUrl } from "@/lib/constructMediaUrl";
 import Link from "next/link";
 import Image from "next/image";
@@ -14,18 +16,14 @@ import { getPageById } from "@/lib/api";
 import Pagination from "@/components/common/Pagination";
 // Required for Next.js static export (output: export)
 export async function generateStaticParams() {
-  const categories = await getCategories();
+  const products = await getProducts();
   const allParams: { categorySlug: string; productSlug: string }[] = [];
-  for (const category of categories) {
-    if (!category.slug) continue;
-    const products = await getProductsByCategorySlug(category.slug);
-    for (const product of products) {
-      if (product?.slug) {
-        allParams.push({
-          categorySlug: category.slug,
-          productSlug: product.slug,
-        });
-      }
+  for (const product of products) {
+    if (product?.slug && product.categorySlug) {
+      allParams.push({
+        categorySlug: product.categorySlug,
+        productSlug: product.slug,
+      });
     }
   }
   return allParams;
@@ -34,10 +32,12 @@ export default async function ProductPage({ params }: any) {
   const { productSlug } = await params;
   const banner = await fetchBannerBySlug(314);
   const product = await getProductBySlug(productSlug);
-  const products = await getProductsByCategorySlug(
-    product?.product_category?.slug,
+  const products = await getProducts();
+  const relatedProducts = products.filter(
+    (item: any) =>
+      item.categorySlug === product?.product_category?.slug &&
+      item.id !== product?.id,
   );
-  const relatedProducts = products.filter((p: any) => p.id !== product.id);
   const sections = await getPageById(314);
   const catalogueFileUrl = constructMediaUrl(product?.catalogueUrl);
   return (
@@ -51,7 +51,7 @@ export default async function ProductPage({ params }: any) {
           />
 
           <div className="productDetails">
-            <h1 dangerouslySetInnerHTML={{ __html: product?.title?.rendered }} />
+            <h1 dangerouslySetInnerHTML={{ __html: product?.title?.rendered || ""}} />
             {product?.acf?.product_price && (
                           <span className="price">₹{product.acf.product_price}</span>
                         )}
@@ -61,7 +61,7 @@ export default async function ProductPage({ params }: any) {
 
             <div className="productDescription lato">
               <p
-                dangerouslySetInnerHTML={{ __html: product?.content?.rendered }}
+                dangerouslySetInnerHTML={{ __html: product?.content?.rendered || "" }}
               />
             </div>
             <div className="productBuyOption">

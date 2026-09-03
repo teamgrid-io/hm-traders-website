@@ -73,18 +73,22 @@ import { API_URL } from "@/api/Api";
 //   }
 // }
 
-const getImageById = async (id: any) => {
-  if (!id) return null;
-
-  const res = await fetch(
-    `${API_URL}/media/${id}`
-  );
-
-  if (!res.ok) return null;
-
-  const imgData = await res.json();
-  return imgData?.source_url || imgData?.link || null;
+const fetchJson = async (url: string, options?: RequestInit) => {
+  const res = await fetch(url, options);
+  if (!res.ok) {
+    const responseBody = await res.text().catch(() => "<unavailable>");
+    console.error(
+      `[API ${res.status}] ${options?.method || "GET"} ${url}\n${responseBody.slice(0, 500)}`
+    );
+    return null;
+  }
+  return res.json();
 };
+
+const chunk = <T,>(items: T[], size: number) =>
+  Array.from({ length: Math.ceil(items.length / size) }, (_, index) =>
+    items.slice(index * size, index * size + size)
+  );
 
 export async function getCategories() {
   try {
@@ -94,25 +98,39 @@ export async function getCategories() {
     );
 
     if (!res.ok) {
+      const responseBody = await res.text().catch(() => "<unavailable>");
+      console.error(
+        `[API ${res.status}] GET ${API_URL}/product_category\n${responseBody.slice(0, 500)}`
+      );
       throw new Error("Failed to fetch categories");
     }
 
     const data = await res.json();
     
-    const updatedCategories = await Promise.all(
-      data.map(async (cat: any) => {
-        let imageUrl = null;
-
-        if (cat.acf.image) {
-          imageUrl = await getImageById(cat.acf.image);
-        }
-
-        return {
-          ...cat,
-          image_url: imageUrl,
-        };
-      })
+    const imageIds = [...new Set(data.map((cat: any) => cat.acf?.image).filter(Boolean))];
+    const media = imageIds.length
+      ? (
+          await Promise.all(
+            chunk(imageIds, 50).map((ids) =>
+              fetchJson(
+                `${API_URL}/media?include=${ids.join(",")}&per_page=100`,
+                { cache: "force-cache" }
+              )
+            )
+          )
+        ).flatMap((items) => (Array.isArray(items) ? items : []))
+      : [];
+    const images = new Map(
+      media.map((item: any) => [
+        String(item.id),
+        item.source_url || item.link || null,
+      ])
     );
+
+    const updatedCategories = data.map((cat: any) => ({
+      ...cat,
+      image_url: images.get(String(cat.acf?.image)) || null,
+    }));
 
 
     return updatedCategories;

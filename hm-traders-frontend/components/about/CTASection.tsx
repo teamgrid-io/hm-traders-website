@@ -21,7 +21,7 @@ export default function CTASection({ sections }: any) {
         {/* ✅ Title (HTML from WP) */}
         <h2
           className={styles["cta-title"]}
-          dangerouslySetInnerHTML={{ __html: section?.title }}
+          dangerouslySetInnerHTML={{ __html: section?.title || ""}}
         />
 
         {/* ✅ Subtitle */}

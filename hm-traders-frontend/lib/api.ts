@@ -19,10 +19,15 @@ export interface Brand {
 // Generic fetch helper
 async function fetchAPI<T = any>(endpoint: string): Promise<T | null> {
   try {
-    const res = await fetch(`${API_URL}${endpoint}`, {
+    const url = `${API_URL}${endpoint}`;
+    const res = await fetch(url, {
      cache: "force-cache"
     });
     if (!res.ok) {
+      const responseBody = await res.text().catch(() => "<unavailable>");
+      console.error(
+        `[API ${res.status}] GET ${url}\n${responseBody.slice(0, 500)}`
+      );
       throw new Error(`API Error: ${res.status}`);
     }
     return await res.json();

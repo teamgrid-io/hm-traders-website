@@ -3,65 +3,50 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
 
-import { getCategories } from "@/lib/getCategories";
 import { constructMediaUrl } from "@/lib/constructMediaUrl";
 import Pagination from "../common/Pagination";
-import Loader from "../common/Loader";
 
 interface Category {
   id: string;
   name: string;
   slug: string;
-  image_url: string;
+  image_url: string | null;
   link: string;
 }
 
-export default function ProductCategories() {
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [loading, setLoading] = useState(true);
+interface ProductCategoriesProps {
+  categories: Category[];
+}
 
+export default function ProductCategories({
+  categories: initialCategories,
+}: ProductCategoriesProps) {
   const searchParams = useSearchParams();
 
   const currentPage = Number(searchParams.get("page")) || 1;
 
-  useEffect(() => {
-    async function fetchCategories() {
-      try {
-        setLoading(true);
+  // Make a copy so we don't mutate props
+  const categories = [...initialCategories];
 
-        const data = await getCategories();
-        // 🎯 PIN "Magnetic Drill Machines" TO THE SECOND POSITION (Index 1)
-        const targetSlug = "magnetic-drill-machines";
-        const targetIndex = data.findIndex((cat) => cat.slug === targetSlug);
+  // Pin "Magnetic Drill Machines" to second position
+  const targetSlug = "magnetic-drill-machines";
 
-        if (targetIndex !== -1) {
-          // Remove the category from its original position
-          const [pinnedCategory] = data.splice(targetIndex, 1);
-          // Insert it back at index 1 (the 2nd position)
-          data.splice(1, 0, pinnedCategory);
-        }
+  const targetIndex = categories.findIndex(
+    (cat) => cat.slug === targetSlug
+  );
 
-        setCategories(data);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    }
+  if (targetIndex !== -1) {
+    const [pinnedCategory] = categories.splice(targetIndex, 1);
 
-    fetchCategories();
-  }, []);
-
-  // ✅ SHOW LOADER
-  if (loading) {
-    return <Loader />;
+    categories.splice(1, 0, pinnedCategory);
   }
 
   const ITEMS_PER_PAGE = 9;
 
-  const totalPages = Math.ceil(categories.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(
+    categories.length / ITEMS_PER_PAGE
+  );
 
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
 
@@ -92,7 +77,9 @@ export default function ProductCategories() {
                   />
                 ) : (
                   <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                    <span className="text-gray-400">{cat.name}</span>
+                    <span className="text-gray-400">
+                      {cat.name}
+                    </span>
                   </div>
                 )}
               </div>
@@ -102,6 +89,7 @@ export default function ProductCategories() {
                 className="absolute bottom-4 left-4 right-4 bg-[#FF9C00] text-white flex items-center justify-between px-6 py-4 rounded-md font-semibold hover:bg-[#e09112] transition-colors"
               >
                 {cat.name}
+
                 <span className="text-xl">›</span>
               </Link>
             </div>

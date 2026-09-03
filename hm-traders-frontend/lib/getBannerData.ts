@@ -38,7 +38,13 @@ import { API_URL } from '../api/Api';
       `${API_URL}/media/${id}`
     );
 
-    if (!res.ok) return null;
+    if (!res.ok) {
+      const responseBody = await res.text().catch(() => "<unavailable>");
+      console.error(
+        `[API ${res.status}] GET ${API_URL}/media/${id}\n${responseBody.slice(0, 500)}`
+      );
+      return null;
+    }
 
     const imgData = await res.json();
     return imgData.link;
@@ -50,6 +56,14 @@ export const fetchBannerBySlug = async (id: any) => {
       `${API_URL}/pages/${id}`,
       {cache: "force-cache" }
     );
+
+    if (!res.ok) {
+      const responseBody = await res.text().catch(() => "<unavailable>");
+      console.error(
+        `[API ${res.status}] GET ${API_URL}/pages/${id}\n${responseBody.slice(0, 500)}`
+      );
+      return null;
+    }
 
     const data = await res.json();
     const bannerData = data.acf.page_layout.find((item: any) => item.acf_fc_layout === "hero");

@@ -1,4 +1,4 @@
-import { API_URL } from '../api/Api';
+import { API_URL } from "../api/Api";
 import type { BannerFeature } from "@/components/common/HomeBanner";
 
 export interface ThreeBannerCards {
@@ -19,44 +19,97 @@ interface AcfData {
   acf: PageLayout;
 }
 
-// Strictly type getImageById
-const getImageById = async (id: number | string | null | undefined): Promise<string | null> => {
+interface MediaRecord {
+  id: number | string;
+  source_url?: string;
+  link?: string;
+  guid?: {
+    rendered?: string;
+  };
+}
+
+const getImageById = async (
+  id: number | string | null | undefined
+): Promise<string | null> => {
   if (!id) return null;
 
-  const res = await fetch(`${API_URL}/media/${id}`);
-  if (!res.ok) return null;
+  try {
+    const res = await fetch(
+      `${API_URL}/media?include=${encodeURIComponent(String(id))}&per_page=100`,
+      { cache: "force-cache" }
+    );
 
-  const imgData: { link?: string } = await res.json();
-  return imgData.link ?? null;
+    if (!res.ok) {
+      console.error(
+        `[MEDIA ${res.status}] GET ${API_URL}/media?include=${id}&per_page=100`
+      );
+      return null;
+    }
+
+    const media: MediaRecord[] = await res.json();
+
+    if (!Array.isArray(media) || media.length === 0) {
+      return null;
+    }
+
+    const image = media[0];
+
+    return (
+      image.source_url ||
+      image.guid?.rendered ||
+      image.link ||
+      null
+    );
+  } catch (error) {
+    console.error(`Failed to fetch media ${id}:`, error);
+    return null;
+  }
 };
 
-export const fetchThreeBannerCards = async (id: number | string): Promise<ThreeBannerCards | undefined> => {
+export const fetchThreeBannerCards = async (
+  id: number | string
+): Promise<ThreeBannerCards | undefined> => {
   try {
-    const res = await fetch(`${API_URL}/pages/${id}`, {cache: "force-cache" });
-    if (!res.ok) throw new Error(`Failed to fetch page: ${res.status}`);
+    const res = await fetch(`${API_URL}/pages/${id}`, {
+      cache: "force-cache",
+    });
+
+    if (!res.ok) {
+      throw new Error(`Failed to fetch page: ${res.status}`);
+    }
 
     const data: AcfData = await res.json();
+
     const threeColumnData = data.acf.page_layout.find(
-      (item: ThreeColumnData) => item.acf_fc_layout === "three_column_icon"
+      (item: ThreeColumnData) =>
+        item.acf_fc_layout === "three_column_icon"
     );
 
     if (threeColumnData?.column_items?.length) {
       threeColumnData.column_items = await Promise.all(
-        threeColumnData.column_items.map(async (col: BannerFeature) => {
-          if (col.column_items_icon) {
-            return {
-              ...col,
-              column_items_icon_url: await getImageById(col.column_items_icon),
-            };
+        threeColumnData.column_items.map(
+          async (col: BannerFeature) => {
+            if (col.column_items_icon) {
+              return {
+                ...col,
+                column_items_icon_url: await getImageById(
+                  col.column_items_icon
+                ),
+              };
+            }
+
+            return col;
           }
-          return col;
-        })
+        )
       );
     }
 
-    if (threeColumnData && threeColumnData.column_items) {
-      return { column_items: threeColumnData.column_items };
+    if (threeColumnData?.column_items) {
+      return {
+        column_items: threeColumnData.column_items,
+      };
     }
+
     return undefined;
   } catch (error) {
     console.error("Banner fetch error:", error);

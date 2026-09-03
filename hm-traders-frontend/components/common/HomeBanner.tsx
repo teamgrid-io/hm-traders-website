@@ -71,7 +71,7 @@ export default function HomeBanner({ slug, heroFeatures }: HomeBannerProps) {
                 textAlign: slug?.hero_slug !== "home" ? "center" : undefined,
                 marginBottom: slug?.hero_slug === "home" ? "30px" : "0px",
               }}
-              dangerouslySetInnerHTML={{ __html: slug.hero_subtitle }}
+              dangerouslySetInnerHTML={{ __html: slug.hero_subtitle || "" }}
             />
           )}
           

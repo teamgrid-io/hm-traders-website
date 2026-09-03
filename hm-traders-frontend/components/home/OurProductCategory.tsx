@@ -79,7 +79,7 @@ export default async function OurProductCategory({ sections }: OurProductCategor
               <div className="tool-overlay">
                 <p
                   dangerouslySetInnerHTML={{
-                    __html: cat.name,
+                    __html: cat.name || "",
                   }}
                 />
               </div>

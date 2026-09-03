@@ -147,7 +147,7 @@ if (loading) {
                     </div>
 
                     <div className="tool-content">
-                      <p className="tool-title" dangerouslySetInnerHTML = {{__html: product.title.rendered}}/>
+                      <p className="tool-title" dangerouslySetInnerHTML = {{__html: product.title.rendered || ""}}/>
 
                       {/* <div className="tool-rating">
                         <span className="stars">★★★★★</span>
